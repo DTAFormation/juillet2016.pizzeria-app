@@ -203,8 +203,8 @@
       <properties>
         <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
         <jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
-        <jdbc.user>pizzeria</jdbc.user>
-        <jdbc.pass>pizzeria</jdbc.pass>
+        <jdbc.user>root</jdbc.user>
+        <jdbc.pass></jdbc.pass>
       </properties>
     </profile>
 
