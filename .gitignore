@@ -28,5 +28,6 @@ hs_err_pid*
 
 # node
 node_modules
+public
 dist
 *.log
