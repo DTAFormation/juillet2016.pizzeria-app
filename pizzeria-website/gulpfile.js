@@ -69,7 +69,7 @@ gulp.task('clean', function() {
     log('Cleaning: ' + colors.blue(paths.public));
 
     var delPaths = [].concat(paths.public);
-    del(delPaths);
+    del.sync(delPaths);
 });
 
 /*
