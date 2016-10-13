@@ -16,7 +16,7 @@ gulp.task("connect", function() {
     plugins.connect.server({
         /** Default path */
         root: "public",
-        port: 1000
+        port: 10080
     });
 });
 
