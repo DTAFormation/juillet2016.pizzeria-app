@@ -1,77 +1,104 @@
 package fr.pizzeria.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 @Entity
 public class Client {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nom;
 	private String prenom;
 	private String email;
-	private String motDePasse;
-	private String sexe;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateNaissance;
-	private String adresseNum;
-	private String adresseRue;
-	private String adresseDetail;
-	private String adresseCodePostal;
-	private String adresseVille;
-	private String numeroTel;
+	private boolean actif = true;
+	private String adresse;
+	private String telephone;
+	private Date dateDerniereModification;
+	private boolean abonne;
 
-	
-	
-	public Client(Integer id, String nom, String prenom, String email, String motDePasse) {
+	public Client(Integer id, String nom, String prenom, String email, String adresse, String telephone) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.motDePasse = motDePasse;
+		this.adresse = adresse;
+		this.telephone = telephone;
 	}
 
-	public Client(String nom, String prenom, String email, String motDePasse) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.motDePasse = motDePasse;
-	}
-
-
-	public Client(Integer id, String nom, String prenom, String email, String motDePasse, String sexe,
-			Calendar dateNaissance, String adresseNum, String adresseRue, String adresseDetail,
-			String adresseCodePostal, String adresseVille, String numeroTel) {
+	/**
+	 * @param id
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param adresse
+	 * @param telephone
+	 * @param abonne
+	 */
+	public Client(Integer id, String nom, String prenom, String email, String adresse, String telephone, boolean abonne) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.motDePasse = motDePasse;
-		this.sexe = sexe;
-		this.dateNaissance = dateNaissance;
-		this.adresseNum = adresseNum;
-		this.adresseRue = adresseRue;
-		this.adresseDetail = adresseDetail;
-		this.adresseCodePostal = adresseCodePostal;
-		this.adresseVille = adresseVille;
-		this.numeroTel = numeroTel;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.abonne = abonne;
+	}
+
+	public Client(String nom, String prenom, String email, String adresse, String telephone) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+
+	public Client(String nom, String prenom, String email, String adresse, String telephone, boolean abonne) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.actif = actif;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.abonne = abonne;
 	}
 
 	public Client() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public Date getDateDerniereModification() {
+		return dateDerniereModification;
+	}
+
+	public void setDateDerniereModification(Date dateDerniereModification) {
+		this.dateDerniereModification = dateDerniereModification;
 	}
 
 	public Integer getId() {
@@ -106,78 +133,93 @@ public class Client {
 		this.email = email;
 	}
 
-	public String getMotDePasse() {
-		return motDePasse;
+	public boolean isActif() {
+		return actif;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
-	}
-	
-	public String getSexe() {
-		return sexe;
+	public void setActif(boolean actif) {
+		this.actif = actif;
 	}
 
-	public void setSexe(String sexe) {
-		this.sexe = sexe;
+	public void toggleActif() {
+		this.setActif(!this.actif);
 	}
 
-	public Calendar getDateNaissance() {
-		return dateNaissance;
+	public boolean isAbonne() {
+		return abonne;
 	}
 
-	public void setDateNaissance(Calendar dateNaissance) {
-		this.dateNaissance = dateNaissance;
+	public void setAbonne(boolean abonne) {
+		this.abonne = abonne;
 	}
 
-	public String getAdresseNum() {
-		return adresseNum;
+	@PrePersist
+	@PreUpdate
+	public void onPersist() {
+		this.dateDerniereModification = new Date();
 	}
 
-	public void setAdresseNum(String adresseNum) {
-		this.adresseNum = adresseNum;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (actif ? 1231 : 1237);
+		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
+		result = prime * result + ((dateDerniereModification == null) ? 0 : dateDerniereModification.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
+		return result;
 	}
 
-	public String getAdresseRue() {
-		return adresseRue;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (actif != other.actif)
+			return false;
+		if (adresse == null) {
+			if (other.adresse != null)
+				return false;
+		} else if (!adresse.equals(other.adresse))
+			return false;
+		if (dateDerniereModification == null) {
+			if (other.dateDerniereModification != null)
+				return false;
+		} else if (!dateDerniereModification.equals(other.dateDerniereModification))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (telephone == null) {
+			if (other.telephone != null)
+				return false;
+		} else if (!telephone.equals(other.telephone))
+			return false;
+		return true;
 	}
-
-	public void setAdresseRue(String adresseRue) {
-		this.adresseRue = adresseRue;
-	}
-
-	public String getAdresseDetail() {
-		return adresseDetail;
-	}
-
-	public void setAdresseDetail(String adresseDetail) {
-		this.adresseDetail = adresseDetail;
-	}
-
-	public String getAdresseCodePostal() {
-		return adresseCodePostal;
-	}
-
-	public void setAdresseCodePostal(String adresseCodePostal) {
-		this.adresseCodePostal = adresseCodePostal;
-	}
-
-	public String getAdresseVille() {
-		return adresseVille;
-	}
-
-	public void setAdresseVille(String adresseVille) {
-		this.adresseVille = adresseVille;
-	}
-
-	public String getNumeroTel() {
-		return numeroTel;
-	}
-
-	public void setNumeroTel(String numeroTel) {
-		this.numeroTel = numeroTel;
-	}
-	
-	
-
 }

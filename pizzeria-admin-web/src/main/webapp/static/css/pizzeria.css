@@ -1,0 +1,8 @@
+.item-ingredient-pizza:hover {
+	background-color: #DDDDDD;
+	
+	/* nom different selon le navigateur */ 
+	cursor: pointer;
+	cursor: hand;
+	
+}
