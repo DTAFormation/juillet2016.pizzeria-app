@@ -15,7 +15,8 @@ var log = plugins.util.log;
 gulp.task("connect", function() {
     plugins.connect.server({
         /** Default path */
-        root: "public"
+        root: "public",
+        port: 1000
     });
 });
 
