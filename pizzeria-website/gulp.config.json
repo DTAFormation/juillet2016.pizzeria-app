@@ -1,0 +1,16 @@
+{
+    "data": "datas/",
+    "html": [
+        "./source/*.html",
+        "./source/**/*.html"
+    ],
+    "libsCss": [
+        "./node_modules/bootstrap/dist/**/*"
+    ],
+    "browserifyPath": "./source/app.js",
+    "js": [
+        "./source/*.js",
+        "./source/**/*.js"
+    ],
+    "public": "./public/"
+}
