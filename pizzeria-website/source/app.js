@@ -37,12 +37,7 @@
     .controller("pizzCtrl", require("./pizzas/pizzas.controller"))
     .controller("pizzDetailsCtrl", require("./pizzas/pizzaDetails.controller"))
     /*
-     * Admin
+     * Client
      */
-    .controller("cmdCtrl", require("./admin/commands/commands.controller"))
-    .directive("clientName", require("./admin/commands/clientName.directive"))
-    .directive("livreurName", require("./admin/commands/livreurName.directive"))
-    .controller("addPizzCtrl", require("./admin/addPizza/addPizza.controller"))
-    .controller("addLivCtrl", require("./admin/addLivreur/addLivreur.controller"));
-
+    .controller("inscrCtrl", require("./client/inscription.controller"));
 }());

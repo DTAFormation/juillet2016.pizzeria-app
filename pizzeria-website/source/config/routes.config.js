@@ -26,22 +26,12 @@
             controllerAs: 'pizzD'
         });
         /*
-         * Admin
+         * Clients
          */
-        $routeProvider.when('/admin', {
-            templateUrl: "admin/commands/commands.html",
-            controller: "cmdCtrl",
-            controllerAs: 'cmd'
-        });
-        $routeProvider.when('/admin/ajout_pizza', {
-            templateUrl: "admin/addPizza/addPizza.html",
-            controller: "addPizzCtrl",
-            controllerAs: 'addPizz'
-        });
-        $routeProvider.when('/admin/ajout_livreur', {
-            templateUrl: "admin/addLivreur/addLivreur.html",
-            controller: "addLivCtrl",
-            controllerAs: 'addLiv'
+        $routeProvider.when('/inscription', {
+            templateUrl: "client/inscription.html",
+            controller: "inscrCtrl",
+            controllerAs: 'inscr'
         });
     };
 

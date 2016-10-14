@@ -1,0 +1,91 @@
+
+
+
+<!-- Formulaire -->
+<form class="form-horizontal" ng-submit="addNewClient()">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Formulaire d'inscription</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="email" ng-model="newClient.email" class="form-control input-md" required="">
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Password</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="passwordinput" type="password" ng-model="newClient.password" class="form-control input-md" required="">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Nom</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" ng-model="newClient.nom" class="form-control input-md" required="">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Prénom</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" ng-model="newClient.prenom" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">Sexe</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="radios-0">
+      <input type="radio" name="radios" id="radios-0" value="Homme" checked="checked">
+      Homme
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="Femme">
+      Femme
+    </label>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Date de naissance</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="date" ng-model="newClient.date" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Adresse</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="textarea" ng-model="newClient.adresse" name="textarea"></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Téléphone</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="tel" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-success">Valider</button>
+  </div>
+</div>
+
+</fieldset>
+</form>

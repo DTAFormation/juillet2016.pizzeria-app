@@ -4,14 +4,11 @@
         var vm = this;
         vm.error = false;
         vm.success = false;
-        vm.newLivreur = {
-            "nom": "",
-            "prenom": "",
-            "disponibilite": true
-        };
-        vm.addNewLivreur = function() {
-            livService.postLivreur(vm.newLivreur).then(function() {
+        vm.newClient = {};
+        vm.addNewClient = function() {
+            cliService.postClient(vm.newClient).then(function(result) {
                 vm.success = true;
+                console.log(result);
                 $timeout(function() {
                     vm.success = false;
                 }, 1000);
