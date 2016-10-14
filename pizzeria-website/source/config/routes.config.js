@@ -1,12 +1,14 @@
 (function () {
     'use strict';
 
-    var config = function($routeProvider) {
+    var config = function ($routeProvider) {
+
         $routeProvider.when('/', {
             templateUrl: "home/home.html",
             controller: "homeCtrl",
             controllerAs: 'home'
         });
+
         $routeProvider.when('/livreurs', {
             templateUrl: "livreurs/livreurs.html",
             controller: "livCtrl",
@@ -20,6 +22,7 @@
             controller: "pizzCtrl",
             controllerAs: 'pizz'
         });
+        
         $routeProvider.when('/pizza/:id', {
             templateUrl: "pizzas/pizzaDetails.html",
             controller: "pizzDetailsCtrl",
@@ -46,4 +49,4 @@
     };
 
     module.exports = config;
-}());
+} ());

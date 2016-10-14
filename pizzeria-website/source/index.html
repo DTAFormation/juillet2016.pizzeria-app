@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr" ng-app="pizzeria">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ma pizzeria</title>
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
-    <script src="js/bundle.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ma pizzeria</title>
+	<link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+	<script src="js/bundle.js"></script>
 </head>
+
 <body>
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Ma pizzéria</h1>
-            <ul class="nav nav-pills">
-                <li role="presentation"><a href="#/">Home</a></li>
-                <li role="presentation"><a href="#/admin">Admin</a></li>
-                <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
-                <li role="presentation"><a href="#/livreurs">Les livreurs</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="container" ng-view></div>
+	<div ng-controller="translateCtrl as ctrl">
+		<h2 translate="TITLE">Hello</h2>
+		<p translate="FOO">This is a paragraph</p>
+		<img ng-src='img/en.png' ng-click="ctrl.changeLanguage('en')" />
+		<img ng-src='img/fr.png' ng-click="ctrl.changeLanguage('fr')" />
+        <p>pddf = {{ctrl.p}} </p>
+	</div>
+	<my-directive></my-directive>
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Ma pizzéria</h1>
+				<ul class="nav nav-pills">
+					<li role="presentation"><a translate="HOME" href="#/">Accueil</a></li>
+					<li role="presentation"><a href="#/admin">Admin</a></li>
+					<li role="presentation"><a translate="PIZZAS" href="#/pizzas">Les pizzas</a></li>
+					<li role="presentation"><a translate="LIVREUR" href="#/livreurs">Les livreurs</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container" ng-view></div>
 </body>
+
 </html>

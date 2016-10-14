@@ -4,6 +4,7 @@
         "./source/*.html",
         "./source/**/*.html"
     ],
+    "img": "datas/img/*",
     "libsCss": [
         "./node_modules/bootstrap/dist/**/*"
     ],
@@ -12,5 +13,6 @@
         "./source/*.js",
         "./source/**/*.js"
     ],
+    "translate":"./node_modules/angular-translate/dist/angular-translate.min.js",
     "public": "./public/"
 }
