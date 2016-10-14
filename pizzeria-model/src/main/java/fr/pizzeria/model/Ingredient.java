@@ -1,10 +1,17 @@
 package fr.pizzeria.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//Issue USA008
+
+/*		Modifications effectuées :
+ * 
+ *  - Ajout de l'attribut quantité( décimal car l'unité est le kilo )
+ */
 @Entity
 public class Ingredient {
 	@Id
@@ -12,10 +19,27 @@ public class Ingredient {
 	private Integer id;
 	private String code;
 	private String nom;
+	@Column(name="quantite", columnDefinition="Decimal(10,3) default '0.00'")
+	private Double quantite;
 	private boolean actif = true;
+	
 
 	public Ingredient() {
 		// default construct
+	}
+	
+	public Ingredient(String code, String nom, Double quantite) {
+		this.code = code;
+		this.nom = nom;
+		this.quantite = quantite;
+	}
+	
+	
+	public Ingredient(Integer id, String code, String nom, Double quantite) {
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.quantite = quantite;
 	}
 
 	public Ingredient(Integer id, String code, String nom) {
@@ -64,4 +88,13 @@ public class Ingredient {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	public  Double getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite( Double quantite) {
+		this.quantite = quantite;
+	}
+	
 }
