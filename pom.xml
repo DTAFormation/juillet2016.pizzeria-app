@@ -210,9 +210,9 @@
 			</activation>
 			<properties>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
-				<jdbc.user>pizzeriadb</jdbc.user>
-				<jdbc.pass>pizzeriadb</jdbc.pass>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeriadb</jdbc.url>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass></jdbc.pass>
 			</properties>
 		</profile>
 	</profiles>
