@@ -1,14 +1,23 @@
 (function () {
     'use strict';
-    var controller = function(livService, $log, $timeout) {
+    var controller = function(cliService, $log, $timeout) {
         var vm = this;
         vm.error = false;
         vm.success = false;
-        vm.newClient = {};
+        vm.newClientPost = {};
         vm.addNewClient = function() {
-            cliService.postClient(vm.newClient).then(function(result) {
+            vm.newClientPost.email = vm.newClient.email;
+            vm.newClientPost.password = vm.newClient.password;
+            vm.newClientPost.nom = vm.newClient.nom;
+            vm.newClientPost.prenom = vm.newClient.prenom;
+            vm.newClientPost.sexe = vm.newClient.sexe;
+            vm.newClientPost.date = vm.newClient.date;
+            vm.newClientPost.adresse = vm.newClient.adresse;
+            vm.newClientPost.telephone = vm.newClient.tel;
+            cliService.postClient(vm.newClientPost).then(function(result) {  
+                console.log(result.data);
                 vm.success = true;
-                console.log(result);
+                vm.newClient = {};
                 $timeout(function() {
                     vm.success = false;
                 }, 1000);

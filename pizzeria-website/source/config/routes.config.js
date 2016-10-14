@@ -30,8 +30,8 @@
          */
         $routeProvider.when('/inscription', {
             templateUrl: "client/inscription.html",
-            controller: "inscrCtrl",
-            controllerAs: 'inscr'
+            controller: "clientCtrl",
+            controllerAs: 'client'
         });
     };
 

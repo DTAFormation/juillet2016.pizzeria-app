@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -40,9 +41,9 @@ public class CommandeServiceTest {
 	}
 
 	@Test
-	public void testFindAll() {
+	public void testFindAll() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
-		Client client = new Client("Travis", "Bob", "bt@gmail.com", "37 bd...", "0700000000");
+		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
 		Commande commande1 = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
 		Commande commande2 = new Commande("002", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
 
@@ -56,12 +57,13 @@ public class CommandeServiceTest {
 	}
 
 	@Test
-	public void testFindOneCommande() {
+	public void testFindOneCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
-		Client client = new Client("Travis", "Bob", "bt@gmail.com", "37 bd...", "0700000000");
+		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
 		Commande commande = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
 
-		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false", Commande.class)).thenReturn(query);
+		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false",
+				Commande.class)).thenReturn(query);
 		when(query.setParameter("numeroCommande", "001")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(commande);
 
@@ -69,13 +71,14 @@ public class CommandeServiceTest {
 	}
 
 	@Test
-	public void testUpdateCommande() {
+	public void testUpdateCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
-		Client client = new Client("Travis", "Bob", "bt@gmail.com", "37 bd...", "0700000000");
+		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
 		Commande commandeOld = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
 		Commande commandeNew = new Commande(1, "001", StatutCommande.EXPEDIE, Calendar.getInstance(), livreur, client);
 
-		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false", Commande.class)).thenReturn(query);
+		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false",
+				Commande.class)).thenReturn(query);
 		when(query.setParameter("numeroCommande", "001")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(commandeOld);
 
@@ -84,9 +87,9 @@ public class CommandeServiceTest {
 	}
 
 	@Test
-	public void testSaveCommande() {
+	public void testSaveCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
-		Client client = new Client("Travis", "Bob", "bt@gmail.com", "37 bd...", "0700000000");
+		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
 		Commande commande = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
 		service.saveCommande(commande);
 
@@ -94,12 +97,13 @@ public class CommandeServiceTest {
 	}
 
 	@Test
-	public void testDeleteCommande() {
+	public void testDeleteCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
-		Client client = new Client("Travis", "Bob", "bt@gmail.com", "37 bd...", "0700000000");
+		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
 		Commande commande = new Commande(1, "001", StatutCommande.EXPEDIE, Calendar.getInstance(), livreur, client);
 
-		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false", Commande.class)).thenReturn(query);
+		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false",
+				Commande.class)).thenReturn(query);
 		when(query.setParameter("numeroCommande", "001")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(commande);
 

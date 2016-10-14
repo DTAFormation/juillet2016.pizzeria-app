@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.security.GeneralSecurityException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class NouvelleCommandeControllerTest {
 
 	@Mock
 	HttpServletResponse resp;
-	
+
 	@Mock
 	private CommandeService commandeService;
 	@Mock
@@ -50,26 +51,26 @@ public class NouvelleCommandeControllerTest {
 	private ClientService clientService;
 	@Mock
 	private LivreurService livreurService;
-	
+
 	@Test
-	public void testDoPost2() throws ServletException, IOException {
+	public void testDoPost2() throws ServletException, IOException, GeneralSecurityException {
 		Ingredient ingredient = new Ingredient("CHA", "champignon");
 		Ingredient ingredient2 = new Ingredient("SAM", "saumon");
 		Ingredient ingredient3 = new Ingredient("FRO", "fromage");
-		
+
 		Pizza p = getPizza1(ingredient, ingredient2, ingredient3);
-		
+
 		Pizza p1 = getPizza2(ingredient2, ingredient3);
-		
+
 		List<Pizza> lp = new ArrayList<>();
 		lp.add(p);
 		lp.add(p1);
-		
-		Client c = new Client("Chaud", "Patate", "email", "adresse", "telephone");
+
+		Client c = new Client("Chaud", "Patate", "email", "", "adresse", "telephone");
 		c.setId(8);
 		Livreur l = new Livreur("nom", "prenom");
 		l.setId(10);
-		
+
 		String cal = "2016-07-05 11:28";
 		Calendar date = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -85,9 +86,9 @@ public class NouvelleCommandeControllerTest {
 		when(req.getParameter("client")).thenReturn(c.getId().toString());
 		when(req.getParameter("PEP")).thenReturn("1");
 		when(req.getParameter("SAM")).thenReturn("2");
-		
+
 		Commande cmd = new Commande("COMTest", StatutCommande.NON_TRAITE, date, l, c);
-		
+
 		CommandePizza cp = new CommandePizza(cmd, p, 1);
 		CommandePizza cp1 = new CommandePizza(cmd, p1, 2);
 		List<CommandePizza> lcp = new ArrayList<>();
@@ -98,19 +99,18 @@ public class NouvelleCommandeControllerTest {
 		when(livreurService.findOneLivreur(l.getId().toString())).thenReturn(l);
 		when(clientService.findOneClientById(c.getId().toString())).thenReturn(c);
 		when(pizzaService.findAll()).thenReturn(lp);
-		
-		
+
 		NouvelleCommandeController controllerTest = new NouvelleCommandeController();
 		controllerTest.setCommandeService(commandeService);
 		controllerTest.setPizzaService(pizzaService);
 		controllerTest.setLivreurService(livreurService);
 		controllerTest.setClientService(clientService);
-		
+
 		controllerTest.doPost(req, resp);
-		
+
 		verify(commandeService).saveCommande(cmd);
 		verify(commandeService).updateCommande(cmd.getNumeroCommande(), cmd);
-		
+
 	}
 
 	private Pizza getPizza2(Ingredient ingredient2, Ingredient ingredient3) {

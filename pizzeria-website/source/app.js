@@ -39,5 +39,5 @@
     /*
      * Client
      */
-    .controller("inscrCtrl", require("./client/inscription.controller"));
+    .controller("clientCtrl", require("./client/inscription.controller"));
 }());
