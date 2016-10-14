@@ -25,6 +25,7 @@ import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
 
 /**
  * Contrôleur de la page Nouvelle Commande.
@@ -54,12 +55,15 @@ public class NouvelleCommandeController extends HttpServlet {
 		List<Pizza> pizzas = pizzaService.findAll();
 		List<Client> clients = clientService.findAll();
 		StatutCommande[] statuts = StatutCommande.values();
+		//ajout du statut des paiements
+		StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
 
 		Commande commande = new Commande();
 		commande.setDateCommande(Calendar.getInstance());
 
 		req.setAttribute("commande", commande);
 		req.setAttribute("statuts", statuts);
+		req.setAttribute("statutsPaiement", statutsPaiement);
 		req.setAttribute("livreurs", livreursDisponibles);
 		req.setAttribute("clients", clients);
 		req.setAttribute("pizzas", pizzas);
@@ -72,11 +76,12 @@ public class NouvelleCommandeController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String numeroParam = req.getParameter("numero");
 		String statutParam = req.getParameter("statut");
+		String statutPaiementParam =req.getParameter("statutPaiement");
 		String dateParam = req.getParameter("date");
 		String livreurIdParam = req.getParameter("livreur");
 		String clientIdParam = req.getParameter("client");
 
-		if (isBlank(numeroParam) || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
+		if (isBlank(numeroParam) || isBlank(statutPaiementParam) || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
 				|| isBlank(clientIdParam)) {
 
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
@@ -87,12 +92,14 @@ public class NouvelleCommandeController extends HttpServlet {
 			List<Pizza> pizzas = pizzaService.findAll();
 			List<Client> clients = clientService.findAll();
 			StatutCommande[] statuts = StatutCommande.values();
+			StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
 
 			Commande commande = new Commande();
 			commande.setDateCommande(Calendar.getInstance());
 
 			req.setAttribute("msgErreur", "Le numéro de commande existe déjà !");
 			req.setAttribute("commande", commande);
+			req.setAttribute("statutsPaiement", statutsPaiement);
 			req.setAttribute("statuts", statuts);
 			req.setAttribute("livreurs", livreursDisponibles);
 			req.setAttribute("clients", clients);
@@ -102,6 +109,7 @@ public class NouvelleCommandeController extends HttpServlet {
 		} else {
 			// Traitement des paramètres
 			StatutCommande statut = StatutCommande.valueOf(statutParam);
+			StatutCommandePaiement statutPaiement = StatutCommandePaiement.valueOf(statutPaiementParam);
 
 			dateParam = dateParam.replace('T', ' ');
 			Calendar date = Calendar.getInstance();
@@ -124,7 +132,7 @@ public class NouvelleCommandeController extends HttpServlet {
 				qteSupZero.add(quantitePizzaCommandee(req, p) > 0);
 			});
 
-			Commande commandeSansId = new Commande(numeroParam, statut, date, l, c);
+			Commande commandeSansId = new Commande(numeroParam, statutPaiement, statut, date, l, c);
 			if (thereIsPizzaCommandee(qteSupZero)) {
 				commandeService.saveCommande(commandeSansId);
 
@@ -143,11 +151,13 @@ public class NouvelleCommandeController extends HttpServlet {
 				List<Pizza> pizzas = pizzaService.findAll();
 				List<Client> clients = clientService.findAll();
 				StatutCommande[] statuts = StatutCommande.values();
+				StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
 
 				req.setAttribute("msgErreur", "Il faut au moins une pizza de commander pour créer une commande");
 				commandeSansId.setDateCommande(Calendar.getInstance());
 				req.setAttribute("commande", commandeSansId);
 				req.setAttribute("statuts", statuts);
+				req.setAttribute("statutsPaiement", statutsPaiement);
 				req.setAttribute("livreurs", livreursDisponibles);
 				req.setAttribute("clients", clients);
 				req.setAttribute("pizzas", pizzas);

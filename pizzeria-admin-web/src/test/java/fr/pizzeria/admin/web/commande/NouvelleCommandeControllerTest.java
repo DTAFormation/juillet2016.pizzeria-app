@@ -33,6 +33,7 @@ import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NouvelleCommandeControllerTest {
@@ -87,7 +88,9 @@ public class NouvelleCommandeControllerTest {
 		when(req.getParameter("PEP")).thenReturn("1");
 		when(req.getParameter("SAM")).thenReturn("2");
 
-		Commande cmd = new Commande("COMTest", StatutCommande.NON_TRAITE, date, l, c);
+		
+		Commande cmd = new Commande("COMTest", StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, date, l, c);
+		
 
 		CommandePizza cp = new CommandePizza(cmd, p, 1);
 		CommandePizza cp1 = new CommandePizza(cmd, p1, 2);

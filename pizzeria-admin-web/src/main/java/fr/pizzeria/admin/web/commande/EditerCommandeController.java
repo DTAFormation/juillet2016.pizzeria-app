@@ -23,6 +23,7 @@ import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
 
 @WebServlet("/commandes/edit")
 public class EditerCommandeController extends HttpServlet {
@@ -63,9 +64,12 @@ public class EditerCommandeController extends HttpServlet {
 				List<Livreur> livreursDisponibles = livreurService.findAll();
 				List<Client> clients = clientService.findAll();
 				StatutCommande[] statuts = StatutCommande.values();
+				StatutCommandePaiement [] statutsPaiement = StatutCommandePaiement.values();
 
 				req.setAttribute("commande", commande);
 				req.setAttribute("statuts", statuts);
+				//ajout du statut des paiements
+				req.setAttribute("statutsPaiement", statutsPaiement);
 				req.setAttribute("livreurs", livreursDisponibles);
 				req.setAttribute("clients", clients);
 				
@@ -88,11 +92,13 @@ public class EditerCommandeController extends HttpServlet {
 		String numeroParam = req.getParameter("numero");
 		String idParam = req.getParameter("id");
 		String statutParam = req.getParameter("statut");
+		//ajout du statut des paiements
+		String statutPaiementParam = req.getParameter("statutPaiment");
 		String dateParam = req.getParameter("date");
 		String livreurIdParam = req.getParameter("livreur");
 		String clientIdParam = req.getParameter("client");
 
-		if (isBlank(numeroParam) || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
+		if (isBlank(numeroParam) || isBlank(statutParam) || isBlank(statutPaiementParam) || isBlank(dateParam) || isBlank(livreurIdParam)
 				|| isBlank(clientIdParam) || isBlank(idParam)) {
 			
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
@@ -101,6 +107,7 @@ public class EditerCommandeController extends HttpServlet {
 		} else {
 			// Traitement des paramètres
 			StatutCommande statut = StatutCommande.valueOf(statutParam);
+			StatutCommandePaiement statutPaiement = StatutCommandePaiement.valueOf(statutPaiementParam);
 
 			Calendar date = Calendar.getInstance();
 			dateParam = dateParam.replace('T', ' ');
@@ -122,7 +129,7 @@ public class EditerCommandeController extends HttpServlet {
 			int id = Integer.parseInt(idParam);
 
 			// Ajout des pizzas
-			Commande commandeId = new Commande(id, numeroParam, statut, date, l, c);
+			Commande commandeId = new Commande(id, numeroParam, statutPaiement,  statut, date, l, c);
 			List<Pizza> allPizzas = pizzaService.findAll();
 			allPizzas.forEach(p -> {
 				int qte = Integer.parseInt(req.getParameter(p.getCode()));

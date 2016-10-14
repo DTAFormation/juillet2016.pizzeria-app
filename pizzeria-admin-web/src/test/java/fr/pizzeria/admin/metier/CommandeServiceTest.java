@@ -22,6 +22,7 @@ import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CommandeServiceTest {
@@ -43,9 +44,12 @@ public class CommandeServiceTest {
 	@Test
 	public void testFindAll() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
+
 		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
-		Commande commande1 = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
-		Commande commande2 = new Commande("002", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+	
+		Commande commande1 = new Commande("001", StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+		Commande commande2 = new Commande("002",StatutCommandePaiement.PAYE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+
 
 		List<Commande> commandes = new ArrayList<>();
 		commandes.add(commande1);
@@ -59,8 +63,11 @@ public class CommandeServiceTest {
 	@Test
 	public void testFindOneCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
+
 		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
-		Commande commande = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+
+		Commande commande = new Commande("001",StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+
 
 		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false",
 				Commande.class)).thenReturn(query);
@@ -73,9 +80,12 @@ public class CommandeServiceTest {
 	@Test
 	public void testUpdateCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
+
 		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
-		Commande commandeOld = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
-		Commande commandeNew = new Commande(1, "001", StatutCommande.EXPEDIE, Calendar.getInstance(), livreur, client);
+
+		Commande commandeOld = new Commande("001", StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+		Commande commandeNew = new Commande(1, "001", StatutCommandePaiement.PAYE, StatutCommande.EXPEDIE, Calendar.getInstance(), livreur, client);
+
 
 		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false",
 				Commande.class)).thenReturn(query);
@@ -89,8 +99,11 @@ public class CommandeServiceTest {
 	@Test
 	public void testSaveCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
+
 		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
-		Commande commande = new Commande("001", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+
+		Commande commande = new Commande("001",StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreur, client);
+
 		service.saveCommande(commande);
 
 		verify(em).persist(commande);
@@ -99,8 +112,11 @@ public class CommandeServiceTest {
 	@Test
 	public void testDeleteCommande() throws GeneralSecurityException {
 		Livreur livreur = new Livreur("Doe", "John");
+
 		Client client = new Client("Travis", "Bob", "bt@gmail.com", "", "37 bd...", "0700000000");
-		Commande commande = new Commande(1, "001", StatutCommande.EXPEDIE, Calendar.getInstance(), livreur, client);
+
+		Commande commande = new Commande(1, "001",StatutCommandePaiement.NON_PAYEE, StatutCommande.EXPEDIE, Calendar.getInstance(), livreur, client);
+
 
 		when(em.createQuery("select c from Commande c where c.numeroCommande = :numeroCommande and supprime = false",
 				Commande.class)).thenReturn(query);

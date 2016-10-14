@@ -29,6 +29,7 @@ import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
 import fr.pizzeria.model.Utilisateur;
 
 @WebListener
@@ -197,12 +198,13 @@ public class ApplicationListener implements ServletContextListener {
 
 	private void initCommandes() {
 		List<Commande> commandes = new ArrayList<>();
-		Commande c1 = new Commande("CMD1", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(0),
-				clients.get(0));
-		Commande c2 = new Commande("CMD2", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(1),
-				clients.get(1));
-		Commande c3 = new Commande("CMD3", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(2),
-				clients.get(2));
+
+	
+
+		Commande c1 = new Commande("CMD1",StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(0), clients.get(0));
+		Commande c2 = new Commande("CMD2",StatutCommandePaiement.PAYE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(1), clients.get(1));
+		Commande c3 = new Commande("CMD3",StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(2), clients.get(2));
+
 		commandes.add(c1);
 		commandes.add(c2);
 		commandes.add(c3);

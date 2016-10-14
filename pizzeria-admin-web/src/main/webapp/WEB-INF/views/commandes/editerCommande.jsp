@@ -38,6 +38,14 @@
 				</select>
 			</div>
 			<div class="form-group">
+			
+				<label for="statut">Statut Paiement :</label> <select name="statutPaiement" id="statutpaiement" class="form-control">
+					<c:forEach var="statutPaiement" items="${statutPaiement}">
+						<option value="${statutPaiement}" <c:if test="${commande.statutPaiement == statutPaiement}">selected</c:if>>${statutPaiement.libelle}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="form-group">
 				<label for="date">Date :</label> <input type="datetime-local" class="form-control" name="date" id="date"
 					value="<fmt:formatDate value="${commande.dateCommande.time}" pattern="yyyy-MM-dd"/>T<fmt:formatDate value="${commande.dateCommande.time}" pattern="HH:mm"/>" required>
 			</div>
