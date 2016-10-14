@@ -19,6 +19,7 @@
     .config(require("./config/routes.config"))
     // Load constant
     .constant("pizzConst", require("./config/config.constant"))
+    .constant("constantImg", require("./config/img.constant"))
     /*
      * Load Lodash
      */
@@ -36,6 +37,7 @@
      */
     .controller("pizzCtrl", require("./pizzas/pizzas.controller"))
     .controller("pizzDetailsCtrl", require("./pizzas/pizzaDetails.controller"))
+    .directive("imgUrl", require("./pizzas/pizzas.directive"))
     /*
      * Client
      */
