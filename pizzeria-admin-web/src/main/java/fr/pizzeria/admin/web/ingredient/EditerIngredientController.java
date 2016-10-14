@@ -59,6 +59,9 @@ public class EditerIngredientController extends HttpServlet {
 		String id = req.getParameter("id");
 		String code = req.getParameter("code");
 		String nom = req.getParameter("nom");
+		// ISSUE USA008
+		String quantite = req.getParameter("quantite");
+		String seuil = req.getParameter("seuil");
 
 		if (isBlank(nom) || isBlank(code)) {
 			req.setAttribute("ingredient", this.ingredientService.findOneIngredient(code));
@@ -66,8 +69,12 @@ public class EditerIngredientController extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_EDITER_INGREDIENT).forward(req, resp);
 		} else {
 			Ingredient ingredientAvecCode = new Ingredient(Integer.valueOf(id), code, nom);
-
-			ingredientService.updateIngredient(code, ingredientAvecCode);
+			if(quantite != null){
+				ingredientAvecCode.setQuantite(Double.parseDouble(quantite));
+			}if(seuil != null){
+				ingredientAvecCode.setSeuil(Double.parseDouble(seuil));
+			}
+			ingredientService.updateIngredient(ingredientAvecCode);
 			resp.sendRedirect(req.getContextPath() + "/ingredients/list");
 		}
 	}

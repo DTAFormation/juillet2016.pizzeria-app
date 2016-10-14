@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -48,10 +49,8 @@ public class Pizza {
 	private CategoriePizza categorie;
 	private String urlImage;
 
-	@ManyToMany
-
-	@JoinTable(name = "pizza_ingredient", joinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
-	private List<Ingredient> ingredients = new ArrayList<>();
+	@OneToMany(mappedBy = "id.ingredient")
+	private List<PizzaIngredients> ingredients = new ArrayList<>();
 
 	private boolean actif = true;
 
@@ -86,7 +85,7 @@ public class Pizza {
 		this.actif = actif;
 	}
 	
-	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage, List<Ingredient> ingredients) {
+	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage,List<PizzaIngredients> ingredients) {
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
@@ -96,7 +95,7 @@ public class Pizza {
 		this.ingredients = ingredients;
 	}
 
-	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage, List<Ingredient> ingredients, Boolean actif) {
+	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage,List<PizzaIngredients> ingredients, Boolean actif) {
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
@@ -120,16 +119,16 @@ public class Pizza {
 		this.setActif(!this.actif);
 	}
 
-	public void setIngredients(List<Ingredient> nouveauxIngredients) {
+	public void setIngredients(List<PizzaIngredients> nouveauxIngredients) {
 		this.ingredients = nouveauxIngredients;
 	}
 
-	public List<Ingredient> getIngredients() {
+	public List<PizzaIngredients> getIngredients() {
 		return this.ingredients;
 	}
 
 	public void addIngredient(Ingredient newIngredient) {
-		this.ingredients.add(newIngredient);
+		//this.ingredients.add(newIngredient);
 	}
 
 	public boolean deleteIngredient(Ingredient delIngredient) {
@@ -233,7 +232,8 @@ public class Pizza {
 
 	public Pizza copy() {
 		Pizza pizza = new Pizza(this.getId(), this.getCode(), this.getNom(), this.getPrix(), this.getCategorie(), this.getUrlImage());
-		for (Ingredient ing : this.ingredients) {
+		// TODO A adapter :)
+		for (PizzaIngredients ing : this.ingredients) {
 			pizza.ingredients.add(ing);
 		}
 		return pizza;
