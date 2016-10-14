@@ -14,13 +14,19 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Email;
 
 @Stateless
 public class EMailService {
 
 	private Session session;
+
+	@PersistenceContext
+	protected EntityManager em;
 
 	@Inject
 	ClientService clientService;
@@ -61,19 +67,27 @@ public class EMailService {
 
 		Session session = Session.getDefaultInstance(prop, null);
 		try {
-
+			String expediteur = "newsletter@DTA.fr";
+			Date date = new Date();
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("newsletter@DTA.fr"));
+			message.setFrom(new InternetAddress(expediteur));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
 			message.setSubject(topic);
 			message.setContent(textMessage, "text/html; charset=utf-8");
-			message.setSentDate(new Date());
+			message.setSentDate(date);
 			Transport.send(message);
-
+			// sauvegarde de l'email pour historique
+			Email email = new Email(expediteur, addresses, date, topic, textMessage);
+			saveEmail(email);
+			System.err.println("Email envoyé vers : " + addresses);
 		} catch (MessagingException e) {
 			Logger.getLogger(EMailService.class.getName()).log(Level.WARNING, "Cannot send mail", e);
 		}
 
+	}
+	
+	public void saveEmail(Email email) {
+		em.persist(email);
 	}
 
 }
