@@ -16,15 +16,21 @@ public class Email {
 	private String destinataire;
 	private Date date;
 	private String objet;
+	private String pizza;
 	private String message;
 	
-	public Email(String expediteur, String destinataire, Date date, String objet, String message) {
+	public Email(String expediteur, String destinataire, Date date, String objet, String pizza, String message) {
 		super();
 		this.expediteur = expediteur;
 		this.destinataire = destinataire;
 		this.date = date;
 		this.objet = objet;
+		this.pizza = pizza;
 		this.message = message;
+	}
+
+	public Email() {
+		super();
 	}
 
 	public Integer getId() {
@@ -65,6 +71,14 @@ public class Email {
 
 	public void setObjet(String objet) {
 		this.objet = objet;
+	}
+
+	public String getPizza() {
+		return pizza;
+	}
+
+	public void setPizza(String pizza) {
+		this.pizza = pizza;
 	}
 
 	public String getMessage() {
