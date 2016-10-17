@@ -40,7 +40,7 @@
 			<div class="form-group">
 			
 				<label for="statut">Statut Paiement :</label> <select name="statutPaiement" id="statutpaiement" class="form-control">
-					<c:forEach var="statutPaiement" items="${statutPaiement}">
+					<c:forEach var="statutPaiement" items="${statutsPaiement}">
 						<option value="${statutPaiement}" <c:if test="${commande.statutPaiement == statutPaiement}">selected</c:if>>${statutPaiement.libelle}</option>
 					</c:forEach>
 				</select>

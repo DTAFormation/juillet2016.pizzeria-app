@@ -93,12 +93,12 @@ public class EditerCommandeController extends HttpServlet {
 		String idParam = req.getParameter("id");
 		String statutParam = req.getParameter("statut");
 		//ajout du statut des paiements
-		String statutPaiementParam = req.getParameter("statutPaiment");
+		String statutPaiementParam = req.getParameter("statutPaiement");
 		String dateParam = req.getParameter("date");
 		String livreurIdParam = req.getParameter("livreur");
 		String clientIdParam = req.getParameter("client");
 
-		if (isBlank(numeroParam) || isBlank(statutParam) || isBlank(statutPaiementParam) || isBlank(dateParam) || isBlank(livreurIdParam)
+		if (isBlank(numeroParam)|| isBlank(statutPaiementParam)  || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
 				|| isBlank(clientIdParam) || isBlank(idParam)) {
 			
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
