@@ -6,30 +6,36 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
-	<script src="js/bundle.js"></script>
-
-	<title>Pizz'DTAdev | Les experts de la cuisson pour développeurs !</title>
 	<meta http-equiv="Content-Language" content="fr">
 
 	<link rel='stylesheet' id='app-css' href='http://www.lefourapizza.fr/wp-content/themes/fourapizza/css/app.css' type='text/css'
 		media='all' />
+	<link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+
+	<script src="js/bundle.js"></script>
+
+	<title>Pizz'DTAdev | Les experts de la cuisson pour développeurs !</title>
+
+
+
 </head>
 
 <body>
 	<div class="jumbotron">
 		<div class="container">
+			<img ng-src='img/uk.jpg' class="pull-right" ng-click="ctrl.changeLanguage('en')" />
+			<img ng-src='img/fr.png' class="pull-right" ng-click="ctrl.changeLanguage('fr')" />
+
 			<h1>Pizz'DTAdev </h1>
 			<h2>"Commander chez Pizz'DTAdev,c'est savoir développer'"</h2>
 
-			<nav class="navbar navbar-inverse navbar-fixed-top">
+			<nav class="navbar navbar-inverse navbar-fixed-top"></nav>
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 							aria-controls="navbar">
             <span class="sr-only">Acceuil</span>
-            <span class="icon-bar"></span>
-          </button> >>>>>>> mise à jour acceuil
+          </button>
 					</div>
 					<div class="container">
 						<div class="navbar-header">
@@ -41,38 +47,32 @@
 						<div class="container">
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-									aria-controls="navbar">
-            <span class="sr-only">Les pizzas</span>
-          </button>
+									aria-controls="navbar"><span class="sr-only">Les pizzas</span></button>
 							</div>
 							<div class="container">
 								<div class="navbar-header">
 									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-										aria-controls="navbar">
-            <span class="sr-only">Les livreurs</span>
-          </button>
+										aria-controls="navbar"><span class="sr-only">Les livreurs</span></button>
 								</div>
 								<div id="content" class="row">
-									<div class="col-lg-2"><img src="pizza.jpg" alt="img" class="img"></div>
+									<div class="col-lg-2"><img src="img/pizza.jpg" alt="img" class="img"></div>
 								</div>
-
 							</div>
 						</div>
-						<div class="container" ng-view></div>
+						
 						<div id='Page'>
 							<div id='Ghaut'></div>
 							<div id='GMenu'></div>
 							<div id='Img4'>
-								<div class="left"><img src="1.jpg" /><img src="1.jpg" /></div>
+								<div class="left"><img src="img/1.jpg" /><img src="img/1.jpg" /></div>
 							</div>
 							<div id='Box4'>
 								<div id='Img3'>
-									<div class="left"><img src="2.jpg" /><img src="2.jpg" /></div>
+									<div class="left"><img src="img/2.jpg" /><img src="img/2.jpg" /></div>
 								</div>
 							</div>
-
 							<div id='Img8'>
-								<div class="top"><img src="3.jpg" /><img src="3.jpg" /></div>
+								<div class="top"><img src="img/3.jpg" /><img src="img/3.jpg" /></div>
 							</div>
 							<div id='Box2'>
 								<div id='Text2'>
@@ -83,10 +83,8 @@
 								</div>
 								<div class="row">
 									<div class="small-11 small-centered  columns" role="main">
-
 										<div id="map" src="http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte.jpg" data-interchange="[http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte-small.jpg, (default)], [http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte-medium.jpg, (medium)], [http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte.jpg, (large)]">
 											<div id="map-link-wrapper">
-
 												<p><b>Cliquez sur la carte</b> pour accéder à l'actualité</p>
 											</div>
 										</div>
@@ -106,18 +104,16 @@
 
 									</div>
 								</div>
-								<div>
-
-									<object width="425" height="355">
-		<param name="movie" value="https://youtu.be/leLlcqCFVdU"></param>
-		<param name="wmode" value="transparent"></param>
-	<embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
-	</object>
-
-									<footer>
-										<a id="contact" href="#">Nous contacter</a></p>
-										<p>&copy; 2016 Company, Inc.</p>
-									</footer>
+							</div>
+							<div class="container" ng-view></div>
+							<object width="425" height="355"/>
+								<param name="movie" value="https://youtu.be/leLlcqCFVdU">
+								<param name="wmode" value="transparent">
+								<embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"/>
+							<footer>
+								<a id="contact" href="#">Nous contacter</a>
+								<p>&copy; 2016 Company, Inc.</p>
+							</footer>
 </body>
 
 </html>

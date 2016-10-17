@@ -12,7 +12,7 @@ var log = plugins.util.log;
 /*
  * Create a server
  */
-gulp.task("connect", function() {
+gulp.task("connect", function () {
     plugins.connect.server({
         /** Default path */
         root: "public",
@@ -24,7 +24,7 @@ var server = plugins.jsonSrv.create();
 /*
  * Load mock data pizzeria
  */
-gulp.task('datas', function() {
+gulp.task('datas', function () {
     log("load mocks data");
     return gulp.src("datas/pizzeria.json")
         .pipe(server.pipe());
@@ -33,7 +33,7 @@ gulp.task('datas', function() {
 /*
  * Views angular and static html files
  */
-gulp.task("html", function() {
+gulp.task("html", function () {
     log("build html");
     return gulp
         .src(paths.html)
@@ -41,7 +41,7 @@ gulp.task("html", function() {
 });
 
 /** Librairies css */
-gulp.task("libs-css", function() {
+gulp.task("libs-css", function () {
     log("Build css librairies");
     return gulp
         .src(paths.libsCss)
@@ -49,8 +49,8 @@ gulp.task("libs-css", function() {
 });
 
 var opts = {
-  entries: [paths.browserifyPath],
-  debug: true
+    entries: [paths.browserifyPath],
+    debug: true
 };
 var b = watchify(browserify(opts));
 
@@ -59,39 +59,56 @@ b.on('update', bundle);
 
 function bundle() {
     return b.bundle()
-    .on('error', log.bind(plugins.util, 'Browserify Error'))
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest(paths.public + 'js/'));
+        .on('error', log.bind(plugins.util, 'Browserify Error'))
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest(paths.public + 'js/'));
 }
 
 
 /** remove all files public folder */
-gulp.task('clean', function() {
+gulp.task('clean', function () {
     log('Cleaning: ' + colors.blue(paths.public));
 
     var delPaths = [].concat(paths.public);
     del.sync(delPaths);
 });
 
+/** move img */
+gulp.task("img", function () {
+    log("move img");
+    return gulp
+        .src(paths.img)
+        .pipe(gulp.dest(paths.public + '/img/'));
+});
+/** move translate */
+gulp.task("translate", function () {
+    log("move translate");
+    return gulp
+        .src(paths.translate)
+        .pipe(gulp.dest(paths.public + '/translate/'));
+});
+
 /*
  * Build application task
  */
-gulp.task('build', ['connect', 'datas', 'libs-css', 'browserify', 'html']);
+gulp.task('build', ['connect', 'datas', 'libs-css', 'browserify', 'html','img','translate']);
 
-gulp.task("default", ["clean"], function() {
+gulp.task("default", ["clean"], function () {
     gulp.start("build");
 });
 
 /*
  * Watch Task
  */
-gulp.task("watch", function() {
+gulp.task("watch", function () {
     gulp.start('datas');
     gulp.start('connect');
     gulp.start('browserify');
+    gulp.start('img');
+    gulp.start('translate');
 
     gulp.watch(paths.html, ["html"]);
-    gulp.watch(["datas/pizzeria.json"], ["datas"], function() {
+    gulp.watch(["datas/pizzeria.json"], ["datas"], function () {
         console.log(server);
     });
 });
