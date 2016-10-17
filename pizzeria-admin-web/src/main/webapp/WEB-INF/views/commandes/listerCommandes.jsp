@@ -36,6 +36,7 @@
 		<tr>
 			<th>Id</th>
 			<th>Numéro</th>
+			<th>Statut Paiement</th>
 			<th>Statut</th>
 			<th>Date</th>
 			<th>Livreur</th>
@@ -46,6 +47,7 @@
 			<tr>
 				<td>${commande.id}</td>
 				<td>${commande.numeroCommande}</td>
+				<td>${commande.statutPaiement.libelle}</td>
 				<td>${commande.statut.libelle}</td>
 				<td><fmt:formatDate value="${commande.dateCommande.time}" type="both" dateStyle="short" timeStyle="short" /></td>
 				<td>${commande.livreur.prenom}&nbsp;${commande.livreur.nom}</td>

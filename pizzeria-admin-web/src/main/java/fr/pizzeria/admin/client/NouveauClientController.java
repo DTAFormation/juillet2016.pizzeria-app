@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.client;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -29,16 +30,25 @@ public class NouveauClientController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
+		String password = req.getParameter("password");
 		String nom = req.getParameter("nom");
 		String prenom = req.getParameter("prenom");
 		String adresse = req.getParameter("adresse");
 		String telephone = req.getParameter("telephone");
-		boolean abonne = req.getParameter("abonne")==null?false:true;  //null ou on
+		boolean abonne = req.getParameter("abonne") == null ? false : true; // null
+																			// ou
+																			// on
 		if (isBlank(nom) || isBlank(prenom) || isBlank(email) || isBlank(adresse) || isBlank(telephone)) {
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
 			this.getServletContext().getRequestDispatcher(VUE_NOUVEAU_CLIENT).forward(req, resp);
 		} else {
-			Client clientSansId = new Client(nom, prenom, email, adresse, telephone, abonne);
+			Client clientSansId = null;
+			try {
+				clientSansId = new Client(nom, prenom, email, password, adresse, telephone, abonne);
+			} catch (GeneralSecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (!clientService.isEmailTaken(email).isEmpty()) {
 				req.setAttribute("msgErreur", "l'email existe deja ");
 				req.setAttribute("client", clientSansId);

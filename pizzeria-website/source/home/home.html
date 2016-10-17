@@ -1,27 +1,90 @@
-<form novalidate ng-submit="home.commandPizza()">
-    <div class="form-group">
-        <label for="">Nom</label>
-        <input placeholder="Entrez votre nom" class="form-control" type="text" ng-model="home.clients.name" />
-    </div>
-    <div class="form-group">
-        <label for="">Prénom</label>
-        <input placeholder="Entrez votre prénom" class="form-control" type="text" ng-model="home.clients.prenom" />
-    </div>
-    <div class="row">
-        <div class="col-md-3" ng-repeat="pizza in home.pizzas">
-            <div class="form-group">
-                <input type="checkbox" ng-model="home.command_pizza.pizza[$index].id" ng-true-value="{{pizza.id}}" ng-false-value="'false'" />
-                <img ng-src="{{pizza.url_image}}" alt="pizza.nom" />
-            </div>
-            <div class="form-group">
-                <label for="">Quantité</label>
-                <input class="form-control" placeholder="Entrez une quantité" type="number" ng-model="home.command_pizza.pizza[$index].quantite"/>
-            </div>
-            <div>
-                <p><strong>Prix :</strong> {{pizza.prix}}€</p>
-                <strong>Ingrédients :</strong> <span ng-repeat="ingredient in pizza.ingredients">{{ingredient}}</span>
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-primary btn-lg" type="submit">Valider ma commande</button>
-</form>
+<div class="container">
+	<h1>Pizz'DTAdev </h1>
+	<h2>"Commander chez Pizz'DTAdev,c'est savoir développer'"</h2>
+
+	<!--<nav class="navbar navbar-inverse navbar-fixed-top"></nav>-->
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+            <span class="sr-only">Acceuil</span>
+          </button>
+		</div>
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+            <span class="sr-only">Admin</span>
+          </button>
+			</div>
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar"><span class="sr-only">Les pizzas</span></button>
+				</div>
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+							aria-controls="navbar"><span class="sr-only">Les livreurs</span></button>
+					</div>
+					<div id="content" class="row">
+						<div class="col-lg-2"><img src="img/pizza.jpg" alt="img" class="img"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id='Page'>
+				<div id='Ghaut'></div>
+				<div id='GMenu'></div>
+				<div id='Img4'>
+					<div class="left"><img src="img/1.jpg" /><img src="img/1.jpg" /></div>
+				</div>
+				<div id='Box4'>
+					<div id='Img3'>
+						<div class="left"><img src="img/2.jpg" /><img src="img/2.jpg" /></div>
+					</div>
+				</div>
+				<div id='Img8'>
+					<div class="top"><img src="img/3.jpg" /><img src="img/3.jpg" /></div>
+				</div>
+				<div id='Box2'>
+					<div id='Text2'>
+						<p style="line-height:0;text-align:left">
+							<font face="Arial"><span style="font-size:32pt;line-height:48px;"></span></font>
+							<font face="Arial"><span style="font-size:40pt;line-height:60px;"></span></font>
+						</p>
+					</div>
+					<div class="row">
+						<div class="small-11 small-centered  columns" role="main">
+							<div id="map" src="http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte.jpg" data-interchange="[http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte-small.jpg, (default)], [http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte-medium.jpg, (medium)], [http://www.lefourapizza.fr/wp-content/themes/fourapizza/assets/carte.jpg, (large)]">
+								<div id="map-link-wrapper">
+									<p><b>Cliquez sur la carte</b> pour accéder à l'actualité</p>
+								</div>
+							</div>
+
+							<article class="post-5 page type-page status-publish hentry home-content" id="post-5">
+								<div class="entry-content " translate="DESCRIPTION">
+									<p style="text-align: justify;">Bienvenue à La pizzéria du developpeur DTA, nous sommes une enseigne de pizzeria spécialiste des pizzas pour développeurs
+										débutants ou expérimentés. Présent depuis 2012 dans plusieurs villes de France : 44800 Saint-Herblain, 53000 Laval,
+										34000 Montpeliier.</p>
+									<p style="color: #836e59; text-align: justify;">Nous vous accueillons du lundi au samedi pour découvrir notre large choix de pizzas faites avec des produits locaux,pendant
+										vos heures de travail ou de chez vous. Visitez notre site et commandez nos pizzas généreuses en livraison* ou à
+										emporter. Merci pour votre visite et à bientôt.</p>
+								</div>
+							</article>
+							<a href="http://www.leparisien.fr/economie/restauration-en-france-la-pizza-est-reine-08-03-2016-5607715.php" class="article-pizza  colorbox-link"><img class="colorbox-class logo-elle-home alignnone" src="http://www.pizzeria-leborsalino.fr/img/photos/zoom/accueil_01.jpg"
+									alt="logo-elle" width="138" height="162" /></a>
+
+						</div>
+					</div>
+				</div>
+
+				<object width="425" height="355" />
+				<param name="movie" value="https://youtu.be/leLlcqCFVdU">
+				<param name="wmode" value="transparent">
+				<embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425"
+					height="355" />
+				<footer>
+					<a id="contact" href="#">Nous contacter</a>
+					<p>&copy; 2016 Company, Inc.</p>
+				</footer>

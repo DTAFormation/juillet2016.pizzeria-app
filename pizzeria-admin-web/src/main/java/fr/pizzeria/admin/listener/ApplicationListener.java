@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.listener;
 
 import java.math.BigDecimal;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -31,6 +32,7 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.PizzaIngredientId;
 import fr.pizzeria.model.PizzaIngredients;
 import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
 import fr.pizzeria.model.Utilisateur;
 
 @WebListener
@@ -73,7 +75,12 @@ public class ApplicationListener implements ServletContextListener {
 		if (dev) {
 			initIngredients();
 			initPizzas();
-			initClients();
+			try {
+				initClients();
+			} catch (GeneralSecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			initLivreurs();
 			initUtilisateurs();
 			initCommandes();
@@ -165,10 +172,11 @@ public class ApplicationListener implements ServletContextListener {
 		
 	}
 
-	private void initClients() {
-		clients.add(new Client("LeStalker", "Bob", "test1@googlemail.com", "5 rue lamer", "0612134565", true));
-		clients.add(new Client("Rodriguez", "Robert", "test2@gmail.com", "18 rue pueblo", "0712134565"));
-		clients.add(new Client("HoldTheDoor", "Hodor", "test3@gmail.com", "15 bd des anglais", "0612145565", true));
+	private void initClients() throws GeneralSecurityException {
+		clients.add(new Client("LeStalker", "Bob", "test1@googlemail.com", "kikou", "5 rue lamer", "0612134565", true));
+		clients.add(new Client("Rodriguez", "Robert", "test2@gmail.com", "kikou", "18 rue pueblo", "0712134565"));
+		clients.add(new Client("HoldTheDoor", "Hodor", "test3@gmail.com", "kikou", "15 bd des anglais", "0612145565",
+				true));
 
 		clients.forEach(c -> {
 			clientService.saveClient(c);
@@ -178,8 +186,10 @@ public class ApplicationListener implements ServletContextListener {
 	private void initUtilisateurs() {
 		List<Utilisateur> utilisateurs = new ArrayList<>();
 
-		utilisateurs.add(new Utilisateur("De Monmirail", "Basil", "basildm@gmail.com", utilisateurService.encode("admin")));
-		utilisateurs.add(new Utilisateur("Montjoie", "Octave", "octavem@gmail.com", utilisateurService.encode("admin")));
+		utilisateurs
+				.add(new Utilisateur("De Monmirail", "Basil", "basildm@gmail.com", utilisateurService.encode("admin")));
+		utilisateurs
+				.add(new Utilisateur("Montjoie", "Octave", "octavem@gmail.com", utilisateurService.encode("admin")));
 		utilisateurs.add(new Utilisateur("admin", "admin", "admin@gmail.com", utilisateurService.encode("admin")));
 
 		utilisateurs.forEach(u -> {
@@ -199,9 +209,13 @@ public class ApplicationListener implements ServletContextListener {
 
 	private void initCommandes() {
 		List<Commande> commandes = new ArrayList<>();
-		Commande c1 = new Commande("CMD1", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(0), clients.get(0));
-		Commande c2 = new Commande("CMD2", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(1), clients.get(1));
-		Commande c3 = new Commande("CMD3", StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(2), clients.get(2));
+
+	
+
+		Commande c1 = new Commande("CMD1",StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(0), clients.get(0));
+		Commande c2 = new Commande("CMD2",StatutCommandePaiement.PAYE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(1), clients.get(1));
+		Commande c3 = new Commande("CMD3",StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(), livreurs.get(2), clients.get(2));
+
 		commandes.add(c1);
 		commandes.add(c2);
 		commandes.add(c3);

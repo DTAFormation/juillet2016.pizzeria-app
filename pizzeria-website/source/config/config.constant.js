@@ -2,7 +2,7 @@
     'use strict';
 
     var constant = {
-        apiUrl: 'http://localhost:3000/',
+        apiUrl: 'http://localhost:8082/',
         debug: true
     };
 

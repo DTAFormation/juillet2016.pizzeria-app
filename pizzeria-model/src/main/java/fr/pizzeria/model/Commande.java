@@ -25,6 +25,8 @@ public class Commande {
 	private String numeroCommande;
 	@Enumerated(EnumType.STRING)
 	private StatutCommande statut;
+	@Enumerated(EnumType.STRING)
+	private StatutCommandePaiement statutPaiement;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateCommande;
 	private boolean supprime = false;
@@ -36,18 +38,20 @@ public class Commande {
 	@OneToMany(mappedBy = "commande", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<CommandePizza> pizzas = new ArrayList<>();
 
-	public Commande(String numeroCommande, StatutCommande statut, Calendar dateCommande, Livreur livreur, Client client) {
+	public Commande(String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut, Calendar dateCommande, Livreur livreur, Client client) {
 		this.numeroCommande = numeroCommande;
 		this.statut = statut;
+		this.statutPaiement = statutPaiement;
 		this.dateCommande = dateCommande;
 		this.livreur = livreur;
 		this.client = client;
 	}
 
-	public Commande(Integer id, String numeroCommande, StatutCommande statut, Calendar dateCommande, Livreur livreur, Client client) {
+	public Commande(Integer id, String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut, Calendar dateCommande, Livreur livreur, Client client) {
 		this.id = id;
 		this.numeroCommande = numeroCommande;
 		this.statut = statut;
+		this.statutPaiement = statutPaiement;
 		this.dateCommande = dateCommande;
 		this.livreur = livreur;
 		this.client = client;
@@ -91,6 +95,14 @@ public class Commande {
 
 	public Livreur getLivreur() {
 		return livreur;
+	}
+
+	public StatutCommandePaiement getStatutPaiement() {
+		return statutPaiement;
+	}
+
+	public void setStatutPaiement(StatutCommandePaiement statutPaiement) {
+		this.statutPaiement = statutPaiement;
 	}
 
 	public void setLivreur(Livreur livreur) {
@@ -149,6 +161,7 @@ public class Commande {
 		result = prime * result + ((numeroCommande == null) ? 0 : numeroCommande.hashCode());
 		result = prime * result + ((pizzas == null) ? 0 : pizzas.hashCode());
 		result = prime * result + ((statut == null) ? 0 : statut.hashCode());
+		result = prime * result + ((statutPaiement == null) ? 0 : statutPaiement.hashCode());
 		result = prime * result + (supprime ? 1231 : 1237);
 		return result;
 	}
@@ -193,6 +206,8 @@ public class Commande {
 		} else if (!pizzas.equals(other.pizzas))
 			return false;
 		if (statut != other.statut)
+			return false;
+		if (statutPaiement != other.statutPaiement)
 			return false;
 		if (supprime != other.supprime)
 			return false;

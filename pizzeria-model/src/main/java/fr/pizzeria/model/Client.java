@@ -1,5 +1,6 @@
 package fr.pizzeria.model;
 
+import java.security.GeneralSecurityException;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 @Entity
 public class Client {
 	@Id
@@ -17,20 +20,32 @@ public class Client {
 	private String nom;
 	private String prenom;
 	private String email;
+	private String password;
 	private boolean actif = true;
 	private String adresse;
 	private String telephone;
 	private Date dateDerniereModification;
 	private boolean abonne;
 
-	public Client(Integer id, String nom, String prenom, String email, String adresse, String telephone) {
+	public Client(Integer id, String nom, String prenom, String email, String password, String adresse,
+			String telephone) throws GeneralSecurityException {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+		this.password = encodage(password);
 		this.adresse = adresse;
 		this.telephone = telephone;
+	}
+
+	// Crypter le Mdp
+	public static String encodage(String mdp) throws GeneralSecurityException {
+		return DigestUtils.sha512Hex(mdp);
+	}
+
+	public void setPasswordEncrypt(String password) throws GeneralSecurityException {
+		this.password = encodage(password);
 	}
 
 	/**
@@ -38,35 +53,43 @@ public class Client {
 	 * @param nom
 	 * @param prenom
 	 * @param email
+	 * @param password
 	 * @param adresse
 	 * @param telephone
 	 * @param abonne
+	 * @throws GeneralSecurityException
 	 */
-	public Client(Integer id, String nom, String prenom, String email, String adresse, String telephone, boolean abonne) {
+	public Client(Integer id, String nom, String prenom, String email, String password, String adresse,
+			String telephone, boolean abonne) throws GeneralSecurityException {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+		this.password = encodage(password);
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.abonne = abonne;
 	}
 
-	public Client(String nom, String prenom, String email, String adresse, String telephone) {
+	public Client(String nom, String prenom, String email, String password, String adresse, String telephone)
+			throws GeneralSecurityException {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+		this.password = encodage(password);
 		this.adresse = adresse;
 		this.telephone = telephone;
 	}
 
-	public Client(String nom, String prenom, String email, String adresse, String telephone, boolean abonne) {
+	public Client(String nom, String prenom, String email, String password, String adresse, String telephone,
+			boolean abonne) throws GeneralSecurityException {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+		this.password = encodage(password);
 		this.actif = actif;
 		this.adresse = adresse;
 		this.telephone = telephone;
@@ -133,6 +156,14 @@ public class Client {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public boolean isActif() {
 		return actif;
 	}
@@ -167,6 +198,7 @@ public class Client {
 		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
 		result = prime * result + ((dateDerniereModification == null) ? 0 : dateDerniereModification.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
@@ -200,6 +232,11 @@ public class Client {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -222,4 +259,5 @@ public class Client {
 			return false;
 		return true;
 	}
+
 }
