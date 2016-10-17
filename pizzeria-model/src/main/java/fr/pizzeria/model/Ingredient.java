@@ -19,8 +19,9 @@ public class Ingredient {
 	private Integer id;
 	private String code;
 	private String nom;
-	@Column(name="quantite", columnDefinition="Decimal(10,3) default '0.00'")
-	private Double quantite;
+	@Column(name="quantite", columnDefinition="Decimal(10,3) default '0.000'", nullable=false)
+	private Double quantite = 0.000;
+	private Double seuil = 10.00;
 	private boolean actif = true;
 	
 
@@ -35,6 +36,23 @@ public class Ingredient {
 	}
 	
 	
+	
+	public Ingredient(String code, String nom, Double quantite, Double seuil) {
+		this.code = code;
+		this.nom = nom;
+		this.quantite = quantite;
+		this.seuil = seuil;
+	}
+	
+	
+	public Ingredient(Integer id, String code, String nom, Double quantite, Double seuil) {
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.quantite = quantite;
+		this.seuil = seuil;
+	}
+
 	public Ingredient(Integer id, String code, String nom, Double quantite) {
 		this.id = id;
 		this.code = code;
@@ -95,6 +113,14 @@ public class Ingredient {
 
 	public void setQuantite( Double quantite) {
 		this.quantite = quantite;
+	}
+
+	public Double getSeuil() {
+		return seuil;
+	}
+
+	public void setSeuil(Double seuil) {
+		this.seuil = seuil;
 	}
 	
 }
