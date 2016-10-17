@@ -49,7 +49,7 @@ public class Pizza {
 	private CategoriePizza categorie;
 	private String urlImage;
 
-	@OneToMany(mappedBy = "id.ingredient")
+	@OneToMany(mappedBy = "id.pizza")
 	private List<PizzaIngredients> ingredients = new ArrayList<>();
 
 	private boolean actif = true;
@@ -127,8 +127,8 @@ public class Pizza {
 		return this.ingredients;
 	}
 
-	public void addIngredient(Ingredient newIngredient) {
-		//this.ingredients.add(newIngredient);
+	public void addIngredient(PizzaIngredients newIngredient) {
+		this.ingredients.add(newIngredient);
 	}
 
 	public boolean deleteIngredient(Ingredient delIngredient) {

@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.CategoriePizza;
+import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.PizzaIngredientId;
+import fr.pizzeria.model.PizzaIngredients;
 
 @WebServlet("/pizzas/new")
 public class NouvellePizzaController extends HttpServlet {
@@ -41,6 +44,10 @@ public class NouvellePizzaController extends HttpServlet {
 		String[] ingredients = req.getParameterValues("ingredient");
 		String categorie = req.getParameter("categorie");
 
+		//ISSUE USA008
+		String[] qteIngredient = req.getParameterValues("qteIngredient");
+		
+		
 		// TODO Ajouter le support de la catégorie
 		// String categorie = req.getParameter("categorie");
 
@@ -56,13 +63,26 @@ public class NouvellePizzaController extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_PIZZA).forward(req, resp);
 		} else {
 			Pizza pizzaSansId = new Pizza(code, nom, new BigDecimal(prix), CategoriePizza.valueOf(categorie));
-			if (ingredients != null) {
-				for (String ingredient : ingredients) {
-					pizzaSansId.addIngredient(ingredientService.findOneIngredient(ingredient));
-				}
-			}
 			pizzaSansId.setUrlImage(urlImage);
 			pizzaService.savePizza(pizzaSansId);
+			
+			if (ingredients != null) {
+				//ma Pizza sans id en a desormais un
+				Pizza maPizza = pizzaSansId;
+				for (int i = 0; i< ingredients.length;i++){
+					Ingredient monIngredient = ingredientService.findOneIngredient(ingredients[i]);
+					PizzaIngredients pizzaI = new PizzaIngredients();
+					pizzaI.setId(new PizzaIngredientId(maPizza,monIngredient) );
+					pizzaI.setQuantiteRequise(Double.parseDouble(qteIngredient[i]));
+					ingredientService.saveQteIngredient(pizzaI);
+					maPizza.addIngredient(pizzaI);
+					
+				}
+				pizzaService.updatePizza(maPizza);
+
+			}
+			
+			
 			resp.sendRedirect(req.getContextPath() + "/pizzas/list");
 		}
 	}

@@ -56,7 +56,7 @@
 					<label for="ingredient">Liste des ingrédients dans la pizza :</label>
 					<ul id="pizzaIngredient" class="list-group">
 						<c:forEach var="ingredients" items="${pizza.ingredients}">
-							<li id="ingredient-${ ingredients.code }" class="list-group-item item-ingredient-pizza">${ingredients.nom}<input type="hidden" name="ingredient" value="${ingredients.code}"><div class="myQteIng"><label >Quantité :</label><input name ="qteIngredient" type="number" min="0.050" max="1" value="0.100" step="0.050" class="myQteIng"></div></li>
+							<li id="ingredient-${ ingredients.id.ingredient.code }" class="list-group-item item-ingredient-pizza">${ ingredients.id.ingredient.nom}<input type="hidden" name="ingredient" value="${ ingredients.id.ingredient.code}"><div class="myQteIng"><label >Quantité :</label><input name ="qteIngredient" type="number" min="0.050" max="1" value="0.100" step="0.050" class="myQteIng" value="${ ingredients.quantiteRequise }"></div></li>
 						</c:forEach>
 					</ul>
 					<p class="jumbotron">

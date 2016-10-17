@@ -117,8 +117,8 @@ public class NouvelleCommandeControllerTest {
 		Pizza p1 = new Pizza("SAM", "Saumon", new BigDecimal(12.5), CategoriePizza.VIANDE);
 		p1.setUrlImage("http://placehold.it/350x150");
 		p1.setId(5);
-		p1.addIngredient(ingredient2);
-		p1.addIngredient(ingredient3);
+	/*	p1.addIngredient(ingredient2);
+		p1.addIngredient(ingredient3);*/
 		return p1;
 	}
 
@@ -126,9 +126,9 @@ public class NouvelleCommandeControllerTest {
 		Pizza p = new Pizza("PEP", "peperoni", new BigDecimal(12.5), CategoriePizza.VIANDE);
 		p.setUrlImage("http://placehold.it/350x150");
 		p.setId(1);
-		p.addIngredient(ingredient);
+		/*p.addIngredient(ingredient);
 		p.addIngredient(ingredient2);
-		p.addIngredient(ingredient3);
+		p.addIngredient(ingredient3);*/
 		return p;
 	}
 

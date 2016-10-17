@@ -61,8 +61,8 @@ public class PizzaService {
 				.setParameter("code", code).getResultList();
 	}
 
-	public void updatePizza(String code, Pizza pizza) {
-		Pizza p = findOnePizza(code); // vérifie qu'une pizza est présente
+	public void updatePizza(Pizza pizza) {
+		Pizza p = findOnePizza(pizza.getCode()); // vérifie qu'une pizza est présente
 		p = pizza;
 		em.merge(p);
 	}

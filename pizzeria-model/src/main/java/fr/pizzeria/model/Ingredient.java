@@ -122,5 +122,58 @@ public class Ingredient {
 	public void setSeuil(Double seuil) {
 		this.seuil = seuil;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (actif ? 1231 : 1237);
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((quantite == null) ? 0 : quantite.hashCode());
+		result = prime * result + ((seuil == null) ? 0 : seuil.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ingredient other = (Ingredient) obj;
+		if (actif != other.actif)
+			return false;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (quantite == null) {
+			if (other.quantite != null)
+				return false;
+		} else if (!quantite.equals(other.quantite))
+			return false;
+		if (seuil == null) {
+			if (other.seuil != null)
+				return false;
+		} else if (!seuil.equals(other.seuil))
+			return false;
+		return true;
+	}
+	
 	
 }

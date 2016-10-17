@@ -75,7 +75,7 @@ public class PizzaServiceTest {
 		when(query.setParameter("code", "test")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(p);
 		// service.savePizza(p);
-		service.updatePizza("test", p2);
+		service.updatePizza(p2);
 		LOG.info("Alors 'pizza' a ete persiste");
 		verify(em).merge(p);
 		verify(em).persist(p2);

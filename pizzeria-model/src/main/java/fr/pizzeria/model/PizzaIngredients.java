@@ -1,16 +1,19 @@
 package fr.pizzeria.model;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "pizza_ingredient")
-@IdClass(PizzaIngredientId.class)
 public class PizzaIngredients {
-	@Id
+	@EmbeddedId
+	@JsonIgnore
 	private PizzaIngredientId id;
 
 	private Double quantiteRequise;
@@ -40,13 +43,15 @@ public class PizzaIngredients {
 		this.quantiteRequise = quantiteRequise;
 	}
 	
-	public Pizza getPizza(){
-		return id.getPizza();
-	}
-	public Ingredient getIngredienty(){
+	public Ingredient getIngredient(){
 		return id.getIngredient();
 	}
+
+
+
 	
+	
+		
 	
 	
 
