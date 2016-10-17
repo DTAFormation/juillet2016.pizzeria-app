@@ -164,10 +164,17 @@
 				<version>1.5.5</version>
 			</dependency>
 			<dependency>
+<<<<<<< 58c4752c28a60cb28390dc08893dc756e7c9f332
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>1.10</version>
             </dependency>
+=======
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+>>>>>>> #8 ISSUE USA008 Stockage en developpement
 		</dependencies>
 	</dependencyManagement>
 

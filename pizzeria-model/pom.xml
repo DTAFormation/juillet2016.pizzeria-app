@@ -31,9 +31,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+<<<<<<< 58c4752c28a60cb28390dc08893dc756e7c9f332
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
+=======
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+>>>>>>> #8 ISSUE USA008 Stockage en developpement
 	</dependencies>
 
 

@@ -62,10 +62,10 @@ public class NouvellePizzaControllerTest {
 		String stringvalues[] = { "CHA", "SAU", "FRO" };
 		Pizza p = new Pizza("PEC", "pecheur", new BigDecimal(12.5), CategoriePizza.POISSON);
 		p.setUrlImage("http://placehold.it/350x150");
-		p.addIngredient(ingredient);
+		/*p.addIngredient(ingredient);
 		p.addIngredient(ingredient2);
 		p.addIngredient(ingredient3);
-
+*/
 		when(req.getParameter("nom")).thenReturn("pecheur");
 		when(req.getParameter("urlImage")).thenReturn("http://placehold.it/350x150");
 		when(req.getParameter("prix")).thenReturn("12.5");

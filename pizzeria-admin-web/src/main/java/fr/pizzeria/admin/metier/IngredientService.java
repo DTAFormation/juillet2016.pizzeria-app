@@ -66,6 +66,11 @@ public class IngredientService {
 		removeFromPizza(ing);
 		em.remove(ing);
 	}
+	
+	//ISSUE USA008
+	public void saveQteIngredient(PizzaIngredients pI){
+		em.merge(pI);
+	}
 
 	private void disablePizza(Ingredient ing) {
 		List<Pizza> listPizzas = pizzaService.findAll();
@@ -75,7 +80,7 @@ public class IngredientService {
 				continue;
 			}
 			pizza.setActif(false);
-			pizzaService.updatePizza(pizza.getCode(), pizza);
+			pizzaService.updatePizza(pizza);
 		}
 	}
 
@@ -87,7 +92,7 @@ public class IngredientService {
 				continue;
 			}
 			listeIngredientsPizza.remove(ing);
-			pizzaService.updatePizza(pizza.getCode(), pizza);
+			pizzaService.updatePizza(pizza);
 		}
 
 	}

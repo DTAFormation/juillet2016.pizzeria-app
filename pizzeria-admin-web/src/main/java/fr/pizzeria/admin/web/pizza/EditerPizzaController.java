@@ -3,7 +3,10 @@ package fr.pizzeria.admin.web.pizza;
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.CategoriePizza;
+import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.PizzaIngredientId;
+import fr.pizzeria.model.PizzaIngredients;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -76,6 +79,7 @@ public class EditerPizzaController extends HttpServlet {
         String prix = req.getParameter("prix");
         String[] ingredients = req.getParameterValues("ingredient");
         String categorie = req.getParameter("categorie");
+        String[] qteIngredient = req.getParameterValues("qteIngredient");
 
         if (isBlank(nom) || isBlank(urlImage) || isBlank(prix)) {
             req.setAttribute("pizza", this.pizzaService.findOnePizza(code));
@@ -85,12 +89,22 @@ public class EditerPizzaController extends HttpServlet {
         } else {
             Pizza pizzaAvecId = new Pizza(Integer.valueOf(id), code, nom, new BigDecimal(prix), CategoriePizza.valueOf(categorie), urlImage, Boolean.valueOf(actif));
             
-            if ( ingredients != null ) {
-	            for (String ingredient : ingredients) {
-	            	pizzaAvecId.addIngredient(ingredientService.findOneIngredient(ingredient));
+            if (ingredients != null) {
+				//ma Pizza sans id en a desormais un
+				Pizza maPizza = pizzaAvecId;
+				for (int i = 0; i< ingredients.length;i++){
+					Ingredient monIngredient = ingredientService.findOneIngredient(ingredients[i]);
+					PizzaIngredients pizzaI = new PizzaIngredients();
+					pizzaI.setId(new PizzaIngredientId(maPizza,monIngredient) );
+					pizzaI.setQuantiteRequise(Double.parseDouble(qteIngredient[i]));
+					ingredientService.saveQteIngredient(pizzaI);
+					maPizza.addIngredient(pizzaI);
+					
 				}
-            }
-            pizzaService.updatePizza(code, pizzaAvecId);
+				pizzaService.updatePizza(maPizza);
+
+			}
+            pizzaService.updatePizza(pizzaAvecId);
             resp.sendRedirect(req.getContextPath()
                     + "/pizzas/list");
         }

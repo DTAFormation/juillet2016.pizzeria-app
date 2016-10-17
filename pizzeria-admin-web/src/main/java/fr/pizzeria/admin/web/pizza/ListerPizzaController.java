@@ -77,7 +77,7 @@ public class ListerPizzaController extends HttpServlet {
 			case ACTION_TOGGLE:
 				Pizza pizza = pizzaService.findOnePizzaWithIngredients(code);
 				pizza.toggleActif();
-				pizzaService.updatePizza(code, pizza);
+				pizzaService.updatePizza(pizza);
 				String reponseString = pizza.isActif() ? "réactivée" : "désactivée";
 				req.setAttribute("msg_success", "La pizza code = " + code + " a bien été " + reponseString);
 				doGet(req, resp);
