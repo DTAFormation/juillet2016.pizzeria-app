@@ -7,8 +7,10 @@
 
         var vm = this;
         pizzService.getAllPizzas().then(function(result) {
-            vm.allPizzas = result.data;
+            vm.allPizzas = result;
+            console.log(vm.allPizzas);
         }); 
+        vm.categories = ['SANS','VIANDE','POISSON'];
 
         
     };
