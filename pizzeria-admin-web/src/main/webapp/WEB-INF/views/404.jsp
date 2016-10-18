@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+	isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="layout/entete.jsp">

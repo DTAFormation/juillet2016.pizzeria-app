@@ -1,6 +1,7 @@
 (function () {
     'use strict';
     var config = function ($translateProvider) {
+        $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.translations('en', {
             HOME: 'Home',
             LIVREUR: 'Deliverers',

@@ -12,7 +12,21 @@
 		<img alt="logo" src="static/images/logo-pizzeria.png">
 	</div>
 	<c:if test="${msgErreur != null}">
-		<div class="alert alert-danger" role="alert">${msgErreur}</div>
+	<!-- Large modal -->
+	<!-- 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> -->
+	<div id="my-modal" style="display:block" class="modal fade in">
+		    <div class="modal-dialog"> 
+ 		        <div class="modal-content"> 
+ 		            <div class="modal-header"> 
+ 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+ 		                <h4 class="modal-title">Title</h4> 
+ 		            </div> 
+ 		            <div class="modal-body"> 
+		                 ${msgErreur}
+ 		            </div> 
+ 		        </div> 
+ 		    </div> 
+ 		</div> 
 	</c:if>
 	<h1>Connexion</h1>
 	<form method="POST">
