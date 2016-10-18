@@ -1,12 +1,12 @@
-<div ng-show="client.error" class="alert alert-danger" role="alert">
+<div ng-show="inscri.error" class="alert alert-danger" role="alert">
     Votre demande n'a ps pue être prise en compte merci de recommencer
 </div>
-<div ng-show="client.success" class="alert alert-success" role="alert">
+<div ng-show="inscri.success" class="alert alert-success" role="alert">
     Votre compte à bien été enregistrer
 </div>
 <div class="container">
   <!-- Formulaire -->
-  <form class="form-horizontal" ng-submit="client.addNewClient()">
+  <form class="form-horizontal" ng-submit="inscri.addNewClient()">
   <fieldset>
 
   <!-- Form Name -->
@@ -16,7 +16,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Email</label>  
     <div class="col-md-4">
-    <input id="textinput" name="textinput" type="email" ng-model="client.newClient.email" class="form-control input-md" required="">
+    <input id="textinput" name="textinput" type="email" ng-model="inscri.newClient.email" class="form-control input-md" required="">
     </div>
   </div>
 
@@ -24,7 +24,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="passwordinput">Password</label>
     <div class="col-md-4">
-      <input id="passwordinput" name="passwordinput" type="password" ng-model="client.newClient.password" class="form-control input-md" required="">
+      <input id="passwordinput" name="passwordinput" type="password" ng-model="inscri.newClient.password" class="form-control input-md" required="">
     </div>
   </div>
 
@@ -32,7 +32,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Nom</label>  
     <div class="col-md-4">
-    <input id="textinput" name="textinput" type="text" ng-model="client.newClient.nom" class="form-control input-md" required="">
+    <input id="textinput" name="textinput" type="text" ng-model="inscri.newClient.nom" class="form-control input-md" required="">
     </div>
   </div>
 
@@ -40,7 +40,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Prénom</label>  
     <div class="col-md-4">
-    <input id="textinput" name="textinput" type="text" ng-model="client.newClient.prenom" class="form-control input-md">
+    <input id="textinput" name="textinput" type="text" ng-model="inscri.newClient.prenom" class="form-control input-md">
     </div>
   </div>
 
@@ -49,11 +49,11 @@
     <label class="col-md-4 control-label" for="radios">Sexe</label>
     <div class="col-md-4"> 
       <label class="radio-inline" for="radios-0">
-        <input type="radio" name="radios" id="radios-0" value="Homme" checked="checked" ng-true-value="Homme" ng-model="client.newClient.sexe">
+        <input type="radio" name="radios" id="radios-0" value="Homme" checked="checked" ng-true-value="Homme" ng-model="inscri.newClient.sexe">
         Homme
       </label> 
       <label class="radio-inline" for="radios-1">
-        <input type="radio" name="radios" id="radios-1" value="Femme" ng-true-value="Femme" ng-model="client.newClient.sexe">
+        <input type="radio" name="radios" id="radios-1" value="Femme" ng-true-value="Femme" ng-model="inscri.newClient.sexe">
         Femme
       </label>
     </div>
@@ -63,7 +63,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Date de naissance</label>  
     <div class="col-md-4">
-    <input id="textinput" name="textinput" type="date" ng-model="client.newClient.date" class="form-control input-md">
+    <input id="textinput" name="textinput" type="date" ng-model="inscri.newClient.date" class="form-control input-md">
     </div>
   </div>
 
@@ -71,7 +71,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textarea">Adresse</label>
     <div class="col-md-4">                     
-      <textarea class="form-control" id="textarea" ng-model="client.newClient.adresse" name="textarea"></textarea>
+      <textarea class="form-control" id="textarea" ng-model="inscri.newClient.adresse" name="textarea"></textarea>
     </div>
   </div>
 
@@ -79,7 +79,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textinput">Téléphone</label>  
     <div class="col-md-4">
-    <input id="textinput" name="textinput" type="tel" ng-model="client.newClient.tel" class="form-control input-md">
+    <input id="textinput" name="textinput" type="tel" ng-model="inscri.newClient.tel" class="form-control input-md">
     </div>
   </div>
 
