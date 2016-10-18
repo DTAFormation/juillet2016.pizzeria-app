@@ -8,9 +8,9 @@
         var vm = this;
         pizzService.getAllPizzas().then(function(result) {
             vm.allPizzas = result.data;
-            /*console.log(vm.allPizzas);*/
-        });        
-    };
+            console.log(vm.allPizzas);
+        });
+   };
 
     module.exports = controller;
 }());
