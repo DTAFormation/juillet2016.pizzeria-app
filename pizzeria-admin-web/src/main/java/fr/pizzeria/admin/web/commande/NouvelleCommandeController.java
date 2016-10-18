@@ -1,10 +1,12 @@
 package fr.pizzeria.admin.web.commande;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -67,6 +69,9 @@ public class NouvelleCommandeController extends HttpServlet {
 		req.setAttribute("livreurs", livreursDisponibles);
 		req.setAttribute("clients", clients);
 		req.setAttribute("pizzas", pizzas);
+		// création du numéro de commande
+		DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
+		req.setAttribute("numcde", dateFormat.format(new Date()));
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE);
 		dispatcher.forward(req, resp);
