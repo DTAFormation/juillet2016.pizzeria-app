@@ -4,13 +4,13 @@
     <!-- filtre par categories -->
     <div class="container">
         <div class="form-group">
-            <label class="col-md-2 control-label" for="selectbasic" translate="CATE">Tri par catégorie</label>
+            <label class="col-md-2 control-label" for="selectbasic" translate="CATE"></label>
             <div class="col-md-2">
-                <select ng-model="tri.categorie" id="selectbasic" name="selectbasic" class="form-control">
+                <select ng-model="tri.categorie" id="selectbasic" name="selectbasic" class="form-control" ng-change="tri.categorie = tri.categorie == '' ? undefined : tri.categorie">
                     <option value="">TOUTES</option>
                     <option ng-value="'SANS_VIANDE'">SANS VIANDE</option>
                     <option ng-value="'VIANDE'">VIANDE</option>
-                    <option ng-value="'POISSON'">POISSON</option>
+                    <option ng-value="'POISSON'">POISSON</option>                
                 </select>
             </div>
         </div>
@@ -18,7 +18,7 @@
     </div>
     <!--Menu des pizzas-->
     <div class="container">
-        <div class="col-sm-5 col-md-3" ng-repeat="pizza in pizz.allPizzas | filter : tri : true || undefined ">
+        <div class="col-sm-5 col-md-3" ng-repeat="pizza in pizz.allPizzas | filter : tri : true ">
             <div class="thumbnail" >
                 <div img-url="pizza.urlImage"></div>
                 <div class="caption">

@@ -31,19 +31,17 @@
 					<c:if test="${editPage}">readonly</c:if> required autofocus>
 			</div>
 			<div class="form-group">
-				<label for="statut">Statut :</label> <select name="statut" id="statut" class="form-control">
+				<label for="statut">Statut :</label> 
 					<c:forEach var="statut" items="${statuts}">
-						<option value="${statut}" <c:if test="${commande.statut == statut}">selected</c:if>>${statut.libelle}</option>
+						<input type="radio" name="statut" id="statut" value="${statut}" <c:if test="${commande.statut == statut}">selected</c:if>/>${statut.libelle}
 					</c:forEach>
-				</select>
 			</div>
 			<div class="form-group">
 			
-				<label for="statut">Statut Paiement :</label> <select name="statutPaiement" id="statutpaiement" class="form-control">
+				<label for="statut">Statut Paiement :</label>
 					<c:forEach var="statutPaiement" items="${statutsPaiement}">
-						<option value="${statutPaiement}" <c:if test="${commande.statutPaiement == statutPaiement}">selected</c:if>>${statutPaiement.libelle}</option>
+						<input type="radio" name="statutPaiement" id="statutpaiement" value="${statutPaiement}" <c:if test="${commande.statutPaiement == statutPaiement}">selected</c:if>/>${statutPaiement.libelle}
 					</c:forEach>
-				</select>
 			</div>
 			<div class="form-group">
 				<label for="date">Date :</label> <input type="datetime-local" class="form-control" name="date" id="date"

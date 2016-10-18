@@ -122,8 +122,8 @@ public class ApplicationListener implements ServletContextListener {
 		p2.setUrlImage("/static/images/reine.jpg");
 		pizzas.add(p2);
 
-		Pizza p3 = new Pizza("FRO", "La 4 fromages", new BigDecimal(12.00), CategoriePizza.SANS_VIANDE);
-		p3.setUrlImage("/static/images/fromages.jpg");
+		Pizza p3 = new Pizza("PEC", "Pêcheur", new BigDecimal(12.00), CategoriePizza.POISSON);
+		p3.setUrlImage("/static/images/saumon.jpg");
 		pizzas.add(p3);
 
 		
