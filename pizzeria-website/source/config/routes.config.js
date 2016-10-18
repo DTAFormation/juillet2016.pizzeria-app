@@ -20,7 +20,7 @@
             controller: "pizzCtrl",
             controllerAs: 'pizz'
         });
-        $routeProvider.when('/pizza/:id', {
+        $routeProvider.when('/pizzas/:id', {
             templateUrl: "pizzas/pizzaDetails.html",
             controller: "pizzDetailsCtrl",
             controllerAs: 'pizzD'

@@ -1,6 +1,5 @@
 <div class="row">
     <h1>Menu des Pizzas</h1>
-    <p><a href="/#/">Retour a l'accueil</a></p>
 
     <!-- filtre par categories -->
     <div class="container">
@@ -8,9 +7,10 @@
             <label class="col-md-2 control-label" for="selectbasic" translate="CATE">Tri par catégorie</label>
             <div class="col-md-2">
                 <select ng-model="tri.categorie" id="selectbasic" name="selectbasic" class="form-control">
-                    <option></option>                    <option  ng-value="'SANS'">SANS VIANDE</option>
-                    <option  ng-value="'VIANDE'">VIANDE</option>
-                    <option  ng-value="'POISSON'">POISSON</option>
+                    <option value="">TOUTES</option>
+                    <option ng-value="'SANS_VIANDE'">SANS VIANDE</option>
+                    <option ng-value="'VIANDE'">VIANDE</option>
+                    <option ng-value="'POISSON'">POISSON</option>
                 </select>
             </div>
         </div>
@@ -18,14 +18,14 @@
     </div>
     <!--Menu des pizzas-->
     <div class="container">
-        <div class="col-sm-5 col-md-3" ng-repeat="pizza in pizz.allPizzas | filter : tri||undefined ">
-            <div class="thumbnail">
+        <div class="col-sm-5 col-md-3" ng-repeat="pizza in pizz.allPizzas | filter : tri : true || undefined ">
+            <div class="thumbnail" >
                 <div img-url="pizza.urlImage"></div>
                 <div class="caption">
                     <h2>{{pizza.nom}}</h2>
                     <p>{{pizza.categorie}}</p>
                     <h3>{{pizza.prix | number:2}}€</h3>
-                    <a href="#/pizza/{{pizza.id}}" class="btn btn-primary">Détails</a>
+                    <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important">Détails</a>
                 </div>
             </div>
 
