@@ -12,8 +12,7 @@
 		<class>fr.pizzeria.model.CommandePizzaId</class>
 		<class>fr.pizzeria.model.Utilisateur</class>
 		<class>fr.pizzeria.model.Ingredient</class>
-<class>fr.pizzeria.model.Email</class>
-
+		<class>fr.pizzeria.model.Email</class>
 		<class>fr.pizzeria.model.PizzaIngredients</class>
 
 

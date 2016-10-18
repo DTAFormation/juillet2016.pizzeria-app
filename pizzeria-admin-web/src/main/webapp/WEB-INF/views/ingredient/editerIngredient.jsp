@@ -33,10 +33,10 @@
 				<label for="name">Nom :</label> <input type="text" class="form-control" id="name" name="nom" value="${ingredient.nom}" required>
 			</div>
 			<div class="form-group">
-				<label for="name">Quantité :</label> <input type="text" class="form-control" id="quantite" min="0" name="quantite" value="${ingredient.quantite}" required>
+				<label for="name">Quantité :</label> <input type="number" class="form-control" id="quantite" min="0" name="quantite" value="${ingredient.quantite}" required>
 			</div>
 			<div class="form-group">
-				<label for="name">Seuil Critique :</label> <input type="text" class="form-control" min="0" id="seuil" name="seuil" value="${ingredient.seuil}" required>
+				<label for="name">Seuil Critique :</label> <input type="number" class="form-control" min="0" id="seuil" name="seuil" value="${ingredient.seuil}" required>
 			</div>
 
 			<input name="Referer" type="hidden" value="${Referer}">

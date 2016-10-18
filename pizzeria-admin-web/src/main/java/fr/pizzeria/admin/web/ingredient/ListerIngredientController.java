@@ -96,7 +96,8 @@ public class ListerIngredientController extends HttpServlet {
 			case ACTION_ADD_STOCK:
 				if(quantite > 0){
 					Ingredient ingredientStock = ingredientService.findOneIngredient(code);
-					ingredientStock.setQuantite(quantite);
+					Double oldQte = ingredientStock.getQuantite();
+					ingredientStock.setQuantite(oldQte+quantite);
 					ingredientService.updateStock(ingredientStock);
 					req.setAttribute("msg_success", "Le stock de l'ingrédient code  " + code + " a été mis à jours");
 				}else{
