@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -49,7 +50,7 @@ public class Pizza {
 	private CategoriePizza categorie;
 	private String urlImage;
 
-	@OneToMany(mappedBy = "id.pizza")
+	@OneToMany(mappedBy = "id.pizza", orphanRemoval=true, cascade=CascadeType.ALL)
 	private List<PizzaIngredients> ingredients = new ArrayList<>();
 
 	private boolean actif = true;
@@ -186,6 +187,10 @@ public class Pizza {
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}
+	
+	public void resetIngredient(){
+		this.ingredients.clear();
 	}
 
 	@Override
