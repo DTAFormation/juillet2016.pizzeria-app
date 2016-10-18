@@ -47,7 +47,7 @@ public class LivreurServiceTest {
 
 		Livreur livreur = new Livreur("Bové", "José");
 		String id = "1";
-		when(em.createQuery("select p from Livreur p where p.id=:id and p.actif = true", Livreur.class)).thenReturn(query);
+		when(em.createQuery("select p from Livreur p where p.id=:id", Livreur.class)).thenReturn(query);
 		when(query.setParameter("id", Integer.parseInt(id))).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(livreur);
 
@@ -76,7 +76,7 @@ public class LivreurServiceTest {
 
 		Livreur livreur = new Livreur("Bové", "José");
 		String id = "1";
-		when(em.createQuery("select p from Livreur p where p.id=:id and p.actif = true", Livreur.class)).thenReturn(query);
+		when(em.createQuery("select p from Livreur p where p.id=:id", Livreur.class)).thenReturn(query);
 		when(query.setParameter("id", Integer.parseInt(id))).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(livreur);
 
@@ -95,7 +95,7 @@ public class LivreurServiceTest {
 		LOG.info("Etant donne un objet livreur");
 		Livreur livreur = new Livreur("Bové", "José");
 		String id = "1";
-		when(em.createQuery("select p from Livreur p where p.id=:id and p.actif = true", Livreur.class)).thenReturn(query);
+		when(em.createQuery("select p from Livreur p where p.id=:id", Livreur.class)).thenReturn(query);
 		when(query.setParameter("id", Integer.parseInt(id))).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(livreur);
 
@@ -105,9 +105,6 @@ public class LivreurServiceTest {
 
 		service.deleteLivreur(id);
 
-		LOG.info("Alors 'ingredient' a ete modifie et is Active est modifié à false");
-		verify(em).merge(livreur);
-		assertFalse(livreur.isActif());
 		LOG.info("FIN");
 	}
 

@@ -23,35 +23,32 @@
         .constant("pizzConst", require("./config/config.constant"))
         .constant("constantImg", require("./config/img.constant"))
         /*
-         * Load Lodash
-         */
+        * Load Lodash
+        */
         .constant("_", require("lodash"))
         /*
-         * Home
-         */
+        * Home
+        */
         .controller("homeCtrl", require("./home/home.controller"))
         /*
-         * Livreurs
-         */
+        * Livreurs
+        */
         .controller("livCtrl", require("./livreurs/livreurs.controller"))
         /*
-         * Pizzas
-         */
+        * Pizzas
+        */
         .controller("pizzCtrl", require("./pizzas/pizzas.controller"))
         .controller("pizzDetailsCtrl", require("./pizzas/pizzaDetails.controller"))
         .directive("imgUrl", require("./pizzas/pizzas.directive"))
         /*.filter("catPizFilter", require("./pizzas/pizzaCat.filter"))*/
         /*
-         * Client
-         */
-        .controller("clientCtrl", require("./client/inscription.controller"))
-        /** 
-        * Translate 
+        * Client
         */
+        .controller("insriCtrl", require("./client/inscription.controller"))
+        .controller("clientCtrl", require("./client/connection.controller"))
+        /** 
+            * Translate 
+            */
         .controller("translateCtrl", require("./translate/translate.controller"))
-        .config(require("./config/translate.config"))
-        //.directive("myDirective", require("./translate/directive/myDirective.directive"));
-
-
-
-} ());
+        .config(require("./config/translate.config"));
+}());

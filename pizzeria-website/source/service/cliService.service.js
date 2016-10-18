@@ -10,6 +10,9 @@
         this.postClient = function(data) {
             return $http.post(pizzConst.apiUrl + "clients", data);
         };
+         this.connectionClient = function(data) {
+            return $http.post(pizzConst.apiUrl + "clients/connection", data);
+        };
     };
 
     module.exports = service;

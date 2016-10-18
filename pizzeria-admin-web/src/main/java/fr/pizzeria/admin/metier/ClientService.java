@@ -30,9 +30,8 @@ public class ClientService {
 	}
 
 	public void updateClient(String oldEmail, Client clientAvecId) {
-		Client oldClient = findOneClient(oldEmail);
-		oldClient = clientAvecId;
-		em.merge(oldClient);
+		findOneClient(oldEmail);//Fais office de verification.
+		em.merge(clientAvecId);
 	}
 
 	public void saveClient(Client clientSansId) {

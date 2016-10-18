@@ -14,18 +14,17 @@
             vm.newClientPost.date = vm.newClient.date;
             vm.newClientPost.adresse = vm.newClient.adresse;
             vm.newClientPost.telephone = vm.newClient.tel;
-            cliService.postClient(vm.newClientPost).then(function(result) {  
-                console.log(result.data);
+            cliService.postClient(vm.newClientPost).then(function(result) { 
                 vm.success = true;
                 vm.newClient = {};
                 $timeout(function() {
                     vm.success = false;
-                }, 1000);
+                }, 5000);
             }, function() {
                 vm.error = true;
                 $timeout(function() {
                     vm.error = false;
-                }, 1000);
+                }, 5000);
             });
         };
     };

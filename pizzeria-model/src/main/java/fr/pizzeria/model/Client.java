@@ -160,8 +160,8 @@ public class Client {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws GeneralSecurityException {
+		this.password = encodage(password);
 	}
 
 	public boolean isActif() {

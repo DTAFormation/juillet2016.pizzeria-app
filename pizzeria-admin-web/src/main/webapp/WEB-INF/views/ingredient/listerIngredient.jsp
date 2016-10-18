@@ -127,10 +127,10 @@
 							<div class="input-group">
 								<form method="POST" class="input-group">
 									<input type="hidden" name="code" value="${ingredient.code}">
-									<input type="number" name="quantite" step="any" min="0.000" value="0"
-										class="form-control"> <input type="hidden"
-										name="action" value="stock"> <span
-										class="input-group-btn">
+									<input type="number" name="quantite" step="any" min="0.000" value="0" class="form-control"> 
+									<input type="hidden" name="oldQte" value="${ingredient.quantite }">
+									<input type="hidden" name="action" value="stock">
+									<span class="input-group-btn">
 										<button type="submit" class="btn btn-primary">Ajouter</button>
 									</span>
 								</form>
