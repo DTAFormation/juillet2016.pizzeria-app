@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,20 +43,22 @@ public class ClientServiceTest {
 	public void testFindAll() throws GeneralSecurityException {
 		Client c1 = new Client("test", "test", "test@test.fr", "", "10 av aa", "00000000");
 		Client c2 = new Client("test2", "test2", "test@test.fr", "", "10 av aa", "00000000");
-		List<Client> lClients = new ArrayList<>();
-		service.saveClient(c1);
-		service.saveClient(c2);
-		when(em.createQuery("select c from Client c where actif = true", Client.class)).thenReturn(query);
-		when(query.getResultList()).thenReturn(lClients);
-		List<Client> lFindAll = service.findAll();
-		assertEquals(lFindAll.size(), lClients.size());
+		List<Client> listeClientsAttendus = Arrays.asList(c1,c2);
+		when(em.createQuery("select c from Client c", Client.class)).thenReturn(query);
+		when(query.getResultList()).thenReturn(listeClientsAttendus);
+		
+		
+		List<Client> listeClientsObtenue = service.findAll();
+		
+		
+		assertEquals(listeClientsObtenue.size(), listeClientsAttendus.size());
 	}
 
 	@Test
 	public void testFindOneClient() throws GeneralSecurityException {
 
-		Client c1 = new Client("test", "test", "test@test.fr", "", "10 av aa", "00000000");
-		when(em.createQuery("select c from Client c where c.email=:email and actif = true", Client.class))
+		Client c1 = new Client("test", "test", "test@test.fr", "rien", "10 av aa", "00000000");
+		when(em.createQuery("select c from Client c where c.email=:email", Client.class))
 				.thenReturn(query);
 		when(query.setParameter("email", "test@test.fr")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(c1);
@@ -68,16 +71,17 @@ public class ClientServiceTest {
 	public void testUpdateClient() throws GeneralSecurityException {
 
 		Client c1 = new Client("test", "test", "test@test.fr", "", "10 av aa", "00000000");
-		Client c2 = new Client("test", "test", "test22@test.fr", "", "10 av aa", "00000000");
-		when(em.createQuery("select c from Client c where c.email=:email and actif = true", Client.class))
+		
+		when(em.createQuery("select c from Client c where c.email=:email", Client.class))
 				.thenReturn(query);
 		when(query.setParameter("email", "test@test.fr")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(c1);
-		service.updateClient("test@test.fr", c2);
-		verify(em).merge(c1);
-		verify(em).persist(c2);
+		
+		
+		service.updateClient("test@test.fr", c1);
 
-		assertFalse(c1.isActif());
+		verify(em).merge(c1);
+		
 	}
 
 	@Test
@@ -92,14 +96,14 @@ public class ClientServiceTest {
 	@Test
 	public void testDeleteClient() throws GeneralSecurityException {
 		Client client = new Client(1, "test", "test", "test@test.fr", "", "10 av aa", "00000000");
-		when(em.createQuery("select c from Client c where c.email=:email and actif = true", Client.class))
+		when(em.createQuery("select c from Client c where c.email=:email", Client.class))
 				.thenReturn(query);
 		when(query.setParameter("email", "test@test.fr")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(client);
+		
 		service.deleteClient("test@test.fr");
 
-		verify(em).merge(client);
-		assertFalse(client.isActif());
+		
 	}
 
 	@Test

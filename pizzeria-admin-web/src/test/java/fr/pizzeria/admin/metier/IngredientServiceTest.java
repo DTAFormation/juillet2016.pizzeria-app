@@ -49,7 +49,7 @@ public class IngredientServiceTest {
 		LOG.info("Etant donne un objet ingredient");
 
 		Ingredient ingredient = new Ingredient("CHA", "champignon");
-		when(em.createQuery("select i from Ingredient i where i.code=:code and actif = true", Ingredient.class)).thenReturn(query);
+		when(em.createQuery("select i from Ingredient i where i.code=:code", Ingredient.class)).thenReturn(query);
 		when(query.setParameter("code", "CHA")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(ingredient);
 
@@ -66,7 +66,7 @@ public class IngredientServiceTest {
 		LOG.info("Etant donne un objet ingredient");
 		Ingredient ingredient = new Ingredient("CHA", "champignon");
 
-		when(em.createQuery("select i from Ingredient i where i.code=:code and actif = true", Ingredient.class)).thenReturn(query);
+		when(em.createQuery("select i from Ingredient i where i.code=:code", Ingredient.class)).thenReturn(query);
 		when(query.setParameter("code", "CHA")).thenReturn(query);
 		when(query.getSingleResult()).thenThrow(NoResultException.class);
 
@@ -82,7 +82,7 @@ public class IngredientServiceTest {
 		LOG.info("Etant donne un objet ingredient");
 
 		Ingredient ingredient = new Ingredient("CHA", "champignon");
-		when(em.createQuery("select i from Ingredient i where i.code=:code and actif = true", Ingredient.class)).thenReturn(query);
+		when(em.createQuery("select i from Ingredient i where i.code=:code", Ingredient.class)).thenReturn(query);
 		when(query.setParameter("code", "CHA")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(ingredient);
 
@@ -107,7 +107,7 @@ public class IngredientServiceTest {
 	public void supprimerIngredientVerifModifIsActive() {
 		LOG.info("Etant donne un objet ingredient");
 		Ingredient ingredient = new Ingredient("CHA", "champignon");
-		when(em.createQuery("select i from Ingredient i where i.code=:code and actif = true", Ingredient.class)).thenReturn(query);
+		when(em.createQuery("select i from Ingredient i where i.code=:code", Ingredient.class)).thenReturn(query);
 		when(query.setParameter("code", "CHA")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(ingredient);
 
@@ -117,9 +117,6 @@ public class IngredientServiceTest {
 
 		service.deleteIngredient("CHA");
 
-		LOG.info("Alors 'ingredient' a ete modifie et is Active est modifié à false");
-		verify(em).merge(ingredient);
-		assertFalse(ingredient.isActif());
 		LOG.info("FIN");
 	}
 }
