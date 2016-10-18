@@ -1,13 +1,15 @@
 package fr.pizzeria.admin.metier.model;
 
+import java.math.BigDecimal;
+
 import fr.pizzeria.model.Client;
 
-public class ClientCommandes {
+public class ClientCommandes implements Comparable<ClientCommandes> {
 	
 	private Client client;
-	private double valMoyenne;
+	private BigDecimal valMoyenne;
 	
-	public ClientCommandes(Client client, double valMoyenne) {
+	public ClientCommandes(Client client, BigDecimal valMoyenne) {
 		super();
 		this.client = client;
 		this.valMoyenne = valMoyenne;
@@ -25,12 +27,17 @@ public class ClientCommandes {
 		this.client = client;
 	}
 
-	public double getValMoyenne() {
+	public BigDecimal getValMoyenne() {
 		return valMoyenne;
 	}
 
-	public void setValMoyenne(double valMoyenne) {
+	public void setValMoyenne(BigDecimal valMoyenne) {
 		this.valMoyenne = valMoyenne;
+	}
+
+	@Override
+	public int compareTo(ClientCommandes o) {
+		return this.valMoyenne.compareTo(o.valMoyenne);
 	}
 
 }
