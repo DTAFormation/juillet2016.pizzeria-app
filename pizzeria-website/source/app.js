@@ -6,8 +6,9 @@
     require("angular");
     require("angular-route");
     require("angular-translate");
+    require("angular-cookies");
 
-    angular.module("pizzeria", ['ngRoute','pascalprecht.translate'])
+    angular.module("pizzeria", ['ngRoute','pascalprecht.translate','ngCookies'])
         // Load services
         .service("pizzService", require("./service/pizzService.service"))
         .service("cliService", require("./service/cliService.service"))

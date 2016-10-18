@@ -64,7 +64,7 @@
 						<td>
 							<ul>
 								<c:forEach var="ingredient" items="${pizza.ingredients}">
-									<li>${ingredient.nom}</li>
+									<li>${ingredient.id.ingredient.nom}</li>
 								</c:forEach>
 							</ul>
 						</td>
@@ -95,7 +95,7 @@
 						<td>
 							<ul>
 								<c:forEach var="ingredient" items="${pizza.ingredients}">
-									<li>${ingredient.nom}</li>
+									<li>${ingredient.id.ingredient.nom}</li>
 								</c:forEach>
 							</ul>
 						</td>

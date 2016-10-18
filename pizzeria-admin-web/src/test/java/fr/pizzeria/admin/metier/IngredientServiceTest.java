@@ -93,7 +93,7 @@ public class IngredientServiceTest {
 		assertEquals(ingredient.getNom(), "champignon");
 
 		Ingredient ingredientAvecCode = new Ingredient("CHA", "des champignon");
-		service.updateIngredient("CHA", ingredientAvecCode);
+		service.updateIngredient(ingredientAvecCode);
 
 		// Vérification des nouvelle données
 		LOG.info("Alors 'ingredient' a ete modifie");

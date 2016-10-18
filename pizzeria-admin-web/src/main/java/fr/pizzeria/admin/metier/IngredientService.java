@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.PizzaIngredients;
 
 @Stateless
 public class IngredientService {
@@ -29,15 +30,21 @@ public class IngredientService {
 	public List<Ingredient> findAll() {
 		return em.createQuery("select i from Ingredient i", Ingredient.class).getResultList();
 	}
+	public List<Ingredient> findAllByQuantity() {
+		return em.createQuery("select i from Ingredient i order by quantite", Ingredient.class).getResultList();
+	}
 
 	public Ingredient findOneIngredient(String code) {
 		return em.createQuery("select i from Ingredient i where i.code=:code", Ingredient.class).setParameter("code", code).getSingleResult();
 	}
 
-	public void updateIngredient(String code, Ingredient ingredientAvecCode) {
-		Ingredient ing = findOneIngredient(code); // vérifie qu'une pizza est présente
+	public void updateIngredient(Ingredient ingredientAvecCode) {
+		Ingredient ing = findOneIngredient(ingredientAvecCode.getCode()); // vérifie qu'une pizza est présente
 		ing.setNom(ingredientAvecCode.getNom());
 		ing.setActif(ingredientAvecCode.isActif());
+		//Ajout Pour ISSUE USA008
+		ing.setQuantite(ingredientAvecCode.getQuantite());
+		ing.setSeuil(ingredientAvecCode.getSeuil());
 		if (!ing.isActif()) {
 			disablePizza(ing);
 		}
@@ -59,28 +66,33 @@ public class IngredientService {
 		removeFromPizza(ing);
 		em.remove(ing);
 	}
+	
+	//ISSUE USA008
+	public void saveQteIngredient(PizzaIngredients pI){
+		em.merge(pI);
+	}
 
 	private void disablePizza(Ingredient ing) {
 		List<Pizza> listPizzas = pizzaService.findAll();
 		for (Pizza pizza : listPizzas) {
-			List<Ingredient> listeIngredientsPizza = pizza.getIngredients();
+			List<PizzaIngredients> listeIngredientsPizza = pizza.getIngredients();
 			if (!listeIngredientsPizza.contains(ing)) {
 				continue;
 			}
 			pizza.setActif(false);
-			pizzaService.updatePizza(pizza.getCode(), pizza);
+			pizzaService.updatePizza(pizza);
 		}
 	}
 
 	private void removeFromPizza(Ingredient ing) {
 		List<Pizza> listPizzas = pizzaService.findAll();
 		for (Pizza pizza : listPizzas) {
-			List<Ingredient> listeIngredientsPizza = pizza.getIngredients();
+			List<PizzaIngredients> listeIngredientsPizza = pizza.getIngredients();
 			if (!listeIngredientsPizza.contains(ing)) {
 				continue;
 			}
 			listeIngredientsPizza.remove(ing);
-			pizzaService.updatePizza(pizza.getCode(), pizza);
+			pizzaService.updatePizza(pizza);
 		}
 
 	}
@@ -91,5 +103,9 @@ public class IngredientService {
 
 	public void setPizzaService(PizzaService pizzaService) {
 		this.pizzaService = pizzaService;
+	}
+	
+	public void updateStock(Ingredient ing){
+		em.merge(ing);
 	}
 }

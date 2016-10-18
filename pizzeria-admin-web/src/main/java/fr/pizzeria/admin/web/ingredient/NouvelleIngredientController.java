@@ -32,6 +32,10 @@ public class NouvelleIngredientController extends HttpServlet {
 		String nom = req.getParameter("nom");
 		String code = req.getParameter("code");
 		String referer = req.getParameter("Referer");
+		// ISSUE USA008
+		String quantite = req.getParameter("quantite");
+		String seuil = req.getParameter("seuil");
+
 
 		if (isBlank(nom) || isBlank(code)) {
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
@@ -39,6 +43,12 @@ public class NouvelleIngredientController extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_INGREDIENT).forward(req, resp);
 		} else {
 			Ingredient ingredientSansId = new Ingredient(code, nom);
+			//ISSUE USA008
+			if(quantite != null){
+				ingredientSansId.setQuantite(Double.parseDouble(quantite));
+			}if(seuil != null){
+				ingredientSansId.setSeuil(Double.parseDouble(seuil));
+			}
 			if (ingredientService.saveIngredient(ingredientSansId)) {
 				resp.sendRedirect(referer);
 			} else {
