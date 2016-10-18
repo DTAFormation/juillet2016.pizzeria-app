@@ -5,7 +5,7 @@ var del = require("del");
 var browserify = require("browserify");
 var source = require("vinyl-source-stream");
 var watchify = require("watchify");
-
+var cleanCSS = require('gulp-clean-css');
 var colors = plugins.util.colors;
 var log = plugins.util.log;
 
@@ -18,6 +18,9 @@ gulp.task("connect", function () {
         root: "public",
         port: 10080
     });
+});
+gulp.task("minify-css", function () {
+    return gulp.src(paths.css).pipe(plugins.cleanCss()).pipe(gulp.dest('public/assets/css/'));
 });
 
 var server = plugins.jsonSrv.create();
@@ -91,7 +94,7 @@ gulp.task("translate", function () {
 /*
  * Build application task
  */
-gulp.task('build', ['connect', 'datas', 'libs-css', 'browserify', 'html','img','translate']);
+gulp.task('build', ['connect','minify-css', 'datas', 'libs-css', 'browserify', 'html','img','translate']);
 
 gulp.task("default", ["clean"], function () {
     gulp.start("build");
@@ -106,6 +109,7 @@ gulp.task("watch", function () {
     gulp.start('browserify');
     gulp.start('img');
     gulp.start('translate');
+    gulp.watch(paths.css,  ["minify-css"]);
 
     gulp.watch(paths.html, ["html"]);
     gulp.watch(["datas/pizzeria.json"], ["datas"], function () {

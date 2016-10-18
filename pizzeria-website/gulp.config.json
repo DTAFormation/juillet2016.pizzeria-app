@@ -1,5 +1,6 @@
 {
     "data": "datas/",
+    "css":"source/assets/css/*.css",
     "html": [
         "./source/*.html",
         "./source/**/*.html"

@@ -15,6 +15,7 @@
         .service("cmdService", require("./service/cmdService.service"))
         .service("livService", require("./service/livService.service"))
         .service("cmdPizzService", require("./service/cmdPizzService.service"))
+        .service("localeStorageService", require("./service/localeStorageService.service"))
         // Load config
         .config(require("./config/app.config"))
         // Load routes
@@ -51,5 +52,14 @@
         * Translate 
         */
         .controller("translateCtrl", require("./translate/translate.controller"))
+
+        
+        // Load directive
+        .directive("monPanier", require("./panier/monpanier.directive"))
         .config(require("./config/translate.config"));
-}());
+        //.directive("myDirective", require("./translate/directive/myDirective.directive"));
+
+
+
+} ());
+
