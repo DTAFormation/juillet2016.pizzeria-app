@@ -3,16 +3,13 @@
     var controller = function(pizzService, $log, constantImg) {
 
         var constImg = constantImg.apiUrlImg ;
-        console.log(constImg);
+        /*console.log(constImg);*/
 
         var vm = this;
         pizzService.getAllPizzas().then(function(result) {
-            vm.allPizzas = result;
-            console.log(vm.allPizzas);
-        }); 
-        vm.categories = ['SANS','VIANDE','POISSON'];
-
-        
+            vm.allPizzas = result.data;
+            /*console.log(vm.allPizzas);*/
+        });        
     };
 
     module.exports = controller;

@@ -1,10 +1,14 @@
-<h2>{{pizzD.pizza.nom}}</h2>
-<img ng-src="{{pizzD.pizza.url_image}}" alt="">
-<p><strong>Prix :</strong>{{pizzD.pizza.prix}}€</p>
-<h3>Les ingrédients</h3>
-<ul>
-    <li ng-repeat="ingredient in pizzD.pizza.ingredients">
-        {{ingredient}}
-    </li>
-</ul>
-<a href="#/pizzas">‹ Retour</a>
+<div class="container">
+    <div class="thumbnail col-sm-5 col-md-3">
+        <h2><strong>{{pizzD.pizza.nom}}</strong></h2><br>
+        <img style="width : 100%" ng-src="{{pizzD.url}}" alt=""><br>
+        <h3><strong>Prix : </strong>{{pizzD.pizza.prix | number:2}}€</h3>
+        <h3><strong>Les ingrédients :</strong></h3>
+        <ul>
+            <li ng-repeat="ingredient in pizzD.pizza.ingredients">
+                {{ingredient.nom}}
+            </li>
+        </ul>
+        <a href="#/pizzas">Retour</a>
+    </div>
+</div>
