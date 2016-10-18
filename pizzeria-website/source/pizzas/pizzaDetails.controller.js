@@ -24,6 +24,13 @@
             console.log("URL", vm.url);
     
         });
+
+       /* vm.replaceUnderScoreToSpace = function (nomAvecUnderScore){
+            var nomSansUnderScore = nomAvecUnderScore.replace("_"," ");
+            return nomSansUnderScore;
+        };*/
+
+       
     };
 
     module.exports = controller;

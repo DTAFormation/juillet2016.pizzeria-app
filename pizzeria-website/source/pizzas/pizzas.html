@@ -23,7 +23,7 @@
                 <div img-url="pizza.urlImage"></div>
                 <div class="caption">
                     <h2>{{pizza.nom}}</h2>
-                    <p>{{pizza.categorie}}</p>
+                    <p> Categorie: {{(pizza.categorie).replace('_',' ')}}</p>
                     <h3>{{pizza.prix | number:2}}€</h3>
                     <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important">Détails</a>
                 </div>

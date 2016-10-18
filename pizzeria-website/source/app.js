@@ -40,7 +40,7 @@
         .controller("pizzCtrl", require("./pizzas/pizzas.controller"))
         .controller("pizzDetailsCtrl", require("./pizzas/pizzaDetails.controller"))
         .directive("imgUrl", require("./pizzas/pizzas.directive"))
-        /*.filter("catPizFilter", require("./pizzas/pizzaCat.filter"))*/
+     
         /*
         * Client
         */
