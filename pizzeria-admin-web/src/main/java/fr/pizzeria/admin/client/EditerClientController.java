@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.client;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -75,9 +74,6 @@ public class EditerClientController extends HttpServlet {
 				clientAvecId = new Client(Integer.valueOf(id), nom, prenom, email, password, adresse, telephone,
 						abonne);
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (GeneralSecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

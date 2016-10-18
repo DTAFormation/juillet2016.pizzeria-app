@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    var controller = function(cliService, $log, $timeout) {
+    var controller = function($window, cliService, $log, $timeout) {
         var vm = this;
         vm.error = false;
         vm.success = false;
@@ -18,6 +18,7 @@
                 vm.success = true;
                 vm.newClient = {};
                 $timeout(function() {
+                    $window.location.href = '/#/connection';
                     vm.success = false;
                 }, 5000);
             }, function() {

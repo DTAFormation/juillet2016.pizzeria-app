@@ -1,5 +1,8 @@
 package fr.pizzeria.spring.web.resource;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ public class ClientResource {
 		} else {
 			clientDao.save(newClient);
 			response.setStatus(200);
+
 		}
 	}
 
@@ -36,17 +40,23 @@ public class ClientResource {
 	}
 
 	@RequestMapping(value = "/connection", method = RequestMethod.POST)
-	public void findClients(@RequestBody Client client, HttpServletResponse response) {
+	public Client findClients(@RequestBody Client client, HttpServletRequest req, HttpServletResponse response)
+			throws IOException {
+		Client clientTrouve = null;
 		if (isBlank(client.getEmail()) || isBlank(client.getPassword())) {
 			response.setStatus(400);
 		} else {
-			Client clientTrouve = clientDao.findByEmail(client.getEmail());
+			clientTrouve = clientDao.findByEmail(client.getEmail());
 			if (client.getPassword().equals(clientTrouve.getPassword())) {
 				response.setStatus(200);
+				client.setPassword(null);
 			} else {
 				response.setStatus(400);
+				clientTrouve = null;
 			}
 		}
+
+		return clientTrouve;
 	}
 
 }

@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.client;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -43,12 +42,9 @@ public class NouveauClientController extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_NOUVEAU_CLIENT).forward(req, resp);
 		} else {
 			Client clientSansId = null;
-			try {
-				clientSansId = new Client(nom, prenom, email, password, adresse, telephone, abonne);
-			} catch (GeneralSecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+			clientSansId = new Client(nom, prenom, email, password, adresse, telephone, abonne);
+
 			if (!clientService.isEmailTaken(email).isEmpty()) {
 				req.setAttribute("msgErreur", "l'email existe deja ");
 				req.setAttribute("client", clientSansId);

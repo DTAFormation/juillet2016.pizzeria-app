@@ -18,13 +18,15 @@
 	</div>
 	<my-directive></my-directive>
     <div class="jumbotron">
-        <div class="container">
+        <div class="container" ng-controller="decoCtrl as deco">
             <h1>Ma pizzéria</h1>
             <ul class="nav nav-pills">
                 <li role="presentation"><a href="#/">Home</a></li>
                 <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
-                <li role="presentation"><a href="#/connection">Se connecter</a></li>
+                <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
+                <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
                 <li role="presentation"><a href="#/inscription">S'inscrire</a></li>
+                <li role="presentation" ng-show="deco.isConnected()">{{deco.getClientConnecte().nom}}</li>
             </ul>
         </div>
     </div>
