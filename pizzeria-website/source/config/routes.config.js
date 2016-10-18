@@ -38,6 +38,11 @@
             controller: "clientCtrl",
             controllerAs: 'client'
         });
+        $routeProvider.when('/deconnection', {
+            templateUrl: "client/deconnection.html",
+            controller: "decoCtrl",
+            controllerAs: 'deco'
+        });
     };
 
     module.exports = config;

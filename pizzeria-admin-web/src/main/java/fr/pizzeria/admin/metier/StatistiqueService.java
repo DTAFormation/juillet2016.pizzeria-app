@@ -29,13 +29,13 @@ public class StatistiqueService {
 
 	// pizzas triées par nombre de ventes
 	public List<PizzaVentes> findPizzasParVentes() {
-		return em.createQuery("SELECT new fr.pizzeria.admin.metier.model.PizzaVentes(p, SUM(c.quantite)) from Pizza p, CommandePizza c where c.pizzaId = p.id GROUP BY c.pizzaId ORDER BY SUM(c.quantite) DESC", fr.pizzeria.admin.metier.model.PizzaVentes.class).getResultList();
+		return em.createQuery("SELECT new fr.pizzeria.admin.metier.model.PizzaVentes(p, SUM(c.quantite)) from Pizza p, CommandePizza c, Commande cd where c.pizzaId = p.id AND c.commandeId = cd.id AND cd.supprime = false GROUP BY c.pizzaId ORDER BY SUM(c.quantite) DESC", fr.pizzeria.admin.metier.model.PizzaVentes.class).getResultList();
 	}
 	
 	// clients triés par valeur moyenne de commande
 	public List<ClientCommandes> findClientsParCommandes() {
 		// on récupère chaque commande client avec son total
-		List<ClientCommandes> listeCommandes =  em.createQuery("SELECT new fr.pizzeria.admin.metier.model.ClientCommandes(c, SUM(cp.quantite * p.prix)) FROM Client c, Commande cd, CommandePizza cp, Pizza p WHERE c.id = cd.client.id AND cd.id = cp.commandeId AND cp.pizza.id = p.id GROUP BY c.id, cd.id ORDER BY c.id", fr.pizzeria.admin.metier.model.ClientCommandes.class).getResultList();
+		List<ClientCommandes> listeCommandes =  em.createQuery("SELECT new fr.pizzeria.admin.metier.model.ClientCommandes(c, SUM(cp.quantite * p.prix)) FROM Client c, Commande cd, CommandePizza cp, Pizza p WHERE c.id = cd.client.id AND cd.id = cp.commandeId AND cp.pizza.id = p.id AND cd.supprime = false GROUP BY c.id, cd.id ORDER BY c.id", fr.pizzeria.admin.metier.model.ClientCommandes.class).getResultList();
 		List<ClientCommandes> valeursMoyennes = new ArrayList<>();
 		Client client = null;
 		BigDecimal moy = BigDecimal.ZERO;
@@ -78,7 +78,7 @@ public class StatistiqueService {
 		// on ne prends que les commandes livrées faites ce mois-ci (depuis le premier du mois)
 		date.setDate(1);
 		System.out.println(dateFormat.format(date));
-		return em.createQuery("SELECT new fr.pizzeria.admin.metier.model.LivreurCommandes(l, COUNT(c.id)) FROM Livreur l, Commande c WHERE l.id = c.livreur.id AND c.statut = 'LIVRE' AND c.dateCommande >= '" + dateFormat.format(date) + "' GROUP BY l.id ORDER BY COUNT(c.id) DESC", fr.pizzeria.admin.metier.model.LivreurCommandes.class).getResultList();
+		return em.createQuery("SELECT new fr.pizzeria.admin.metier.model.LivreurCommandes(l, COUNT(c.id)) FROM Livreur l, Commande c WHERE l.id = c.livreur.id AND c.supprime = false AND c.statut = 'LIVRE' AND c.dateCommande >= '" + dateFormat.format(date) + "' GROUP BY l.id ORDER BY COUNT(c.id) DESC", fr.pizzeria.admin.metier.model.LivreurCommandes.class).getResultList();
 	}
 
 }

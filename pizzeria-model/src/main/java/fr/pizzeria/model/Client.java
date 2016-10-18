@@ -1,6 +1,5 @@
 package fr.pizzeria.model;
 
-import java.security.GeneralSecurityException;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ public class Client {
 	private boolean abonne;
 
 	public Client(Integer id, String nom, String prenom, String email, String password, String adresse,
-			String telephone) throws GeneralSecurityException {
+			String telephone) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -40,11 +39,11 @@ public class Client {
 	}
 
 	// Crypter le Mdp
-	public static String encodage(String mdp) throws GeneralSecurityException {
+	public String encodage(String mdp) {
 		return DigestUtils.sha512Hex(mdp);
 	}
 
-	public void setPasswordEncrypt(String password) throws GeneralSecurityException {
+	public void setPasswordEncrypt(String password) {
 		this.password = encodage(password);
 	}
 
@@ -57,10 +56,10 @@ public class Client {
 	 * @param adresse
 	 * @param telephone
 	 * @param abonne
-	 * @throws GeneralSecurityException
+	 * @
 	 */
 	public Client(Integer id, String nom, String prenom, String email, String password, String adresse,
-			String telephone, boolean abonne) throws GeneralSecurityException {
+			String telephone, boolean abonne) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -72,8 +71,7 @@ public class Client {
 		this.abonne = abonne;
 	}
 
-	public Client(String nom, String prenom, String email, String password, String adresse, String telephone)
-			throws GeneralSecurityException {
+	public Client(String nom, String prenom, String email, String password, String adresse, String telephone) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -84,13 +82,12 @@ public class Client {
 	}
 
 	public Client(String nom, String prenom, String email, String password, String adresse, String telephone,
-			boolean abonne) throws GeneralSecurityException {
+			boolean abonne) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.password = encodage(password);
-		this.actif = actif;
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.abonne = abonne;
@@ -160,8 +157,8 @@ public class Client {
 		return password;
 	}
 
-	public void setPassword(String password) throws GeneralSecurityException {
-		this.password = encodage(password);
+	public void setPassword(String password) {
+		this.password = password != null ? encodage(password) : null;
 	}
 
 	public boolean isActif() {

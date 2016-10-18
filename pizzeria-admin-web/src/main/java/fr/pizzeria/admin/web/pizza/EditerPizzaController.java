@@ -92,6 +92,7 @@ public class EditerPizzaController extends HttpServlet {
             if (ingredients != null) {
 				//ma Pizza sans id en a desormais un
 				Pizza maPizza = pizzaAvecId;
+				maPizza.resetIngredient();
 				for (int i = 0; i< ingredients.length;i++){
 					Ingredient monIngredient = ingredientService.findOneIngredient(ingredients[i]);
 					PizzaIngredients pizzaI = new PizzaIngredients();
@@ -104,7 +105,6 @@ public class EditerPizzaController extends HttpServlet {
 				pizzaService.updatePizza(maPizza);
 
 			}
-            pizzaService.updatePizza(pizzaAvecId);
             resp.sendRedirect(req.getContextPath()
                     + "/pizzas/list");
         }

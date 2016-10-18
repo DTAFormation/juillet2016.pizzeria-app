@@ -83,7 +83,7 @@
 
 	<script type="text/javascript">
 		function addIngredient(code, name) {
-			var html = '<li id="ingredient-' + code + '" class="list-group-item item-ingredient-pizza">' + name + '<input type="hidden" name="ingredient" value="' + code + '"><div class="myQteIng"><label >Quantité :</label><input name ="qteIngredient" type="number" min="0.050" max="1" value="0.005" step="0.005" class="myQteIng"></div></li>';
+			var html = '<li id="ingredient-' + code + '" class="list-group-item item-ingredient-pizza">' + name + '<input type="hidden" name="ingredient" value="' + code + '"><div class="myQteIng"><label >Quantité :</label><input name ="qteIngredient" type="number" min="0.005" max="1" value="0.005" step="0.005" class="myQteIng"></div></li>';
 			if (!document.getElementById('ingredient-' + code)) {
 				$("#pizzaIngredient").append(html);
 			} else {

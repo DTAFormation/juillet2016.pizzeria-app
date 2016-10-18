@@ -46,9 +46,10 @@
         */
         .controller("insriCtrl", require("./client/inscription.controller"))
         .controller("clientCtrl", require("./client/connection.controller"))
+        .controller("decoCtrl", require("./client/deconnection.controller"))
         /** 
-            * Translate 
-            */
+        * Translate 
+        */
         .controller("translateCtrl", require("./translate/translate.controller"))
         .config(require("./config/translate.config"));
 }());
