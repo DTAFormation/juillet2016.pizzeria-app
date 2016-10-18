@@ -1,5 +1,7 @@
 package fr.pizzeria.spring.web.resource;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +22,31 @@ public class ClientResource {
 	private IClientRepository clientDao;
 
 	@RequestMapping(method = RequestMethod.POST)
-
-	public Enregirstrement saveClients(@RequestBody Client newClient) {
-		Enregirstrement mes = new Enregirstrement();
-
+	public void saveClients(@RequestBody Client newClient, HttpServletResponse response) {
 		if (isBlank(newClient.getNom()) || isBlank(newClient.getEmail()) || isBlank(newClient.getPassword())) {
-			mes.setMessage("les paramètres nom, email et password sont obligatoires !");
-			mes.setSucces(false);
+			response.setStatus(400);
 		} else {
 			clientDao.save(newClient);
-
-			mes.setSucces(true);
+			response.setStatus(200);
 		}
-		return mes;
 	}
 
 	protected boolean isBlank(String param) {
 		return param == null || param.isEmpty();
 	}
+
+	@RequestMapping(value = "/connection", method = RequestMethod.POST)
+	public void findClients(@RequestBody Client client, HttpServletResponse response) {
+		if (isBlank(client.getEmail()) || isBlank(client.getPassword())) {
+			response.setStatus(400);
+		} else {
+			Client clientTrouve = clientDao.findByEmail(client.getEmail());
+			if (client.getPassword().equals(clientTrouve.getPassword())) {
+				response.setStatus(200);
+			} else {
+				response.setStatus(400);
+			}
+		}
+	}
+
 }
