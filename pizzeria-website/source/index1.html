@@ -1,11 +1,26 @@
-<div>
-    <h1>
+<!DOCTYPE html>
+<html lang="fr" ng-app="pizzeria">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/bundle.js"></script>
+	<title>Pizz'DTAdev | Les experts de la cuisson pour développeurs !</title>
+	<meta http-equiv="Content-Language" content="fr">
+	<link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+	<link rel='stylesheet' id='app-css' href='style.css' type='text/css' media='all' />
+</head>
+
+<body>
+	<div class="pull-right" ng-controller="translateCtrl as ctrl"> <img ng-src='img/en.png' ng-click="ctrl.changeLanguage('en')" /> <img ng-src='img/fr.png' ng-click="ctrl.changeLanguage('fr')" /> </div>
+	<header role="banner">
+		<div class="small-11 small-centered  columns">
+			<h1>
 				<a href="logo">
 					<img src="https://t3.ftcdn.net/jpg/00/67/92/24/240_F_67922468_l6YMk4NHxP3DHdNp5TgK1aVAMWHsHT0t.jpg">
 				</a>
 			</h1>
-</div>
-<div class="header-right">
+			<div class="header-right">
 				<h2 class="home text-header">
 					<div class="jumbotron">
 						<div class="container">
@@ -15,8 +30,21 @@
 							<i>Les experts de la cuisson <span>pour développeurs !</span></i></h3>
 					</div>
 			</div>
-
-<div>
+		</div>
+		</div>
+	</header>
+	<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="decoCtrl as deco">
+		<ul>
+			<li role="presentation"><a href="#/">Home</a></li>
+			<li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
+			<li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
+			<li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
+			<li role="presentation"><a href="#/inscription">S'inscrire</a></li>
+			<li role="presentation" ng-show="deco.isConnected()">{{deco.getClientConnecte().nom}}</li>
+		</ul>
+	</nav>
+	</div>
+	<div>
 		<div id="container">
 			<h4>Ce que nous vous proposons</h4>
 			<p>Bienvenue à La pizzéria du developpeur DTA, nous sommes une enseigne de pizzeria spécialiste des pizzas pour développeurs
@@ -60,3 +88,6 @@
 				<a href="http://www.leparisien.fr/economie/restauration-en-france-la-pizza-est-reine-08-03-2016-5607715.php" class="article-pizza  colorbox-link"><img class="colorbox-class logo-elle-home alignnone" src="http://www.pizzeria-leborsalino.fr/img/photos/zoom/accueil_01.jpg"
 						alt="logo-elle" width="30" height="30" /></a>
 			</div>
+</body>
+
+</html>

@@ -7,6 +7,8 @@
 }
 body {
     font-family: "Helvetica";
+    background-color: #8B4513;
+    background-image: url("http://3dpower.free.fr/Textures/Bois/bois13.jpg");
 }
 h1 {
     color: #C03000;
@@ -17,6 +19,12 @@ h2 {
 a {
     color: #96CA2D;
     text-decoration: none;
+}
+h4 {
+    color: #00bfff;
+}
+p {
+    color: #ffdead;
 }
 #navigation li {
     background-color: red;
