@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
@@ -78,8 +80,7 @@ public class ApplicationListener implements ServletContextListener {
 			try {
 				initClients();
 			} catch (GeneralSecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getAnonymousLogger().log(Level.SEVERE,"Exception Handle inside Application Listener",e);
 			}
 			initLivreurs();
 			initUtilisateurs();

@@ -1,6 +1,8 @@
 package fr.pizzeria.admin.client;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -74,8 +76,7 @@ public class EditerClientController extends HttpServlet {
 				clientAvecId = new Client(Integer.valueOf(id), nom, prenom, email, password, adresse, telephone,
 						abonne);
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.getAnonymousLogger().log(Level.SEVERE,"Exception Handle inside Client Controller",e);
 			}
 
 			clientService.updateClient(oldEmail, clientAvecId);

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -116,7 +117,7 @@ public class EditerCommandeController extends HttpServlet {
 			try {
 				date.setTime(sdf.parse(dateParam));
 			} catch (ParseException e) {
-				e.printStackTrace();
+				Logger.getAnonymousLogger().log(Level.SEVERE,"Exception Handle inside EditerCommandeController",e);
 			}
 
 			int livreurId = Integer.parseInt(livreurIdParam);
