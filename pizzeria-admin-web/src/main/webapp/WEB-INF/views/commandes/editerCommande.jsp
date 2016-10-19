@@ -33,14 +33,14 @@
 			<div class="form-group">
 				<label for="statut">Statut :</label> 
 					<c:forEach var="statut" items="${statuts}">
-						<input type="radio" name="statut" id="statut" value="${statut}" <c:if test="${commande.statut == statut}">selected</c:if>/>${statut.libelle}
+						<input type="radio" name="statut" id="statut" value="${statut}" <c:if test="${commande.statut == statut}">CHECKED</c:if>/>${statut.libelle}
 					</c:forEach>
 			</div>
 			<div class="form-group">
 			
 				<label for="statut">Statut Paiement :</label>
 					<c:forEach var="statutPaiement" items="${statutsPaiement}">
-						<input type="radio" name="statutPaiement" id="statutpaiement" value="${statutPaiement}" <c:if test="${commande.statutPaiement == statutPaiement}">selected</c:if>/>${statutPaiement.libelle}
+						<input type="radio" name="statutPaiement" id="statutpaiement" value="${statutPaiement}" <c:if test="${commande.statutPaiement == statutPaiement}">CHECKED</c:if>/>${statutPaiement.libelle}
 					</c:forEach>
 			</div>
 			<div class="form-group">
