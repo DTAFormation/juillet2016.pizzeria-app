@@ -16,7 +16,8 @@
             console.log("panier ajouté");
             console.log(panier);
             localeStorageService.postLocaleStorage(panier);
-        }
+        };
+        
         vm.localpanier = localeStorageService.getDataLocalestorage();
     };
     /*console.log(vm.allPizzas);*/

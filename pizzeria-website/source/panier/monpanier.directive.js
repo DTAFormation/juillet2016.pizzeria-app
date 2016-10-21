@@ -1,17 +1,22 @@
 (function () {
     'use strict';
-    var directive = function (localeStorageService) {
+    var directive = function (localeStorageService,constantImg) {
         return {
-            restrict: "E"
-            , transclude: true
-            , scope: {
+            restrict:"E",
+            transclude: true,
+            scope: {
                 "panier": "=dirPanier"
-            }
-            , templateUrl: "panier/monpanierdirective.html"
-            , link: function (scope, element, attrs) {
-                console.log("test");
+            },
+            templateUrl: "panier/monpanierdirective.html",
+            link: function (scope, element, attrs) {
+                /*console.log("test");*/
                 scope.storedPanier = localeStorageService.getDataLocalestorage();
-                console.log("scope.storedPanier", scope.storedPanier);
+                scope.urlImg = constantImg.apiUrlImg + scope.imgUrl ;
+
+                scope.imageP = function(url){
+                    return constantImg.apiUrlImg + url;
+                };
+                /*console.log("scope.storedPanier", scope.storedPanier);*/
                 
                 scope.total = function () {
                     var total = 0.0;
@@ -26,9 +31,11 @@
                         return total;
                     });
                     console.log(total);
-                }
+                };
+
+
             }
-        }
+        };
     };
     module.exports = directive;
 })();

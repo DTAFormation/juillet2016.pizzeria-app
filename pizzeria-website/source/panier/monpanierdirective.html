@@ -2,7 +2,9 @@
     <h1>Panier</h1>
     <table id="cart" class="table table-hover table-condensed">
         <ul>
-            <li ng-repeat="pizza in storedPanier "> <img src="{{pizza.urlImage}}" alt="" class="img-responsive"> <span>{{pizza.nom}}</span>
+            <li ng-repeat="pizza in storedPanier "> 
+                <img ng-src="{{imageP(pizza.urlImage)}}" alt="" class="img-responsive">
+                <span>{{pizza.nom}}</span>
                 <p>{{pizza.prix | number:2}} &euro;</p>
             </li>
         </ul>
