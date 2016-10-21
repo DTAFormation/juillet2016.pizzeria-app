@@ -2,14 +2,14 @@
     'use strict';
     var directive = function (localeStorageService,constantImg) {
         return {
-            restrict:"E",
-            transclude: true,
+      restrict: "E", 
+            transclude: true, 
             scope: {
                 "panier": "=dirPanier"
-            },
-            templateUrl: "panier/monpanierdirective.html",
+            }, 
+            templateUrl: "panier/monpanierdirective.html", 
             link: function (scope, element, attrs) {
-                /*console.log("test");*/
+
                 scope.storedPanier = localeStorageService.getDataLocalestorage();
                 scope.urlImg = constantImg.apiUrlImg + scope.imgUrl ;
 
@@ -32,8 +32,6 @@
                     });
                     console.log(total);
                 };
-
-
             }
         };
     };

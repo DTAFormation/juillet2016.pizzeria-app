@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -206,7 +208,7 @@ public class Pizza {
 			try {
 				resultat = field.getAnnotation(ToString.class).uppercase() ? field.get(this).toString().toUpperCase() : field.get(this).toString();
 			} catch (SecurityException | IllegalArgumentException | IllegalAccessException e1) {
-				e1.printStackTrace();
+				Logger.getAnonymousLogger().log(Level.SEVERE,"Exception Handle inside Model Pizza",e1);
 			}
 
 			String formatResultat = FORMAT.get(field.getName()) == null ? AUTRE_FORMAT : FORMAT.get(field.getName());
