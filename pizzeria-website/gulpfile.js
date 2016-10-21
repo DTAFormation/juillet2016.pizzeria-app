@@ -122,4 +122,6 @@ gulp.task("watch", function () {
     gulp.start('img');
     gulp.watch(paths.css,  ["minify-css"]);
     gulp.watch(paths.html, ["html"]);
+    gulp.watch(paths.commun, ["commun"]);
+    gulp.watch(paths.components, ["components"]);
 });
