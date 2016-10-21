@@ -20,9 +20,14 @@
                 <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
                 <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
                 <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
-                <li role="presentation"><a href="#/inscription">S'inscrire</a></li>
-                <li role="presentation" ng-show="deco.isConnected()">{{deco.getClientConnecte().nom}}</li>
+                <li role="presentation" ng-hide="deco.isConnected()"><a href="#/inscription">S'inscrire</a></li>
             </ul>
+            <div ng-show="deco.isConnected()" id="divNomClient">
+               <h4>Bienvenue : <strong>{{deco.getClientConnecte().nom}}</strong></h4>
+               <!-- Eventuelle gestion Compte Client
+                <h4>Bienvenue : <a href="#"><strong>{{deco.getClientConnecte().nom}}</strong></a></h4>
+                -->
+            </div>
         </div>
     </div>
     <div class="container" ng-view></div>
