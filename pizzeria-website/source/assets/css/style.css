@@ -1,11 +1,25 @@
-.well {
-    width: 250px;
-}
+
 
 body {
     font-family: "Helvetica";
     background-color: #8B4513;
     background-image: url("http://3dpower.free.fr/Textures/Bois/bois13.jpg");
+}
+#slides_control > div{
+  height: 200px;
+}
+slide > img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}/*
+.well {
+    width: 250px;
 }
 h1 {
     color: #C03000;
@@ -82,4 +96,4 @@ p {
         display: inline-block;
         width: 8rem;
     }
-}
+}*/

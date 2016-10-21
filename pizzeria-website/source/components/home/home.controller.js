@@ -64,6 +64,74 @@
                 });
             });
         };
+
+        
+        
+        //Tout ce qui est en dessous concerne le carrousel
+        vm.myInterval = 5000;
+        vm.noWrapSlides = false;
+        vm.active = 0;
+        var slides = vm.slides = [
+            {
+                image: 'cd ../../assets/img/pizzeria.jpg',
+                text: "",
+                id: 0
+            },
+            {
+                image: "cd ../../assets/img/restaurant-pizzeria.jpg",
+                text: "",
+                id: 1
+            },
+            {
+                image: "cd ../../assets/img/pizza.jpg",
+                text: "",
+                id: 2
+            },{
+                image: "cd ../../assets/img/pizzaspe.jpg",
+                text: "",
+                id:3
+            },{
+                image: "cd ../../assets/img/pate.jpg",
+                text: "",
+                id: 4
+            },{
+                image: "cd ../../assets/img/salade.jpg",
+                text: "",
+                id: 5
+            },
+            
+        ];
+        var currIndex = 0;
+
+        function assignNewIndexesToSlides(indexes) {
+            for (var i = 0, l = slides.length; i < l; i++) {
+                slides[i].id = indexes.pop();
+            }
+        }
+
+        function generateIndexesArray() {
+            var indexes = [];
+            for (var i = 0; i < currIndex; ++i) {
+                indexes[i] = i;
+            }
+            return shuffle(indexes);
+        }
+
+        // http://stackoverflow.com/questions/962802#962890
+        function shuffle(array) {
+            var tmp, current, top = array.length;
+
+            if (top) {
+                while (--top) {
+                    current = Math.floor(Math.random() * (top + 1));
+                    tmp = array[current];
+                    array[current] = array[top];
+                    array[top] = tmp;
+                }
+            }
+
+            return array;
+        }
     };
 
     module.exports = controller;

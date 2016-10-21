@@ -7,8 +7,9 @@
     require("angular-route");
     require("angular-translate");
     require("angular-cookies");
+    require("angular-ui-bootstrap");
 
-    angular.module("pizzeria", ['ngRoute','pascalprecht.translate','ngCookies'])
+    angular.module("pizzeria", ['ngRoute','pascalprecht.translate','ngCookies','ui.bootstrap'])
         // Load services
         .service("pizzService", require("./commun/service/pizzService.service"))
         .service("cliService", require("./commun/service/cliService.service"))
