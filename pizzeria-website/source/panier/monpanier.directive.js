@@ -2,14 +2,13 @@
     'use strict';
     var directive = function (localeStorageService) {
         return {
-            restrict: "E"
-            , transclude: true
-            , scope: {
+            restrict: "E", 
+            transclude: true, 
+            scope: {
                 "panier": "=dirPanier"
-            }
-            , templateUrl: "panier/monpanierdirective.html"
-            , link: function (scope, element, attrs) {
-                console.log("test");
+            }, 
+            templateUrl: "panier/monpanierdirective.html", 
+            link: function (scope, element, attrs) {
                 scope.storedPanier = localeStorageService.getDataLocalestorage();
                 console.log("scope.storedPanier", scope.storedPanier);
                 
@@ -26,9 +25,9 @@
                         return total;
                     });
                     console.log(total);
-                }
+                };
             }
-        }
+        };
     };
     module.exports = directive;
 })();
