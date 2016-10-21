@@ -3,12 +3,12 @@
 
     var config = function($routeProvider) {
         $routeProvider.when('/', {
-            templateUrl: "home/home.html",
+            templateUrl: "./source/components/home/home.html",
             controller: "homeCtrl",
             controllerAs: 'home'
         });
         $routeProvider.when('/livreurs', {
-            templateUrl: "livreurs/livreurs.html",
+            templateUrl: "./source/components/livreurs/livreurs.html",
             controller: "livCtrl",
             controllerAs: 'liv'
         });
@@ -16,12 +16,12 @@
          * Pizzas
          */
         $routeProvider.when('/pizzas', {
-            templateUrl: "pizzas/pizzas.html",
+            templateUrl: "./source/components/pizzas/pizzas.html",
             controller: "pizzCtrl",
             controllerAs: 'pizz'
         });
         $routeProvider.when('/pizzas/:id', {
-            templateUrl: "pizzas/pizzaDetails.html",
+            templateUrl: "./source/components/pizzas/pizzaDetails.html",
             controller: "pizzDetailsCtrl",
             controllerAs: 'pizzD'
         });
@@ -29,17 +29,17 @@
          * Clients
          */
         $routeProvider.when('/inscription', {
-            templateUrl: "client/inscription.html",
+            templateUrl: "./source/components/client/inscription.html",
             controller: "insriCtrl",
             controllerAs: 'inscri'
         });
         $routeProvider.when('/connection', {
-            templateUrl: "client/connection.html",
+            templateUrl: "./source/components/client/connection.html",
             controller: "clientCtrl",
             controllerAs: 'client'
         });
         $routeProvider.when('/deconnection', {
-            templateUrl: "client/deconnection.html",
+            templateUrl: "./source/components/client/deconnection.html",
             controller: "decoCtrl",
             controllerAs: 'deco'
         });

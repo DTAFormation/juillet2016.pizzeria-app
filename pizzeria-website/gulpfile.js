@@ -40,7 +40,7 @@ gulp.task("html", function () {
     log("build html");
     return gulp
         .src(paths.html)
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest('public' ));
 });
 
 /** Librairies css */
@@ -48,7 +48,7 @@ gulp.task("libs-css", function () {
     log("Build css librairies");
     return gulp
         .src(paths.libsCss)
-        .pipe(gulp.dest(paths.public + '/assets/css/bootstrap/'));
+        .pipe(gulp.dest(paths.public + '/assets/bootstrap/'));
 });
 
 var opts = {
@@ -76,19 +76,36 @@ gulp.task('clean', function () {
     del.sync(delPaths);
 });
 
+/** components */
+gulp.task('components', function () {
+        log("components");
+        return gulp
+            .src(paths.components)
+            .pipe(gulp.dest(paths.public + '/source/components/'));
+});
+
+/** commmun */
+gulp.task('commun', function () {
+    log("commun");
+    return gulp
+        .src(paths.commun)
+        .pipe(gulp.dest(paths.public + '/source/commun'));
+});
+
 /** move img */
 gulp.task("img", function () {
     log("move img");
     return gulp
         .src(paths.img)
-        .pipe(gulp.dest(paths.public + '/img/'));
+        .pipe(gulp.dest(paths.public + '/assets/img/'));
 });
+
 /** move translate */
 gulp.task("translate", function () {
     log("move translate");
     return gulp
         .src(paths.translate)
-        .pipe(gulp.dest(paths.public + '/translate/'));
+        .pipe(gulp.dest(paths.public + '/source/translate/'));
 });
 
 /*
@@ -100,6 +117,8 @@ gulp.task("default", ["clean"], function () {
     gulp.start("build");
 });
 
+
+
 /*
  * Watch Task
  */
@@ -107,10 +126,14 @@ gulp.task("watch", function () {
     gulp.start('datas');
     gulp.start('connect');
     gulp.start('browserify');
+    gulp.start('libs-css');
+    gulp.start('minify-css');
     gulp.start('img');
+    gulp.start('commun');
+    gulp.start('html');
+    gulp.start('components');
     gulp.start('translate');
     gulp.watch(paths.css,  ["minify-css"]);
-
     gulp.watch(paths.html, ["html"]);
     gulp.watch(["datas/pizzeria.json"], ["datas"], function () {
         console.log(server);
