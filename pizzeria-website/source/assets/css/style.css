@@ -21,7 +21,7 @@ h4 {
     color: #00bfff;
 }
 p {
-    color: #ffdead;
+    color: goldenrod;
 }
 
 #navigation li {
@@ -31,6 +31,13 @@ p {
     border: 5px solid white;
     margin: 0px;
     display: inline-block;
+}
+
+
+#panier{
+    display: block;
+    float: right;
+
 }
 
 .table>tbody>tr>td,

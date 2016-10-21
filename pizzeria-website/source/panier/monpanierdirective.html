@@ -1,18 +1,20 @@
-<div class="col-sm-offset-1 well sidebar pull-right  ">
+<div id="panier" class="col-sm-offset-1 well sidebar pull-right">
     <h1>Panier</h1>
     <table id="cart" class="table table-hover table-condensed">
         <ul>
-            <li ng-repeat="pizza in storedPanier "> 
-                <img ng-src="{{imageP(pizza.urlImage)}}" alt="" class="img-responsive">
-                <span>{{pizza.nom}}</span>
-                <p>{{pizza.prix | number:2}} &euro;</p>
+ <li ng-repeat="storedPizza in storedPanier "> <img ng-src="{{imageP(storedPizza.pizza.urlImage)}}" alt="" class="img-responsive"> <span>{{storedPizza.pizza.nom}}</span>
+                <p>Prix: {{storedPizza.pizza.prix | number:2}} &euro;</p>
+                <label>Quantité :</label>
+                <!--<input name="quantite" type="number" ng-model="storedPizza.quan" ng-change="changeQuant(storedPizza.quan)" value="{{storedPizza.quan}}" class="form-control input-md" min="1" required="true" step="1">-->
+                <input name="quantite" type="number" ng-model="storedPizza.quan" ng-change="changeQuant(storedPizza.quan)" value="{{storedPizza.quan}}" size="3" min="1" required="true" step="1">
+
             </li>
         </ul>
         <tfoot>
             <tr>
                 <td colspan="2" class="hidden-xs"></td>
-                <td class="hidden-xs text-center"><strong>Total: {{total()}}</strong></td>
-                <td><a href="#" class="btn btn-success btn-block">Visualier panier <i class="fa fa-angle-right"></i></a></td>
+                <td class="hidden-xs text-center"><strong>Total: {{total() | number:2}} &euro;</strong></td>
+                <td><a href="#" class="btn btn-success btn-block">Valider ma commande<i class="fa fa-angle-right"></i></a></td>
             </tr>
         </tfoot>
     </table>
