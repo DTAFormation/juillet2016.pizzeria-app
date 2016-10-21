@@ -1,6 +1,5 @@
 .well {
     width: 250px;
-    
 }
 
 body {
@@ -24,6 +23,7 @@ h4 {
 p {
     color: #ffdead;
 }
+
 #navigation li {
     background-color: red;
     width: 100px;
@@ -32,10 +32,16 @@ p {
     margin: 0px;
     display: inline-block;
 }
+
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
     vertical-align: middle;
 }
+
+#divNomClient{
+    float: right;
+}
+
 @media screen and (max-width: 600px) {
     table#cart tbody td .form-control {
         width: 20%;

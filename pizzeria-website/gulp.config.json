@@ -1,12 +1,10 @@
 {
-    "data": "datas/",
-    "css":"source/assets/css/*.css",
+    "css": "source/assets/css/*.css",
     "html": [
-        "./source/*.html",
-        "./source/**/*.html"
+        "./source/index.html"
     ],
-    "img": "./datas/img/*",
-    "translate":"./node_modules/angular-translate/dist/angular-translate.min.js",
+    "img": "./source/assets/img/*",
+    "translate": "./node_modules/angular-translate/dist/angular-translate.min.js",
     "libsCss": [
         "./node_modules/bootstrap/dist/**/*"
     ],
@@ -15,5 +13,10 @@
         "./source/*.js",
         "./source/**/*.js"
     ],
-    "public": "./public/"
+    "public": "./public/",
+    "components": [
+        "./source/components/**/*.js",
+        "./source/components/**/*.html"
+    ],
+    "commun": "./source/commun/**/*js"
 }

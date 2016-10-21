@@ -10,19 +10,19 @@
 
     angular.module("pizzeria", ['ngRoute','pascalprecht.translate','ngCookies'])
         // Load services
-        .service("pizzService", require("./service/pizzService.service"))
-        .service("cliService", require("./service/cliService.service"))
-        .service("cmdService", require("./service/cmdService.service"))
-        .service("livService", require("./service/livService.service"))
-        .service("cmdPizzService", require("./service/cmdPizzService.service"))
-        .service("localeStorageService", require("./service/localeStorageService.service"))
+        .service("pizzService", require("./commun/service/pizzService.service"))
+        .service("cliService", require("./commun/service/cliService.service"))
+        .service("cmdService", require("./commun/service/cmdService.service"))
+        .service("livService", require("./commun/service/livService.service"))
+        .service("cmdPizzService", require("./commun/service/cmdPizzService.service"))
+        .service("localeStorageService", require("./commun/service/localeStorageService.service"))
         // Load config
-        .config(require("./config/app.config"))
+        .config(require("./commun/config/app.config"))
         // Load routes
-        .config(require("./config/routes.config"))
+        .config(require("./commun/config/routes.config"))
         // Load constant
-        .constant("pizzConst", require("./config/config.constant"))
-        .constant("constantImg", require("./config/img.constant"))
+        .constant("pizzConst", require("./commun/config/config.constant"))
+        .constant("constantImg", require("./commun/config/img.constant"))
         /*
         * Load Lodash
         */
@@ -30,33 +30,33 @@
         /*
         * Home
         */
-        .controller("homeCtrl", require("./home/home.controller"))
+        .controller("homeCtrl", require("./components/home/home.controller"))
         /*
         * Livreurs
         */
-        .controller("livCtrl", require("./livreurs/livreurs.controller"))
+        .controller("livCtrl", require("./components/livreurs/livreurs.controller"))
         /*
         * Pizzas
         */
-        .controller("pizzCtrl", require("./pizzas/pizzas.controller"))
-        .controller("pizzDetailsCtrl", require("./pizzas/pizzaDetails.controller"))
-        .directive("imgUrl", require("./pizzas/pizzas.directive"))
+        .controller("pizzCtrl", require("./components/pizzas/pizzas.controller"))
+        .controller("pizzDetailsCtrl", require("./components/pizzas/pizzaDetails.controller"))
+        .directive("imgUrl", require("./components/pizzas/pizzas.directive"))
      
         /*
         * Client
         */
-        .controller("insriCtrl", require("./client/inscription.controller"))
-        .controller("clientCtrl", require("./client/connection.controller"))
-        .controller("decoCtrl", require("./client/deconnection.controller"))
+        .controller("insriCtrl", require("./components/client/inscription.controller"))
+        .controller("clientCtrl", require("./components/client/connection.controller"))
+        .controller("decoCtrl", require("./components/client/deconnection.controller"))
         /** 
         * Translate 
         */
-        .controller("translateCtrl", require("./translate/translate.controller"))
-
+        .controller("translateCtrl", require("./commun/translate/translate.controller"))
+        .config(require("./commun/config/translate.config"))
         
         // Load directive
-        .directive("monPanier", require("./panier/monpanier.directive"))
-        .config(require("./config/translate.config"));
+        .directive("monPanier", require("./components/panier/monpanier.directive"));
+        
         //.directive("myDirective", require("./translate/directive/myDirective.directive"));
 
 

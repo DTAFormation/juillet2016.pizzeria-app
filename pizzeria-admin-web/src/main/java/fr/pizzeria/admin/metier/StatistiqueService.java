@@ -45,7 +45,7 @@ public class StatistiqueService {
 			if(i!=0) {
 				// client suivant
 				if(listeCommandes.get(i).getClient().getId() != listeCommandes.get(i-1).getClient().getId()) {
-					moy = moy.divide(new BigDecimal(compteur));
+					moy = moy.divide(new BigDecimal(compteur),2, java.math.RoundingMode.CEILING);
 					valeursMoyennes.add(new ClientCommandes(client, moy));
 					client = listeCommandes.get(i).getClient();
 					moy = listeCommandes.get(i).getValMoyenne();

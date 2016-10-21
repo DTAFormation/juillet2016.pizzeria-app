@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 main">
+                <h1>Menu des Pizzas</h1>
+                <!-- filtre par categories -->
+                <!-- filtre par categories -->
+                <div class="container">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="selectbasic" translate="CATE"></label>
+                        <div class="col-md-2">
+                            <select ng-model="tri.categorie" id="selectbasic" name="selectbasic" class="form-control" ng-change="tri.categorie = tri.categorie == '' ? undefined : tri.categorie">
+                                <option value="">TOUTES</option>
+                                <option ng-value="'SANS_VIANDE'">SANS VIANDE</option>
+                                <option ng-value="'VIANDE'">VIANDE</option>
+                                <option ng-value="'POISSON'">POISSON</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--Menu des pizzas-->
+                <div class="container">
+                    <div class="col-sm-5 col-md-3" ng-repeat="pizza in pizz.allPizzas | filter : tri : true || undefined ">
+                        <div class="thumbnail">
+                            <div img-url="pizza.urlImage"></div>
+                            <div class="caption">
+                                <h2>{{pizza.nom}}</h2>
+                                <p> Categorie: {{(pizza.categorie).replace('_',' ')}}</p>
+                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important">Détails</a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span>Ajouter </a> </div>
+                        </div>
+                    </div>
+                </div>
+                <p><a href="/#/">Retour a l'accueil</a></p>
+            </div>
+            <mon-panier class="expander" dir-panier="pizzCtrl.localpanier"> </mon-panier>
+        </div>
+    </div>
+</div>

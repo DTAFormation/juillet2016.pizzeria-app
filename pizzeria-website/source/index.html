@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ma pizzeria</title>
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css" />
     <script src="js/bundle.js"></script>
 </head>
 
 <body>
-    <div class="pull-right" ng-controller="translateCtrl as ctrl"> <img ng-src='img/en.png' ng-click="ctrl.changeLanguage('en')" /> <img ng-src='img/fr.png' ng-click="ctrl.changeLanguage('fr')" /> </div>
+    <div class="pull-right" ng-controller="translateCtrl as ctrl"> <img ng-src='assets/img/en.png' ng-click="ctrl.changeLanguage('en')" /> <img ng-src='assets/img/fr.png' ng-click="ctrl.changeLanguage('fr')" /> </div>
     <div class="jumbotron">
         <div class="container" ng-controller="decoCtrl as deco">
             <h1>Ma pizzéria</h1>
@@ -20,9 +20,14 @@
                 <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
                 <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
                 <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
-                <li role="presentation"><a href="#/inscription">S'inscrire</a></li>
-                <li role="presentation" ng-show="deco.isConnected()">{{deco.getClientConnecte().nom}}</li>
+                <li role="presentation" ng-hide="deco.isConnected()"><a href="#/inscription">S'inscrire</a></li>
             </ul>
+            <div ng-show="deco.isConnected()" id="divNomClient">
+               <h4>Bienvenue : <strong>{{deco.getClientConnecte().nom}}</strong></h4>
+               <!-- Eventuelle gestion Compte Client
+                <h4>Bienvenue : <a href="#"><strong>{{deco.getClientConnecte().nom}}</strong></a></h4>
+                -->
+            </div>
         </div>
     </div>
     <div class="container" ng-view></div>
