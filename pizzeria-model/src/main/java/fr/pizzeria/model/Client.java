@@ -160,6 +160,9 @@ public class Client {
 	public void setPassword(String password) {
 		this.password = password != null ? encodage(password) : null;
 	}
+	public void setNonePassword(){
+		this.password = null;
+	}
 
 	public boolean isActif() {
 		return actif;
