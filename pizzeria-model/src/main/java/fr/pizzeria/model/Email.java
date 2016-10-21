@@ -28,6 +28,14 @@ public class Email {
 		this.pizza = pizza;
 		this.message = message;
 	}
+	public Email(String expediteur, String destinataire, Date date, String objet,  String message) {
+		super();
+		this.expediteur = expediteur;
+		this.destinataire = destinataire;
+		this.date = date;
+		this.objet = objet;
+		this.message = message;
+	}
 
 	public Email() {
 		super();

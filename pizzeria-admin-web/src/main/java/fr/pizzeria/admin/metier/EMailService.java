@@ -12,10 +12,13 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.sun.mail.smtp.SMTPTransport;
 
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Email;
@@ -67,31 +70,96 @@ public class EMailService {
 		}
 
 	}
+	
+	public void envoyeEmailPasswordModification(String adresseMail, String prenom, String nom, String motdepasse) {
+		String value = String.format("<!DOCTYPE html>"
+				+ "Bonjour " +prenom+" " + nom+"!"
+				+ "<br>"
+				+ "Nous avons le plaisir de vous compter parmis nous en tant que nouveau client! "
+				+ "<br>"
+				+ "votre mot de passe <strong> "+motdepasse+" </strong> !"
+				+ "<br>");
+				
+		
+			send(adresseMail, "Modifier votre mot de passe", value);
+
+	}
+
 
 	public void send(String addresses, String topic, String textMessage, String pizza) {
 
-		Properties prop = System.getProperties();
-		prop.put("mail.smtp.host", "aspmx.l.google.com");
-		prop.put("mail.smtp.port", "25");
 
-		Session session = Session.getDefaultInstance(prop, null);
+		String username = "clever.institut.test";
+		String password = "formationdta";
+
+		Properties prop = System.getProperties();
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtps.auth", "true");
+		prop.put("mail.smtp.port", "465");
+		prop.put("mail.smtp.socketFactory.port", "465");
+		prop.put("mail.smtps.quitwait", "false");
+		Session session = Session.getInstance(prop, null);
+
+		
 		try {
-			String expediteur = "newsletter@DTA.fr";
+			
 			Date date = new Date();
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(expediteur));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
-			message.setSubject(topic);
-			message.setContent(textMessage, "text/html; charset=utf-8");
-			message.setSentDate(date);
-			Transport.send(message);
+			final MimeMessage msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(username + "@gmail.com"));
+	        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses, false));
+	        
+	        msg.setSubject(topic);
+		
+			msg.setContent(textMessage, "text/html; charset=utf-8");
+			msg.setSentDate(date);
+			SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+
+	        t.connect("smtp.gmail.com", username, password);
+	        t.sendMessage(msg, msg.getAllRecipients());      
+	        t.close();
 			// sauvegarde de l'email pour historique
-			Email email = new Email(expediteur, addresses, date, topic, pizza, textMessage);
+			Email email = new Email(username, addresses, date, topic, pizza, textMessage);
 			saveEmail(email);
-			System.err.println("Email envoyé vers : " + addresses);
+			
 		} catch (MessagingException e) {
 			Logger.getLogger(EMailService.class.getName()).log(Level.WARNING, "Cannot send mail", e);
 		}
+	}
+	
+	public void send(String addresse, String topic, String textMessage ) {
+		String username = "clever.institut.test";
+		String password = "formationdta";
+
+		Properties prop = System.getProperties();
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtps.auth", "true");
+		prop.put("mail.smtp.port", "465");
+		prop.put("mail.smtp.socketFactory.port", "465");
+		prop.put("mail.smtps.quitwait", "false");
+
+        Session session = Session.getInstance(prop, null);
+    	try {
+        // -- Create a new message --
+        final MimeMessage msg = new MimeMessage(session);
+	        // -- Set the FROM and TO fields --
+	        msg.setFrom(new InternetAddress(username + "@gmail.com"));
+	        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresse, false));
+	        
+	        msg.setSubject(topic);
+	        msg.setContent(textMessage, "text/html; charset=utf-8");
+	        msg.setSentDate(new Date());
+
+	        SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+
+	        t.connect("smtp.gmail.com", username, password);
+	        t.sendMessage(msg, msg.getAllRecipients());      
+	        t.close();
+	        
+    	} catch (MessagingException e) {
+			Logger.getLogger(EMailService.class.getName()).log(Level.WARNING, "Cannot send mail", e);
+		}
+
+		
 
 	}
 	
