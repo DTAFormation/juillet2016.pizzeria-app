@@ -10,7 +10,7 @@ var directive = function (localeStorageService, constantImg, $rootScope) {
             }, 
             templateUrl: "panier/monpanierdirective.html", 
             link: function (scope, element, attrs) {
-//recuperation du panier
+                //recuperation du panier
                 scope.storedPanier = localeStorageService.getDataLocalestorage();
                 //eventement qui vérifie l'arrivée d'une nouvelle pizza
                 //But affichier directement l'ajout d'une pizza sans F5
