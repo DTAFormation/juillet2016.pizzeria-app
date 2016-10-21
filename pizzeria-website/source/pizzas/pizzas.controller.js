@@ -14,6 +14,7 @@
         this.ajoutPanier = function (pizza) {
             console.log("this.pizza");
             console.log(pizza);
+
             if (vm.panier.length > 0) {
                 /* for (var i = 0; i < vm.panier.length; i++) {
                      if (pizza.id === vm.panier[i].pizz.id) {
@@ -49,6 +50,7 @@
             console.log(vm.panier);
             localeStorageService.postLocaleStorage(vm.panier);
         };
+
         vm.localpanier = localeStorageService.getDataLocalestorage();
     };
     /*console.log(vm.allPizzas);*/
