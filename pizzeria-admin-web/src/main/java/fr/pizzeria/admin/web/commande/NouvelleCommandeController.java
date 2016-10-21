@@ -69,9 +69,6 @@ public class NouvelleCommandeController extends HttpServlet {
 		req.setAttribute("livreurs", livreursDisponibles);
 		req.setAttribute("clients", clients);
 		req.setAttribute("pizzas", pizzas);
-		// création du numéro de commande
-		DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
-		req.setAttribute("numcde", dateFormat.format(new Date()));
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE);
 		dispatcher.forward(req, resp);
@@ -79,39 +76,41 @@ public class NouvelleCommandeController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String numeroParam = req.getParameter("numero");
+		//String numeroParam = req.getParameter("numero");
 		String statutParam = req.getParameter("statut");
 		String statutPaiementParam =req.getParameter("statutPaiement");
 		String dateParam = req.getParameter("date");
 		String livreurIdParam = req.getParameter("livreur");
 		String clientIdParam = req.getParameter("client");
 
-		if (isBlank(numeroParam) || isBlank(statutPaiementParam) || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
+		if (isBlank(statutPaiementParam) || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
 				|| isBlank(clientIdParam)) {
 
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
 			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE).forward(req, resp);
 
-		} else if (commandeService.isCodeTaken(numeroParam) > 0) {
-			List<Livreur> livreursDisponibles = livreurService.findAll();
-			List<Pizza> pizzas = pizzaService.findAll();
-			List<Client> clients = clientService.findAll();
-			StatutCommande[] statuts = StatutCommande.values();
-			StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
-
-			Commande commande = new Commande();
-			commande.setDateCommande(Calendar.getInstance());
-
-			req.setAttribute("msgErreur", "Le numéro de commande existe déjà !");
-			req.setAttribute("commande", commande);
-			req.setAttribute("statutsPaiement", statutsPaiement);
-			req.setAttribute("statuts", statuts);
-			req.setAttribute("livreurs", livreursDisponibles);
-			req.setAttribute("clients", clients);
-			req.setAttribute("pizzas", pizzas);
-			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE).forward(req, resp);
-
-		} else {
+		} 
+//		else if (commandeService.isCodeTaken(numeroParam) > 0) {
+//			List<Livreur> livreursDisponibles = livreurService.findAll();
+//			List<Pizza> pizzas = pizzaService.findAll();
+//			List<Client> clients = clientService.findAll();
+//			StatutCommande[] statuts = StatutCommande.values();
+//			StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
+//
+//			Commande commande = new Commande();
+//			commande.setDateCommande(Calendar.getInstance());
+//
+//			req.setAttribute("msgErreur", "Le numéro de commande existe déjà !");
+//			req.setAttribute("commande", commande);
+//			req.setAttribute("statutsPaiement", statutsPaiement);
+//			req.setAttribute("statuts", statuts);
+//			req.setAttribute("livreurs", livreursDisponibles);
+//			req.setAttribute("clients", clients);
+//				req.setAttribute("pizzas", pizzas);
+//			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE).forward(req, resp);
+//
+//		} 
+	else {
 			// Traitement des paramètres
 			StatutCommande statut = StatutCommande.valueOf(statutParam);
 			StatutCommandePaiement statutPaiement = StatutCommandePaiement.valueOf(statutPaiementParam);
@@ -130,14 +129,17 @@ public class NouvelleCommandeController extends HttpServlet {
 			Client c = clientService.findOneClientById(clientIdParam);
 
 			// Enregistrement de la commande
+				// création du numéro de commande
+			DateFormat dateTodayCommande = new SimpleDateFormat("yyyyMMddHHmmss");
+			String  numeroCommande = "COM"+c.getId()+dateTodayCommande.format(new Date());
 			List<Boolean> qteSupZero = new ArrayList<>();
 
 			List<Pizza> allPizzas = pizzaService.findAll();
 			allPizzas.forEach(p -> {
 				qteSupZero.add(quantitePizzaCommandee(req, p) > 0);
 			});
-
-			Commande commandeSansId = new Commande(numeroParam, statutPaiement, statut, date, l, c);
+			
+			Commande commandeSansId = new Commande(numeroCommande, statutPaiement, statut, date, l, c);
 			if (thereIsPizzaCommandee(qteSupZero)) {
 				commandeService.saveCommande(commandeSansId);
 

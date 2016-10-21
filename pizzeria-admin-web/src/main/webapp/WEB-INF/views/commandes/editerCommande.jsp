@@ -25,11 +25,12 @@
 		<form method="POST">
 			<c:if test="${editPage}">
 				<input type="hidden" name="id" value="${commande.id}">
+			
+				<div class="form-group">
+					<label for="nom">Numéro :</label> <input type="text" class="form-control" id="nom" name="numero" <c:choose><c:when test="${editPage}">value="${commande.numeroCommande}"</c:when><c:otherwise>value="${numcde}"</c:otherwise></c:choose> placeholder="Numéro de la commande (Chaîne de caractères)"
+						readonly required autofocus>
+				</div>
 			</c:if>
-			<div class="form-group">
-				<label for="nom">Numéro :</label> <input type="text" class="form-control" id="nom" name="numero" <c:choose><c:when test="${editPage}">value="${commande.numeroCommande}"</c:when><c:otherwise>value="${numcde}"</c:otherwise></c:choose> placeholder="Numéro de la commande (Chaîne de caractères)"
-					readonly required autofocus>
-			</div>
 			<div class="form-group">
 				<label for="statut">Statut :</label> 
 					<c:forEach var="statut" items="${statuts}">
