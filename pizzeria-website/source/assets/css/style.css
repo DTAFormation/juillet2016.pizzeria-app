@@ -1,3 +1,4 @@
+<<<<<<< 1f4f34b74dcfad13f8b859549e3a08e7f9728dbf
 .well {
     width: 250px;
     
@@ -80,3 +81,6 @@ p {
         width: 8rem;
     }
 }
+=======
+.well{width:250px}body{font-family:Helvetica;background-color:#8B4513;background-image:url(http://3dpower.free.fr/Textures/Bois/bois13.jpg)}h1{color:#C03000}h2{color:#4BB5C1}a{color:#96CA2D;text-decoration:none}h4{color:#00bfff}p{color:#ffdead}#navigation li{background-color:red;width:100px;padding:5px;border:5px solid #fff;margin:0;display:inline-block}.table>tbody>tr>td,.table>tfoot>tr>td{vertical-align:middle}@media screen and (max-width:600px){table#cart tbody td .form-control{width:20%;display:inline!important}.actions .btn{width:36%;margin:1.5em 0}.actions .btn-info{float:left}.actions .btn-danger{float:right}table#cart thead{display:none}table#cart tbody td{display:block;padding:.6rem;min-width:320px}table#cart tbody tr td:first-child{background:#333;color:#fff}table#cart tbody td:before{content:attr(data-th);font-weight:700;display:inline-block;width:8rem}}
+>>>>>>> #USW012
