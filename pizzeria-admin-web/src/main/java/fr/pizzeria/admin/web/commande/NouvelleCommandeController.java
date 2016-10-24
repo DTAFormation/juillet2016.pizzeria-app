@@ -90,26 +90,7 @@ public class NouvelleCommandeController extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE).forward(req, resp);
 
 		} 
-//		else if (commandeService.isCodeTaken(numeroParam) > 0) {
-//			List<Livreur> livreursDisponibles = livreurService.findAll();
-//			List<Pizza> pizzas = pizzaService.findAll();
-//			List<Client> clients = clientService.findAll();
-//			StatutCommande[] statuts = StatutCommande.values();
-//			StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
-//
-//			Commande commande = new Commande();
-//			commande.setDateCommande(Calendar.getInstance());
-//
-//			req.setAttribute("msgErreur", "Le numéro de commande existe déjà !");
-//			req.setAttribute("commande", commande);
-//			req.setAttribute("statutsPaiement", statutsPaiement);
-//			req.setAttribute("statuts", statuts);
-//			req.setAttribute("livreurs", livreursDisponibles);
-//			req.setAttribute("clients", clients);
-//				req.setAttribute("pizzas", pizzas);
-//			this.getServletContext().getRequestDispatcher(VUE_NOUVELLE_COMMANDE).forward(req, resp);
-//
-//		} 
+//		
 	else {
 			// Traitement des paramètres
 			StatutCommande statut = StatutCommande.valueOf(statutParam);

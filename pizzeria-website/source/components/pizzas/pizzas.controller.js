@@ -42,6 +42,7 @@
             vm.pizz = {};
             localeStorageService.postLocaleStorage(vm.panier);
         };
+        
 //mise en place d'un panier local qui recupere les pizzas
 
         vm.localpanier = localeStorageService.getDataLocalestorage();

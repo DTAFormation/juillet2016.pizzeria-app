@@ -7,11 +7,17 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.security.GeneralSecurityException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 import org.junit.Before;
@@ -111,8 +117,23 @@ public class ClientServiceTest {
 		List<Client> clients = new ArrayList<>();
 		Client client = new Client(1, "test", "test", "test@test.fr", "", "10 av aa", "00000000");
 		client.setActif(false);
+		
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+		Date date = null;
+		try {
+			date = formatter.parse("01/01/16");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		client.setDateDerniereModification(date);
 		clients.add(client);
-		when(em.createQuery("select c from Client c where  actif = false", Client.class)).thenReturn(query);
+		
+		Calendar dateDelete = Calendar.getInstance();
+		dateDelete.add(Calendar.MONTH, -6);
+		
+		when(em.createQuery("select c from Client c where  c.actif = false and c.dateDerniereModification < :dateD ", Client.class)).thenReturn(query);
+		query.setParameter("dateD", dateDelete , TemporalType.TIMESTAMP);
 		when(query.getResultList()).thenReturn(clients);
 		service.hardDeleteClients();
 

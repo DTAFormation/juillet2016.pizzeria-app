@@ -17,6 +17,10 @@ public class LivreurService {
 	public List<Livreur> findAll() {
 		return em.createQuery("select p from Livreur p", Livreur.class).getResultList();
 	}
+	
+	public List<Livreur> findAvailableAll() {
+		return em.createQuery("select p from Livreur p where p.actif=1", Livreur.class).getResultList();
+	}
 
 	public Livreur findOneLivreur(String id) {
 		return em.createQuery("select p from Livreur p where p.id=:id", Livreur.class)

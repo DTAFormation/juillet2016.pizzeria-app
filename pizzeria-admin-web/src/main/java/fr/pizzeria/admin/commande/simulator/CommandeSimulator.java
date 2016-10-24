@@ -1,0 +1,51 @@
+package fr.pizzeria.admin.commande.simulator;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import javax.ejb.Schedule;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import fr.pizzeria.admin.metier.ClientService;
+import fr.pizzeria.admin.metier.CommandeService;
+import fr.pizzeria.admin.metier.LivreurService;
+import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Commande;
+import fr.pizzeria.model.Livreur;
+import fr.pizzeria.model.StatutCommande;
+import fr.pizzeria.model.StatutCommandePaiement;
+
+@Stateless
+public class CommandeSimulator {
+
+	private List<Commande> cmds = new ArrayList<>();
+
+	@Inject
+	CommandeService cmdService;
+
+	@Inject
+	ClientService clientService;
+
+	@Inject
+	LivreurService livreurService;
+
+	public CommandeSimulator() {
+	}
+
+	@Schedule(second = "*", minute = "10", hour = "*")
+	public void simulator() {
+		cmds = cmdService.findAll();
+		for (Commande cmd : cmds){
+			switch (cmd.getStatut()) {
+			case NON_TRAITE:
+				cmd.setStatut(StatutCommande.EXPEDIE);
+				break;
+			case EXPEDIE:
+				cmd.setStatut(StatutCommande.LIVRE);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
