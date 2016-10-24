@@ -51,7 +51,7 @@
             TITRE: 'Les experts de la cuisson pour développeurs !',
             MENU: 'Menu des Pizzas',
             CATE:'Filtre par catégorie',
-            LIEN: 'Cliquer ici pour accéder à l\'actualitée :',
+            LIEN: 'Cliquer ici pour accéder à l\'actualité :',
             PANIER: 'Panier',
             SEE: 'Valider ma commande',
             AJOUT: 'Ajouter',

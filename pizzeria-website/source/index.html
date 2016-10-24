@@ -12,7 +12,14 @@
 
     <body>
         <div class="pull-right" ng-controller="translateCtrl as ctrl">
-            <a href="" ng-click="ctrl.changeLanguage('en')">English</a> - <a href="" ng-click="ctrl.changeLanguage('fr')">Français</a>
+            <div ng-switch on="ctrl.cookievalue">
+                <div ng-switch-when="en">
+                    <a href="" ng-click="ctrl.changeLanguage('en')"><strong>English</strong></a> - <a href="" ng-click="ctrl.changeLanguage('fr')">Français</a>
+                </div>
+                <div ng-switch-default>
+                    <a href="" ng-click="ctrl.changeLanguage('en')">English</a> - <a href="" ng-click="ctrl.changeLanguage('fr')"><strong>Français</strong></a>
+                </div>
+            </div>
         </div>
         <div class="jumbotron">
             <div class="container" ng-controller="decoCtrl as deco">
