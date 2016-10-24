@@ -147,7 +147,9 @@ public class NouvelleCommandeController extends HttpServlet {
 				// TODO: uniquement celles dont qte > 0
 				allPizzas.forEach(p -> {
 					int qte = quantitePizzaCommandee(req, p);
-					commandeSansId.addPizza(p, qte);
+					if(qte > 0){
+						commandeSansId.addPizza(p, qte);
+					}
 				});
 				commandeService.updateCommande(commandeSansId.getNumeroCommande(), commandeSansId);
 
