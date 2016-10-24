@@ -39,7 +39,13 @@ p {
     float: right;
 
 }
-
+.maListePanier{
+    list-style: none;
+}
+.monImagePanier{
+    height: 25px;
+    width: 25px;
+}
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
     vertical-align: middle;

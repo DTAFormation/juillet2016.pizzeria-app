@@ -2,11 +2,11 @@
     <h1>Panier</h1>
     <table id="cart" class="table table-hover table-condensed">
         <ul>
- <li ng-repeat="storedPizza in storedPanier "> <img ng-src="{{imageP(storedPizza.pizza.urlImage)}}" alt="" class="img-responsive"> <span>{{storedPizza.pizza.nom}}</span>
+ <li ng-repeat="storedPizza in storedPanier " class="maListePanier col-lg-12"> <img ng-src="{{imageP(storedPizza.pizza.urlImage)}}" alt="" class="monImagePanier" > <span>{{storedPizza.pizza.nom}}</span>
                 <p>Prix: {{storedPizza.pizza.prix | number:2}} &euro;</p>
                 <label>Quantité :</label>
                 <!--<input name="quantite" type="number" ng-model="storedPizza.quan" ng-change="changeQuant(storedPizza.quan)" value="{{storedPizza.quan}}" class="form-control input-md" min="1" required="true" step="1">-->
-                <input name="quantite" type="number" ng-model="storedPizza.quan" ng-change="changeQuant(storedPizza.quan)" value="{{storedPizza.quan}}" size="3" min="1" required="true" step="1">
+                <input class="monInputPanier" name="quantite" type="number" ng-model="storedPizza.quan" ng-change="changeQuant(storedPizza.quan)" value="{{storedPizza.quan}}" min="1" required="true" step="1">
 
             </li>
         </ul>
