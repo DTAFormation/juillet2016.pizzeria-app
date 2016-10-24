@@ -1,20 +1,18 @@
 <div class="header-right">
-    <div class="jumbotron">
-        <div class="container">
-            <img src="https://t3.ftcdn.net/jpg/00/67/92/24/240_F_67922468_l6YMk4NHxP3DHdNp5TgK1aVAMWHsHT0t.jpg" alt="pizzaPicture" class="img-responsive">
-            <h2>Pizz'DTAdev</h2>
+    <div id="jumboHome" class="jumbotron">
+        <div id="logo" class="container">
+            <h3><i>Les experts de la cuisson pour développeurs !</i></h3>
         </div>
-        <h3><i>Les experts de la cuisson pour développeurs !</i></h3>
     </div>
 
 
     <div>
         <div>
             <h4>Ce que nous vous proposons</h4>
-            <p>Bienvenue à La pizzeria du developpeur DTA, nous sommes une enseigne de pizzeria spécialiste des pizzas pour développeurs
+            <p id="text">Bienvenue à La pizzeria du developpeur DTA, nous sommes une enseigne de pizzeria spécialiste des pizzas pour développeurs
                 débutants ou expérimentés. Présent depuis 2012 dans plusieurs villes de France : 44800 Saint-Herblain, 53000 Laval, 34000
                 Montpellier.</p>
-            <p>Nous vous accueillons du lundi au samedi pour découvrir notre large choix de pizzas faites avec des produits locaux,pendant
+            <p id="text">Nous vous accueillons du lundi au samedi pour découvrir notre large choix de pizzas faites avec des produits locaux,pendant
                 vos heures de travail ou de chez vous. Visitez notre site et commandez nos pizzas généreuses, en livraison ou à emporter.
                 Merci pour votre visite et à bientôt.</p>
         </div>
@@ -23,13 +21,12 @@
        
        
        <div>
-  <div style="height: 305px; width: 450px; margin: auto">
+  <div id="carou">
     <div uib-carousel active="active" interval="home.myInterval" no-wrap="noWrapSlides">
       <div uib-slide ng-repeat="slide in home.slides track by slide.id" index="slide.id">
         <img ng-src="{{slide.image}}" style="margin:auto;" class ="">
         <div class="carousel-caption">
-          <h4>Slide {{slide.id}}</h4>
-          <p>{{slide.text}}</p>
+          <h3>{{slide.text}}</h3>
         </div>
       </div>
     </div>
@@ -39,8 +36,17 @@
        
 
     <div>
-        <a href="http://www.leparisien.fr/economie/restauration-en-france-la-pizza-est-reine-08-03-2016-5607715.php" class="article-pizza  colorbox-link"><img class="colorbox-class logo-elle-home alignnone" src="http://www.pizzeria-leborsalino.fr/img/photos/zoom/accueil_01.jpg"
-						alt="logo-elle" width="30" height="30" /></a>
+        <h4>La Pizza, toute une histoire…</h4>
+        <p id="text">Le mot Pizza apparaît en 997 en latin médiévial: Il signifie alors “Fouace”, “galette”. Mais c’est à Naples,au XVIe siècle, qu’il est attesté dans son sens actuel. Ce mot dériverait de Pide (ou pita), mot turc qui signifie pain. On reconnaît dans la pide, un ancêtre anatolien très probable de la fameuse recette italienne. La pizza (pl. pizze : terme italien) était lié au travail du boulanger. Elle servait avant tout à vérifier la bonne température du foyer avant qu’on y dépose le pain, ou à tirer partie des dernières braises.
+
+        La pizza a été pendant longtemps d’une seule sorte : “la bianca” qui était enduite de crème ou de saindoux. A partir du XVIIIème siècle, apparaît la “rossa” agrémentée d’une sauce à la tomate. Elle s’est ensuite diversifiée comme en témoigne Alexandre DUMAS, en 1844, dans un récit de voyages : ” La pizza est à l’huile, la pizza est au lard, la pizza est au fromage, la pizza est aux tomates, la pizza est aux petits poissons; c’est un thermomètre gastronomique du marché: elle hausse ou baisse de prix , selon le cours des ingrédients sus désignés, selon l’abondance ou la disette de l’année.”
+
+        En juin 1889, pour honorer sa reine, le chef Raffaele Esposito, de l’illustre pizzeria Pietro e basta così décide de créer une pizza spéciale, juste pour elle. Il fait cuire sa pâte au four et la complète avec des tomates, du fromage de Mozzarella (ingrédient non-inclus dans la recette originale car trop onéreux pour les paysans à qui elle était destinée) et du basilic frais (les couleurs du drapeau italien : vert, blanc, et rouge).
+
+        Cette recette devient la pizza préférée de la reine Margherita et quand le bruit court que c’est le plat préféré de la reine, la pizza devient encore plus populaire parmi les Italiens. L’histoire ne dit pas si Raffaele a servi sa création dans sa propre pizzeria mais il a lancé une tradition culinaire, la pizza Margherita, qui dure encore et s’est répandue dans le monde entier.</p>
+        <div id="pub">
+            <h4 class="col-md-4">Cliquer ici pour accéder à l'actualitée : </h4><a href="http://www.leparisien.fr/economie/restauration-en-france-la-pizza-est-reine-08-03-2016-5607715.php" class="col-md-2"><img class="colorbox-class logo-elle-home alignnone" src="cd ../../assets/img/accueil.jpg" alt="logo-elle"/></a>
+        </div>
     </div>
 </div>
 

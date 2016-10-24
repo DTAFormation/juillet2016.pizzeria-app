@@ -74,29 +74,29 @@
         var slides = vm.slides = [
             {
                 image: 'cd ../../assets/img/pizzeria.jpg',
-                text: "",
+                text: "Acceuil",
                 id: 0
             },
             {
                 image: "cd ../../assets/img/restaurant-pizzeria.jpg",
-                text: "",
+                text: "Restaurant",
                 id: 1
             },
             {
                 image: "cd ../../assets/img/pizza.jpg",
-                text: "",
+                text: "Pizzas",
                 id: 2
             },{
                 image: "cd ../../assets/img/pizzaspe.jpg",
-                text: "",
+                text: "Pizzas du mois",
                 id:3
             },{
                 image: "cd ../../assets/img/pate.jpg",
-                text: "",
+                text: "Pâtes",
                 id: 4
             },{
                 image: "cd ../../assets/img/salade.jpg",
-                text: "",
+                text: "Salade",
                 id: 5
             },
             
