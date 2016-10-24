@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr" ng-app="pizzeria">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ma pizzeria</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <script src="js/bundle.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pizz'DTAdev</title>
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <script src="js/bundle.js"></script>
+    </head>
 
-<body>
-    <div class="pull-right" ng-controller="translateCtrl as ctrl"> <img ng-src='assets/img/en.png' ng-click="ctrl.changeLanguage('en')" /> <img ng-src='assets/img/fr.png' ng-click="ctrl.changeLanguage('fr')" /> </div>
-    <div class="jumbotron">
-        <div class="container" ng-controller="decoCtrl as deco">
-            <h1>Ma pizzéria</h1>
-            <ul class="nav nav-pills">
-                <li role="presentation"><a href="#/">Home</a></li>
-                <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
-                <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
-                <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
-                <li role="presentation" ng-hide="deco.isConnected()"><a href="#/inscription">S'inscrire</a></li>
-            </ul>
-            <div ng-show="deco.isConnected()" id="divNomClient">
-               <h4>Bienvenue : <strong>{{deco.getClientConnecte().nom}}</strong></h4>
-               <!-- Eventuelle gestion Compte Client
-                <h4>Bienvenue : <a href="#"><strong>{{deco.getClientConnecte().nom}}</strong></a></h4>
-                -->
-            </div>
+    <body>
+        <div class="pull-right" ng-controller="translateCtrl as ctrl"> 
+            <img ng-src='assets/img/en.png' ng-click="ctrl.changeLanguage('en')" /> 
+            <img ng-src='assets/img/fr.png' ng-click="ctrl.changeLanguage('fr')" />
         </div>
-    </div>
-    <div class="container" ng-view></div>
-</body>
+        <div class="jumbotron">
+            <div class="container" ng-controller="decoCtrl as deco">
+                <div class="col-md-3">
+                    <img src="cd ../../assets/img/logo.png" alt="pizzaPicture" class="img-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h1>Pizz'DTAdev</h1>
+                    <ul class="nav nav-pills">
+                        <li role="presentation"><a href="#/">Acceuil</a></li>
+                        <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
+                        <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
+                        <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
+                        <li role="presentation" ng-hide="deco.isConnected()"><a href="#/inscription">S'inscrire</a></li>
+                    </ul>
+                </div>
+                <div ng-show="deco.isConnected()" id="divNomClient" class="col-lg-3 col-lg-offset-9">
+                    <h4>Bienvenue : <strong>{{deco.getClientConnecte().nom}}</strong></h4>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container" ng-view></div>
+        
+        
+        <footer id="foot">
+            <a id="contact" href="#">Nous contacter</a>
+            <p>&copy; 2016 Company, Inc.</p>
+        </footer>
+    </body>
 
 </html>

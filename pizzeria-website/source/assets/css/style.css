@@ -1,11 +1,49 @@
-.well {
-    width: 250px;
-}
+
 
 body {
     font-family: "Helvetica";
-    background-color: #8B4513;
-    background-image: url("http://3dpower.free.fr/Textures/Bois/bois13.jpg");
+    background-color: #633e06;
+    background-image: url("https://www.transparenttextures.com/patterns/cross-scratches.png");
+}
+
+.jumbotron{
+    background-color: #472409;
+    background-image: url("https://www.transparenttextures.com/patterns/black-twill.png");
+    color: azure;
+}
+
+#jumboHome{
+    background-color: #BFAA8E;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    margin-top: 30px;
+    padding: 20px;
+}
+
+#logo{
+    text-align: center;
+}
+
+#carou{
+    height: 305px;
+    width: 450px; 
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#pub{
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+}
+
+#select{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.well {
+    width: 250px;
 }
 h1 {
     color: #C03000;
@@ -18,10 +56,14 @@ a {
     text-decoration: none;
 }
 h4 {
-    color: #00bfff;
+    color: #292929;
 }
 p {
-    color: #ffdead;
+    color: goldenrod;
+}
+
+#text{
+    color: antiquewhite;
 }
 
 #navigation li {
@@ -33,6 +75,13 @@ p {
     display: inline-block;
 }
 
+
+#panier{
+    display: block;
+    float: right;
+
+}
+
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
     vertical-align: middle;
@@ -40,6 +89,11 @@ p {
 
 #divNomClient{
     float: right;
+}
+
+#foot{
+    text-align: center;
+    margin-top: 40px;
 }
 
 @media screen and (max-width: 600px) {

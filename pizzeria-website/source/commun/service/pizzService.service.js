@@ -11,6 +11,14 @@
         this.getOne = function(id) {
             return $http.get(pizzConst.apiUrl + "pizzas/" + id);
         };
+        //Fonction ajout d'une nouvelle pizza dans le panier
+        this.ajoutpizza = function(pizz, panier, pizza) {
+            pizz.id = pizza.id;
+            pizz.pizza = pizza;
+            pizz.quan = 1;
+            panier.push(pizz);
+            return panier;
+        };
     };
 
     module.exports = service;

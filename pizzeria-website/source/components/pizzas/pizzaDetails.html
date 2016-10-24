@@ -1,6 +1,28 @@
 <div class="container">
-    <div class="thumbnail col-sm-5 col-md-3">
-        <h2><strong>{{pizzD.pizza.nom}}</strong></h2><br>
+    <div class="thumbnail">
+        <div class="container"><div class="col-md-4"><h2><strong>{{pizzD.pizza.nom}}</strong></h2><br></div></div>
+        <div class="container" layout>
+            <div class="col-md-4 col-sm-6">
+                <img style="width : 100%" ng-src="{{pizzD.url}}" alt="">
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h3><strong>Prix : </strong>{{pizzD.pizza.prix | number:2}}€</h3>
+                <h4><strong>Categorie : </strong>{{(pizzD.pizza.categorie).replace('_',' ')}}</h4>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h3><strong>Les ingrédients&#160;:</strong></h3>
+                <ul>
+                    <li ng-repeat="ingredient in pizzD.pizza.ingredients">
+                        {{ingredient.ingredient.nom}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"><div class="col-md-4"><br><a href="#/pizzas">Retour</a></div></div>
+    </div>
+</div>
+<!--
+<h2><strong>{{pizzD.pizza.nom}}</strong></h2><br>
         <img style="width : 100%" ng-src="{{pizzD.url}}" alt=""><br>
         <h3><strong>Prix : </strong>{{pizzD.pizza.prix | number:2}}€</h3>
         <h4><strong>Categorie: </strong>{{(pizzD.pizza.categorie).replace('_',' ')}}</h4>
@@ -10,6 +32,4 @@
                 {{ingredient.ingredient.nom}}
             </li>
         </ul>
-        <a href="#/pizzas">Retour</a>
-    </div>
-</div>
+        <a href="#/pizzas">Retour</a>-->

@@ -174,10 +174,16 @@ public class ApplicationListener implements ServletContextListener {
 	}
 
 	private void initClients() throws GeneralSecurityException {
-		clients.add(new Client("LeStalker", "Bob", "test1@googlemail.com", "kikou", "5 rue lamer", "0612134565", true));
-		clients.add(new Client("Rodriguez", "Robert", "test2@gmail.com", "kikou", "18 rue pueblo", "0712134565"));
-		clients.add(new Client("HoldTheDoor", "Hodor", "test3@gmail.com", "kikou", "15 bd des anglais", "0612145565",
-				true));
+		Client clientUno = new Client("LeStalker", "Bob", "test1@googlemail.com", "5 rue lamer", "0612134565", true);
+		clientUno.setPasswordEncrypt("kikou");
+		clients.add(clientUno);
+		Client clientDos = new Client("Rodriguez", "Robert", "test2@gmail.com", "18 rue pueblo", "0712134565", false);
+		clientDos.setPasswordEncrypt("kikou");
+		clients.add(clientDos);
+		Client clientTres = new Client("HoldTheDoor", "Hodor", "test3@gmail.com", "15 bd des anglais", "0612145565",
+				true);
+		clientTres.setPasswordEncrypt("kikou");
+		clients.add(clientTres);
 
 		clients.forEach(c -> {
 			clientService.saveClient(c);
@@ -187,10 +193,8 @@ public class ApplicationListener implements ServletContextListener {
 	private void initUtilisateurs() {
 		List<Utilisateur> utilisateurs = new ArrayList<>();
 
-		utilisateurs
-				.add(new Utilisateur("De Monmirail", "Basil", "basildm@gmail.com", utilisateurService.encode("admin")));
-		utilisateurs
-				.add(new Utilisateur("Montjoie", "Octave", "octavem@gmail.com", utilisateurService.encode("admin")));
+		utilisateurs.add(new Utilisateur("De Monmirail", "Basil", "basildm@gmail.com", utilisateurService.encode("admin")));
+		utilisateurs.add(new Utilisateur("Montjoie", "Octave", "octavem@gmail.com", utilisateurService.encode("admin")));
 		utilisateurs.add(new Utilisateur("admin", "admin", "admin@gmail.com", utilisateurService.encode("admin")));
 
 		utilisateurs.forEach(u -> {
