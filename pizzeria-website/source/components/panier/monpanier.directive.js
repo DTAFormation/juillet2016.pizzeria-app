@@ -8,7 +8,7 @@ var directive = function (localeStorageService, constantImg, $rootScope) {
             scope: {
                 "panier": "=dirPanier"
             }, 
-            templateUrl: "./source/componentst/panier/monpanierdirective.html", 
+            templateUrl: "./source/components/panier/monpanierdirective.html", 
             link: function (scope, element, attrs) {
                 //recuperation du panier
                 scope.storedPanier = localeStorageService.getDataLocalestorage();
