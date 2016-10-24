@@ -1,18 +1,15 @@
 package fr.pizzeria.admin.metier;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Client;
-import fr.pizzeria.model.Livreur;
 
 @Stateless
 public class ClientService {
