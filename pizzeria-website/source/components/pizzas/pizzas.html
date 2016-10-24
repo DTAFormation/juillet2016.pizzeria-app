@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 main">
-                <h1>Menu des Pizzas</h1>
+                <h1 translate="MENU"></h1>
                 <!-- filtre par categories -->
 
                 <div id="select" class="container">
@@ -11,10 +11,10 @@
                         <label class="col-md-2 control-label" for="selectbasic" translate="CATE"></label>
                         <div class="col-md-2">
                             <select ng-model="tri.categorie" id="selectbasic" name="selectbasic" class="form-control" ng-change="tri.categorie = tri.categorie == '' ? undefined : tri.categorie">
-                                <option value="">TOUTES</option>
-                                <option ng-value="'SANS_VIANDE'">SANS VIANDE</option>
-                                <option ng-value="'VIANDE'">VIANDE</option>
-                                <option ng-value="'POISSON'">POISSON</option>
+                                <option value="" translate="TOUTES"></option>
+                                <option ng-value="'SANS_VIANDE'" translate="SANS_VIANDE"></option>
+                                <option ng-value="'VIANDE'" translate="VIANDE"></option>
+                                <option ng-value="'POISSON'" translate="POISSON"></option>
                             </select>
                         </div>
                     </div>
@@ -26,12 +26,12 @@
                             <div img-url="pizza.urlImage"></div>
                             <div class="caption">
                                 <h2>{{pizza.nom}}</h2>
-                                <p> Categorie: {{(pizza.categorie).replace('_',' ')}}</p>
-                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important">Détails</a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span>Ajouter </a> </div>
+                                <p><span translate="CATEGORIE"></span>{{(pizza.categorie).replace('_',' ') | translate}}</p>
+                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important" translate="DETAIL"></a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important" translate="AJOUT"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span></a> </div>
                         </div>
                     </div>
                 </div>
-                <p><a href="/#/">Retour a l'accueil</a></p>
+                <p><a href="/#/" translate="RETOUR_ACCUEIL"></a></p>
             </div>
             <mon-panier class="expander" dir-panier="pizzCtrl.localpanier"> </mon-panier>
         </div>

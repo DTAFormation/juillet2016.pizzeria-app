@@ -6,11 +6,11 @@
                 <img style="width : 100%" ng-src="{{pizzD.url}}" alt="">
             </div>
             <div class="col-md-4 col-sm-6">
-                <h3><strong>Prix : </strong>{{pizzD.pizza.prix | number:2}}€</h3>
-                <h4><strong>Categorie : </strong>{{(pizzD.pizza.categorie).replace('_',' ')}}</h4>
+                <h3><strong translate="PRIX"></strong>{{pizzD.pizza.prix | number:2}}€</h3>
+                <h4><strong translate="CATEGORIE"></strong>{{(pizzD.pizza.categorie).replace('_',' ') | translate}}</h4>
             </div>
             <div class="col-md-4 col-sm-6">
-                <h3><strong>Les ingrédients&#160;:</strong></h3>
+                <h3><strong translate="INGREDIENTS"></strong></h3>
                 <ul>
                     <li ng-repeat="ingredient in pizzD.pizza.ingredients">
                         {{ingredient.ingredient.nom}}
@@ -18,7 +18,7 @@
                 </ul>
             </div>
         </div>
-        <div class="container"><div class="col-md-4"><br><a href="#/pizzas">Retour</a></div></div>
+        <div class="container"><div class="col-md-4"><br><a href="#/pizzas" translate="RETOUR"></a></div></div>
     </div>
 </div>
 <!--
