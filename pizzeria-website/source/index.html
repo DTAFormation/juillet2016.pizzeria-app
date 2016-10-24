@@ -11,9 +11,8 @@
     </head>
 
     <body>
-        <div class="pull-right" ng-controller="translateCtrl as ctrl"> 
-            <img ng-src='assets/img/en.png' ng-click="ctrl.changeLanguage('en')" /> 
-            <img ng-src='assets/img/fr.png' ng-click="ctrl.changeLanguage('fr')" />
+        <div class="pull-right" ng-controller="translateCtrl as ctrl">
+            <a href="" ng-click="ctrl.changeLanguage('en')">English</a> - <a href="" ng-click="ctrl.changeLanguage('fr')">Français</a>
         </div>
         <div class="jumbotron">
             <div class="container" ng-controller="decoCtrl as deco">
@@ -23,15 +22,15 @@
                 <div class="col-md-7">
                     <h1>Pizz'DTAdev</h1>
                     <ul class="nav nav-pills">
-                        <li role="presentation"><a href="#/">Acceuil</a></li>
-                        <li role="presentation"><a href="#/pizzas">Les pizzas</a></li>
-                        <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection">Se connecter</a></li>
-                        <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection">Se déconnecter</a></li>
-                        <li role="presentation" ng-hide="deco.isConnected()"><a href="#/inscription">S'inscrire</a></li>
+                        <li role="presentation"><a href="#/" translate="HOME"></a></li>
+                        <li role="presentation"><a href="#/pizzas" translate="PIZZA"></a></li>
+                        <li role="presentation" ng-hide="deco.isConnected()"><a href="#/connection" translate="CONNECTION"></a></li>
+                        <li role="presentation" ng-click="deco.Action()" ng-show="deco.isConnected()"><a href="#/connection" translate="DECO"></a></li>
+                        <li role="presentation" ng-hide="deco.isConnected()"><a href="#/inscription" translate="INSCRIT"></a></li>
                     </ul>
                 </div>
                 <div ng-show="deco.isConnected()" id="divNomClient" class="col-lg-3 col-lg-offset-9">
-                    <h4>Bienvenue : <strong>{{deco.getClientConnecte().nom}}</strong></h4>
+                    <h4 translate="BIENVENUE"><strong>{{deco.getClientConnecte().nom}}</strong></h4>
                 </div>
 
             </div>
@@ -41,7 +40,7 @@
         
         
         <footer id="foot">
-            <a id="contact" href="#">Nous contacter</a>
+            <a id="contact" href="#" translate="CONTACT"></a>
             <p>&copy; 2016 Company, Inc.</p>
         </footer>
     </body>
