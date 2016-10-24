@@ -33,10 +33,12 @@ public class Client {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.password = encodage(password);
+		this.password = password;
 		this.adresse = adresse;
 		this.telephone = telephone;
 	}
+	
+
 
 	// Crypter le Mdp
 	public String encodage(String mdp) {
@@ -65,7 +67,7 @@ public class Client {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.password = encodage(password);
+		this.password = password;
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.abonne = abonne;
@@ -76,10 +78,11 @@ public class Client {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.password = encodage(password);
+		this.password = password;
 		this.adresse = adresse;
 		this.telephone = telephone;
 	}
+	
 
 	public Client(String nom, String prenom, String email, String password, String adresse, String telephone,
 			boolean abonne) {
@@ -87,7 +90,7 @@ public class Client {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.password = encodage(password);
+		this.password = password;
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.abonne = abonne;
@@ -95,6 +98,17 @@ public class Client {
 
 	public Client() {
 		super();
+	}
+
+
+	public Client(String nom2, String prenom2, String email2, String adresse2, String telephone2, boolean abonne2) {
+		super();
+		
+		this.nom = nom2;
+		this.prenom = prenom2;
+		this.email = email2;
+		this.adresse = adresse2;
+		this.telephone = telephone2;
 	}
 
 	public String getAdresse() {

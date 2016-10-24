@@ -29,6 +29,7 @@ public class ClientResource {
 		if (isBlank(newClient.getNom()) || isBlank(newClient.getEmail()) || isBlank(newClient.getPassword())) {
 			response.setStatus(400);
 		} else {
+		newClient.setPasswordEncrypt(newClient.getPassword());
 			clientDao.save(newClient);
 			response.setStatus(200);
 

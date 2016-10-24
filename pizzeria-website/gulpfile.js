@@ -24,14 +24,6 @@ gulp.task("minify-css", function () {
 });
 
 var server = plugins.jsonSrv.create();
-/*
- * Load mock data pizzeria
- */
-gulp.task('datas', function () {
-    log("load mocks data");
-    return gulp.src("datas/pizzeria.json")
-        .pipe(server.pipe());
-});
 
 /*
  * Views angular and static html files
@@ -111,7 +103,9 @@ gulp.task("translate", function () {
 /*
  * Build application task
  */
-gulp.task('build', ['connect','minify-css', 'datas', 'libs-css', 'browserify', 'html','img','translate']);
+gulp.task('build', ['connect','minify-css', 'libs-css', 'browserify', 'html','img','translate','commun','components']),function(){        
+    gulp.start("connect");    
+};
 
 gulp.task("default", ["clean"], function () {
     gulp.start("build");
@@ -123,19 +117,11 @@ gulp.task("default", ["clean"], function () {
  * Watch Task
  */
 gulp.task("watch", function () {
-    gulp.start('datas');
-    gulp.start('connect');
+    gulp.start("connect");
     gulp.start('browserify');
-    gulp.start('libs-css');
-    gulp.start('minify-css');
     gulp.start('img');
-    gulp.start('commun');
-    gulp.start('html');
-    gulp.start('components');
-    gulp.start('translate');
     gulp.watch(paths.css,  ["minify-css"]);
     gulp.watch(paths.html, ["html"]);
-    gulp.watch(["datas/pizzeria.json"], ["datas"], function () {
-        console.log(server);
-    });
+    gulp.watch(paths.commun, ["commun"]);
+    gulp.watch(paths.components, ["components"]);
 });

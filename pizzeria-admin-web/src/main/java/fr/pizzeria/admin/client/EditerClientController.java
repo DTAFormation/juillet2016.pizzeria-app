@@ -55,7 +55,7 @@ public class EditerClientController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		String email = req.getParameter("email");
-		String password = req.getParameter("password");
+		//String password = req.getParameter("password");
 		String oldEmail = req.getParameter("oldEmail");
 		String nom = req.getParameter("nom");
 		String prenom = req.getParameter("prenom");
@@ -64,9 +64,10 @@ public class EditerClientController extends HttpServlet {
 		boolean abonne = req.getParameter("abonne") == null ? false : true; // null
 																			// ou
 																			// on
-
+		String password = this.clientService.findOneClient(oldEmail).getPassword();
 		if (isBlank(nom) || isBlank(prenom) || isBlank(email) || isBlank(oldEmail) || isBlank(adresse)
 				|| isBlank(telephone)) {
+			
 			req.setAttribute("client", this.clientService.findOneClient(oldEmail));
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
 			this.getServletContext().getRequestDispatcher(VUE_EDITER_CLIENT).forward(req, resp);

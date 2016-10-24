@@ -75,6 +75,13 @@ p {
     display: inline-block;
 }
 
+
+#panier{
+    display: block;
+    float: right;
+
+}
+
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
     vertical-align: middle;
