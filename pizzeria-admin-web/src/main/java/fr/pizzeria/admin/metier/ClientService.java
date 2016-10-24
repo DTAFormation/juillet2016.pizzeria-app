@@ -1,10 +1,15 @@
 package fr.pizzeria.admin.metier;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Livreur;
@@ -45,9 +50,17 @@ public class ClientService {
 		}
 	}
 	public void hardDeleteClients() {
-		List<Client>clients= em.createQuery("select c from Client c where  actif = false", Client.class).getResultList();
+		Calendar dateDelete = Calendar.getInstance();
+		// dateDelete.add(Calendar.MINUTE, -3); // pour le test activer. date heur de maintenant - 3 minute.
+		dateDelete.add(Calendar.MONTH, -6); // date heur d'il ya a 6 mois.
+		System.out.println("date =" + dateDelete.getTime());
+		
+		TypedQuery<Client> q = em.createQuery("select c from Client c where  c.actif = false and c.dateDerniereModification < :dateD ", Client.class);
+		q.setParameter("dateD", dateDelete , TemporalType.TIMESTAMP);	
+		List<Client> clients = q.getResultList();
+		
 				for (Client client : clients) {
-					System.out.println("client : "+client.getPrenom()+" "+ client.getNom());
+					System.out.println("client : "+ client.getPrenom()+" "+ client.getNom());
 					em.remove(client);
 				}
 	}
