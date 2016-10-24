@@ -73,12 +73,12 @@ public class EMailService {
 	
 	public void envoyeEmailPasswordModification(String adresseMail, String prenom, String nom, String motdepasse) {
 		String value = String.format("<!DOCTYPE html>"
-				+ "Bonjour " +prenom+" " + nom+"!"
+				+ "Bonjour %s %s!"
 				+ "<br>"
 				+ "Nous avons le plaisir de vous compter parmis nous en tant que nouveau client! "
 				+ "<br>"
-				+ "votre mot de passe <strong> "+motdepasse+" </strong> !"
-				+ "<br>");
+				+ "votre mot de passe <strong> %s </strong> !"
+				+ "<br>", prenom, nom, motdepasse);
 				
 		
 			send(adresseMail, "Modifier votre mot de passe", value);
