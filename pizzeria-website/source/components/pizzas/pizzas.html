@@ -1,7 +1,7 @@
 <div class="row">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 main">
+            <div class="col-md-9 main">
                 <h1>Menu des Pizzas</h1>
                 <!-- filtre par categories -->
 
@@ -21,6 +21,7 @@
                 </div>
                 <!--Menu des pizzas-->
                 <div class="container">
+                    
                     <div class="col-sm-5 col-md-3" ng-repeat="pizza in pizz.allPizzas | filter : tri : true || undefined ">
                         <div class="thumbnail">
                             <div img-url="pizza.urlImage"></div>
@@ -33,7 +34,10 @@
                 </div>
                 <p><a href="/#/">Retour a l'accueil</a></p>
             </div>
-            <mon-panier class="expander" dir-panier="pizzCtrl.localpanier"> </mon-panier>
+            <div class= "col-md-3">
+                <mon-panier class="expander" dir-panier="pizzCtrl.localpanier"> </mon-panier>
+            </div>
+            
         </div>
     </div>
 </div>

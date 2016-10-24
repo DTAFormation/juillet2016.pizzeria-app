@@ -33,6 +33,10 @@ var directive = function (localeStorageService, constantImg, $rootScope) {
                 scope.changeQuant = function(nombre) {
                     scope.storedPanier.quan = nombre;
                 };
+                scope.supprimerPanier = function(pizza){
+                    localeStorageService.deleteElementLocaleStorage(pizza);
+                };
+                
             }
         };
     };
