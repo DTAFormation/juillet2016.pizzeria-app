@@ -10,6 +10,7 @@
             template: "<img style=\"width : 100% \" ng-src=\"{{urlImg}}\">",
             link: function(scope, element, attrs) {
                 scope.urlImg = constantImg.apiUrlImg + scope.imgUrl ;
+                /*console.log("URL de l'image : " + scope.urlImg);*/
             }
         };
     };
