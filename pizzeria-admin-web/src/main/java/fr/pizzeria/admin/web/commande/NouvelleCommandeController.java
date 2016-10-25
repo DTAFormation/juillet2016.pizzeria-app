@@ -53,7 +53,7 @@ public class NouvelleCommandeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// Définition des attributs par défaut
-		List<Livreur> livreursDisponibles = livreurService.findAll();
+		List<Livreur> livreursDisponibles = livreurService.findAvailableAll();
 		List<Pizza> pizzas = pizzaService.findAll();
 		List<Client> clients = clientService.findAll();
 		StatutCommande[] statuts = StatutCommande.values();
@@ -61,6 +61,8 @@ public class NouvelleCommandeController extends HttpServlet {
 		StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
 
 		Commande commande = new Commande();
+		commande.setStatut(StatutCommande.NON_TRAITE);
+		commande.setStatutPaiement(StatutCommandePaiement.NON_PAYEE);
 		commande.setDateCommande(Calendar.getInstance());
 
 		req.setAttribute("commande", commande);
