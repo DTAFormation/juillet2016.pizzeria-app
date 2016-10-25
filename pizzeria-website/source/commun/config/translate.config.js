@@ -35,7 +35,22 @@
             DESCRIPTION2: 'The word appears in 997 Pizza in Latin médiévial: He means "Fouace", "pancake". But it is in Naples in the sixteenth century, it is evidenced in its current direction. This word derives from Pide (or pita), the Turkish word for bread. We recognize in the pide, a likely ancestor of the famous Anatolian Italian recipe. The pizza (pl pizzas. Italian term) was linked to the work of the baker. It was used primarily to verify the correct temperature of the home before they are deposited bread, or take advantage of the last embers. The pizza has long been one way: "The bianca" which was coated with cream or lard. From the eighteenth century, appears the "rossa" decorated with a tomato sauce. She then diversified as evidenced by Alexandre Dumas, in 1844, in a travel book: "The pizza is oil, pizza is baked, the pizza is cheese, pizza is tomato, pizza is small fish; thermometer is a gourmet market; it increase or decrease in price, depending on the course designated above ingredients, depending on the abundance or scarcity of the Year "in June 1889 to honor the Queen, the leader Raffaele Esposito. , of the famous pizzeria Pietro e basta così decided to create a special pizza just for her. He cooked her dough in the oven and complete with tomatoes, cheese Mozzarella (not included ingredient in the recipe as too expensive for farmers to whom it was intended) and fresh basil (the colors of the Italian flag: green, white, and red). This recipe is a favorite pizza Margherita queen and when the rumor that it is the favorite food of the queen, the pizza becomes even more popular among the Italians. The story does not say if Raffaele served his creation in his own pizzeria but it started a culinary tradition, the Pizza Margherita, which still continues and has spread worldwide.',
             CONTACT: 'Contact us',
             RETOUR_ACCUEIL: 'Back to menu',
-            RETOUR: 'Back'
+            RETOUR: 'Back',
+
+            INSCRIT_ERROR: 'Your request could not be considered, please try again.',
+            INSCRIT_SUCCES: 'Your account has been registered',
+            INSCRIT_FORM: 'Registration Form',
+            EMAIL: 'Email',
+            PASSWORD:'Password',
+            NOM: 'Name',
+            PRENOM:'First name',
+            SEX:'Sex',
+            HOMME:'Man',
+            FEMME:'Woman',
+            BIRTHDAY:'Birthday',
+            ADRESSE: 'Address',
+            PHONE:'Phone',
+            VALIDER:'Validate'
         });
         $translateProvider.translations('fr', {
             HOME: 'Accueil',
@@ -70,7 +85,22 @@
             DESCRIPTION2: 'Le mot Pizza apparaît en 997 en latin médiévial: Il signifie alors “Fouace”, “galette”. Mais c’est à Naples,au XVIe siècle, qu’il est attesté dans son sens actuel. Ce mot dériverait de Pide (ou pita), mot turc qui signifie pain. On reconnaît dans la pide, un ancêtre anatolien très probable de la fameuse recette italienne. La pizza (pl. pizze : terme italien) était lié au travail du boulanger. Elle servait avant tout à vérifier la bonne température du foyer avant qu’on y dépose le pain, ou à tirer partie des dernières braises. La pizza a été pendant longtemps d’une seule sorte : “la bianca” qui était enduite de crème ou de saindoux. A partir du XVIIIème siècle, apparaît la “rossa” agrémentée d’une sauce à la tomate. Elle s’est ensuite diversifiée comme en témoigne Alexandre DUMAS, en 1844, dans un récit de voyages : ” La pizza est à l’huile, la pizza est au lard, la pizza est au fromage, la pizza est aux tomates, la pizza est aux petits poissons; c’est un thermomètre gastronomique du marché: elle hausse ou baisse de prix , selon le cours des ingrédients sus désignés, selon l’abondance ou la disette de l’année.” En juin 1889, pour honorer sa reine, le chef Raffaele Esposito, de l’illustre pizzeria Pietro e basta così décide de créer une pizza spéciale, juste pour elle. Il fait cuire sa pâte au four et la complète avec des tomates, du fromage de Mozzarella (ingrédient non-inclus dans la recette originale car trop onéreux pour les paysans à qui elle était destinée) et du basilic frais (les couleurs du drapeau italien : vert, blanc, et rouge). Cette recette devient la pizza préférée de la reine Margherita et quand le bruit court que c’est le plat préféré de la reine, la pizza devient encore plus populaire parmi les Italiens. L’histoire ne dit pas si Raffaele a servi sa création dans sa propre pizzeria mais il a lancé une tradition culinaire, la pizza Margherita, qui dure encore et s’est répandue dans le monde entier.',
             CONTACT: 'Nous contacter',
             RETOUR_ACCUEIL: 'Retour à l\'accueil',
-            RETOUR: 'Retour'
+            RETOUR: 'Retour',
+
+            INSCRIT_ERROR: 'Votre demande n\'a pas pu être prise en compte, merci de recommencer',
+            INSCRIT_SUCCES: 'Votre compte a bien été enregistrer',
+            INSCRIT_FORM: 'Formulaire d\'inscription',
+            EMAIL: 'Email',
+            PASSWORD:'Mot de passe',
+            NOM: 'Nom',
+            PRENOM:'Prénom',
+            SEX:'Sexe',
+            HOMME:'Homme',
+            FEMME:'Femme',
+            BIRTHDAY:'Date de naissance',
+            ADRESSE: 'Adresse',
+            PHONE:'Téléphone',
+            VALIDER:'Valider'
         });
         $translateProvider.preferredLanguage('fr');
     };
