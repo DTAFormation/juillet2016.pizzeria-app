@@ -3,6 +3,9 @@
     var config = function ($translateProvider) {
         $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.translations('en', {
+            ETAT_PANIER:'Your Cart is Empty',
+            PASSER_COMMANDE:'Purchase',
+            PANIER: 'Cart',
             HOME: 'Home',
             PIZZA: 'Pizzas',
             RESTAURANT: 'Restaurant',
@@ -17,7 +20,6 @@
             MENU:'Pizza Menu',
             CATE:'Sorting by category',
             LIEN: 'Click here to access the news:',
-            PANIER:'Basket',
             SEE: 'Confirm order',
             AJOUT:'Add',
             TOUTES: 'All',
@@ -38,6 +40,9 @@
             RETOUR: 'Back'
         });
         $translateProvider.translations('fr', {
+            ETAT_PANIER:"Votre Panier est vide",
+            PASSER_COMMANDE:'Passer Commande',
+            PANIER:'Panier',
             HOME: 'Accueil',
             PIZZA: 'Les pizzas',
             RESTAURANT: 'Restaurant',
@@ -52,7 +57,6 @@
             MENU: 'Menu des Pizzas',
             CATE:'Filtre par catégorie',
             LIEN: 'Cliquer ici pour accéder à l\'actualité :',
-            PANIER: 'Panier',
             SEE: 'Valider ma commande',
             AJOUT: 'Ajouter',
             TOUTES: 'Toutes',

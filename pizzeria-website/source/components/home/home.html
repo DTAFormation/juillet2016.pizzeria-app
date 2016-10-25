@@ -1,35 +1,30 @@
-<div class="header-right">
+<div class="container">
+  <div class="header-right col-md-9">
     <div id="jumboHome" class="jumbotron">
         <div id="logo" class="container">
             <h3><i translate="TITRE"></i></h3>
         </div>
     </div>
-
-
     <div>
         <div>
             <h4 translate="PROPOSONS"></h4>
             <p id="text" translate="DESCRIPTION11"></p>
             <p id="text" translate="DESCRIPTION12"></p>
         </div>
-        
-    </div>
-       
-       <div>
-  <div id="carou">
-    <div uib-carousel active="active" interval="home.myInterval" no-wrap="noWrapSlides">
-      <div uib-slide ng-repeat="slide in home.slides track by slide.id" index="slide.id">
-        <img ng-src="{{slide.image}}" style="margin:auto;" class ="">
-        <div class="carousel-caption">
-          <h3>{{slide.text | translate}}</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</div>
-       
 
+    </div>
+    <div>
+        <div id="carou">
+            <div uib-carousel active="active" interval="home.myInterval" no-wrap="noWrapSlides">
+                <div uib-slide ng-repeat="slide in home.slides track by slide.id" index="slide.id">
+                    <img ng-src="{{slide.image}}" style="margin:auto;" class ="">
+                    <div class="carousel-caption">
+                        <h3>{{slide.text | translate}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
         <h4 translate="HISTOIRE"></h4>
         <p id="text" translate="DESCRIPTION2"></p>
@@ -38,4 +33,7 @@
         </div>
     </div>
 </div>
-
+<div class= "col-md-3" ng-controller="pizzCtrl">
+    <mon-panier class="expander" dir-panier="pizzCtrl.localpanier"> </mon-panier>
+</div>  
+</div>

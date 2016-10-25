@@ -7,6 +7,7 @@
         };
         vm.isConnected = cliService.isConnected;
         vm.getClientConnecte = cliService.getClientConnecte;
-    };
-    module.exports = controller;
-}());
+
+    }
+        module.exports = controller;
+    }());
