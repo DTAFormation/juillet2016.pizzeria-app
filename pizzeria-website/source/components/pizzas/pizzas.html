@@ -29,8 +29,8 @@
                             <div img-url="pizza.urlImage"></div>
                             <div class="caption">
                                 <h2>{{pizza.nom}}</h2>
-                                <p><span translate="CATEGORIE"></span>{{(pizza.categorie).replace('_',' ') | translate}}</p>
-                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important" translate="DETAIL"></a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important" translate="AJOUT"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span></a> </div>
+                                <p><span translate="CATEGORIE"></span>{{(pizza.categorie) | translate}}</p>
+                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important" translate="DETAIL"></a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important" translate="AJOUT" ng-disabled="{{!pizza.disponible}}"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span></a> </div>
                         </div>
                     </div>
                 </div>

@@ -172,7 +172,7 @@ public class Client {
 	}
 
 	public void setPassword(String password) {
-		this.password = password != null ? encodage(password) : null;
+		this.password = password;
 	}
 	public void setNonePassword(){
 		this.password = null;

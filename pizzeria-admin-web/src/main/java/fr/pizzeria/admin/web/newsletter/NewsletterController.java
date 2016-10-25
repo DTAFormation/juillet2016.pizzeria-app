@@ -1,8 +1,11 @@
 package fr.pizzeria.admin.web.newsletter;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,11 +28,19 @@ public class NewsletterController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String pizzaPromo = req.getParameter("pizzaPromo");
 		System.err.println(pizzaPromo);
-		eMailService.envoyeEmailPromotionPizza(pizzaPromo);
-		resp.sendRedirect(this.getServletContext().getContextPath() + "/newsletter");
+		try {
+			eMailService.envoyeEmailPromotionPizza(pizzaPromo);
+			req.setAttribute("msg_success", "Le mail a été envoyé à tout les clients abonnés");
+			doGet(req, resp);
+		}catch (MessagingException e) {
+				Logger.getLogger(EMailService.class.getName()).log(Level.WARNING, "Cannot send mail", e);
+				req.setAttribute("msg", "Une erreur est survenue. Message d'erreur :"+e);
+				doGet(req, resp);
+		}
+		//resp.sendRedirect(this.getServletContext().getContextPath() + "/newsletter");
 	}
 
 }
