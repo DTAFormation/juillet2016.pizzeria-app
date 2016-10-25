@@ -108,7 +108,6 @@ public class EditerCommandeController extends HttpServlet {
 		String dateParam = req.getParameter("date");
 		String livreurIdParam = req.getParameter("livreur");
 		String clientIdParam = req.getParameter("client");
-		Map<Pizza, Integer> pizzaMap = new HashMap<>();
 
 		if (isBlank(numeroParam) || isBlank(statutPaiementParam) || isBlank(statutParam) || isBlank(dateParam)
 				|| isBlank(livreurIdParam) || isBlank(clientIdParam) || isBlank(idParam)) {
@@ -146,7 +145,6 @@ public class EditerCommandeController extends HttpServlet {
 			List<Boolean> qteSupZero = new ArrayList<>();
 			allPizzas.forEach(p -> {
 				int qte = Integer.parseInt(req.getParameter(p.getCode()));
-				pizzaMap.put(p, qte);
 				if (qte > 0) {
 					commandeId.addPizza(p, qte);
 				}
@@ -160,11 +158,18 @@ public class EditerCommandeController extends HttpServlet {
 				resp.sendRedirect(req.getContextPath() + "/commandes/list");
 
 			} else {
+				String code = req.getParameter("code");
+				Commande commande = this.commandeService.findOneCommande(code);
+
 				List<Livreur> livreursDisponibles = livreurService.findAll();
 				List<Pizza> pizzas = pizzaService.findAll();
 				List<Client> clients = clientService.findAll();
 				StatutCommande[] statuts = StatutCommande.values();
 				StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
+				Map<Pizza, Integer> pizzaMap = new HashMap<>();
+				allPizzas.forEach(p -> pizzaMap.put(p, 0));
+				commande.getPizzas()
+						.forEach(commandePizza -> pizzaMap.put(commandePizza.getPizza(), commandePizza.getQuantite()));
 				req.setAttribute("msgErreur", "Il faut au moins une pizza de commander pour éditer une commande");
 				commandeId.setDateCommande(Calendar.getInstance());
 				req.setAttribute("commande", commandeId);
