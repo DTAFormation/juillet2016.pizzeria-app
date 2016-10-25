@@ -63,7 +63,7 @@ public class EditerCommandeController extends HttpServlet {
 			if (commande == null) {
 				sendErrorCommandeInconnue(req, resp);
 			} else {
-				List<Livreur> livreursDisponibles = livreurService.findAvailableAll();
+				List<Livreur> livreursDisponibles = livreurService.findAll();
 				List<Client> clients = clientService.findAll();
 				StatutCommande[] statuts = StatutCommande.values();
 				StatutCommandePaiement [] statutsPaiement = StatutCommandePaiement.values();

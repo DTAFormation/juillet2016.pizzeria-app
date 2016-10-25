@@ -11,19 +11,28 @@
             return localStorage.setItem("panier", JSON.stringify(panier));
         };
         this.deleteElementLocaleStorage = function(pizza){
-            var monPanier = JSON.parse(localStorage.getItem("panier"));
+            var monPanier = vm.getDataLocalestorage();
             var newPanier = [];
+            
             monPanier.find(function(maPizza){
                 if(maPizza.id != pizza.id ){
-                newPanier.push(maPizza);
-               }
-               vm.postLocaleStorage(newPanier);
+                    newPanier.push(maPizza);
+                }
+                vm.clearPanier();
+                vm.postLocaleStorage(newPanier);
             });
             
         };
-        this.clearLocalStorage = function(){
-            localStorage.clear();
+        this.clearPanier = function(){
+            localStorage.removeItem("panier");
+            console.log("Panier vidé");
         };
+        //Initialisation du panier en localStorage avec un tableau vide si inexistant
+        if (!vm.getDataLocalestorage()) {
+            var emptyArray = [];
+            localStorage.setItem("panier",JSON.stringify(emptyArray));
+        }
+        
     
     };
 
