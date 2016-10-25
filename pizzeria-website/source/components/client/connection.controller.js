@@ -8,7 +8,11 @@
         vm.logClient = function() {
             vm.client.email = vm.cli.email;
             vm.client.password = vm.cli.password;
+            console.log("vm.client");
+            console.log(vm.client);
             cliService.connectionClient(vm.client).then(function(result) { 
+                console.log("result");
+                console.log(result);
                 vm.success = true;
                 vm.cli = {};
                 $timeout(function() {

@@ -48,7 +48,7 @@ public class ClientResource {
 			response.setStatus(400);
 		} else {
 			clientTrouve = clientDao.findByEmail(client.getEmail());
-			if (client.getPassword().equals(clientTrouve.getPassword())) {
+			if (client.encodage(client.getPassword()).equals(clientTrouve.getPassword())) {
 				//clientTrouve.setPassword(null);
 				clientTrouve.setNonePassword();
 				response.setStatus(200);
