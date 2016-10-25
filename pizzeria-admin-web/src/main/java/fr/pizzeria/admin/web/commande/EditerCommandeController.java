@@ -178,6 +178,7 @@ public class EditerCommandeController extends HttpServlet {
 				req.setAttribute("livreurs", livreursDisponibles);
 				req.setAttribute("clients", clients);
 				req.setAttribute("pizzas", pizzas);
+				req.setAttribute("pizzaMap", pizzaMap);
 				this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDE).forward(req, resp);
 			}
 
