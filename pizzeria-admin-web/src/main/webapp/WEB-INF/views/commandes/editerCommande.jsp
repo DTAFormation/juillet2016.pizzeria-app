@@ -66,13 +66,13 @@
 				<label>Pizzas :</label>
 				<c:choose>
 					<c:when test="${editPage}">
-						<c:forEach var="pizzaCmd" items="${commande.pizzas}">
+						<c:forEach var="pizza" items="${pizzaMap}">
 							<div class="row">
 								<div class="col-md-2">
-									<span style="display: block; margin-top: 5px">${pizzaCmd.pizza.nom}</span>
+									<span style="display: block; margin-top: 5px">${pizza.getKey().nom}</span>
 								</div>
 								<div class="col-md-1">
-									<input type="number" class="form-control" name="${pizzaCmd.pizza.code}" value="${pizzaCmd.quantite}" min="0">
+									<input type="number" class="form-control" name="${pizza.getKey().code}" value="${pizza.getValue()}" min="0">
 								</div>
 							</div>
 						</c:forEach>

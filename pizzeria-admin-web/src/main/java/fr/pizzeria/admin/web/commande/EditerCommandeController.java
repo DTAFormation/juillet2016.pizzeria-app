@@ -5,7 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,15 +37,15 @@ public class EditerCommandeController extends HttpServlet {
 	public static final String URL = "/commandes/edit";
 	private static final String VUE_EDITER_COMMANDE = "/WEB-INF/views/commandes/editerCommande.jsp";
 
-	@Inject 
+	@Inject
 	private CommandeService commandeService;
-	
-	@Inject 
+
+	@Inject
 	private PizzaService pizzaService;
-	
-	@Inject 
+
+	@Inject
 	private ClientService clientService;
-	
+
 	@Inject
 	private LivreurService livreurService;
 
@@ -56,25 +58,32 @@ public class EditerCommandeController extends HttpServlet {
 			resp.setStatus(400); // Bad Request
 			req.setAttribute("msgErreur", "Code obligatoire pour editer une commande");
 			this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDE).forward(req, resp);
-			
+
 		} else {
 			Commande commande = this.commandeService.findOneCommande(code);
-			
+
 			if (commande == null) {
 				sendErrorCommandeInconnue(req, resp);
 			} else {
 				List<Livreur> livreursDisponibles = livreurService.findAll();
 				List<Client> clients = clientService.findAll();
+				List<Pizza> allPizzas = pizzaService.findAll();
 				StatutCommande[] statuts = StatutCommande.values();
-				StatutCommandePaiement [] statutsPaiement = StatutCommandePaiement.values();
+				StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
+				Map<Pizza, Integer> pizzaMap = new HashMap<>();
+				allPizzas.forEach(p -> pizzaMap.put(p, 0));
+				commande.getPizzas()
+						.forEach(commandePizza -> pizzaMap.put(commandePizza.getPizza(), commandePizza.getQuantite()));
 
 				req.setAttribute("commande", commande);
 				req.setAttribute("statuts", statuts);
-				//ajout du statut des paiements
+				// ajout du statut des paiements
 				req.setAttribute("statutsPaiement", statutsPaiement);
 				req.setAttribute("livreurs", livreursDisponibles);
 				req.setAttribute("clients", clients);
-				
+				req.setAttribute("pizzas", allPizzas);
+				req.setAttribute("pizzaMap", pizzaMap);
+
 				this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDE).forward(req, resp);
 			}
 		}
@@ -94,15 +103,16 @@ public class EditerCommandeController extends HttpServlet {
 		String numeroParam = req.getParameter("numero");
 		String idParam = req.getParameter("id");
 		String statutParam = req.getParameter("statut");
-		//ajout du statut des paiements
+		// ajout du statut des paiements
 		String statutPaiementParam = req.getParameter("statutPaiement");
 		String dateParam = req.getParameter("date");
 		String livreurIdParam = req.getParameter("livreur");
 		String clientIdParam = req.getParameter("client");
+		Map<Pizza, Integer> pizzaMap = new HashMap<>();
 
-		if (isBlank(numeroParam)|| isBlank(statutPaiementParam)  || isBlank(statutParam) || isBlank(dateParam) || isBlank(livreurIdParam)
-				|| isBlank(clientIdParam) || isBlank(idParam)) {
-			
+		if (isBlank(numeroParam) || isBlank(statutPaiementParam) || isBlank(statutParam) || isBlank(dateParam)
+				|| isBlank(livreurIdParam) || isBlank(clientIdParam) || isBlank(idParam)) {
+
 			req.setAttribute("msgErreur", "Tous les paramètres sont obligatoires !");
 			this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDE).forward(req, resp);
 
@@ -117,13 +127,13 @@ public class EditerCommandeController extends HttpServlet {
 			try {
 				date.setTime(sdf.parse(dateParam));
 			} catch (ParseException e) {
-				Logger.getAnonymousLogger().log(Level.SEVERE,"Exception Handle inside EditerCommandeController",e);
+				Logger.getAnonymousLogger().log(Level.SEVERE, "Exception Handle inside EditerCommandeController", e);
 			}
 
 			int livreurId = Integer.parseInt(livreurIdParam);
 			Livreur l = new Livreur();
 			l.setId(livreurId);
-			
+
 			int clientId = Integer.parseInt(clientIdParam);
 			Client c = new Client();
 			c.setId(clientId);
@@ -131,28 +141,31 @@ public class EditerCommandeController extends HttpServlet {
 			int id = Integer.parseInt(idParam);
 
 			// Ajout des pizzas
-			Commande commandeId = new Commande(id, numeroParam, statutPaiement,  statut, date, l, c);
+			Commande commandeId = new Commande(id, numeroParam, statutPaiement, statut, date, l, c);
 			List<Pizza> allPizzas = pizzaService.findAll();
 			List<Boolean> qteSupZero = new ArrayList<>();
 			allPizzas.forEach(p -> {
 				int qte = Integer.parseInt(req.getParameter(p.getCode()));
-				commandeId.addPizza(p, qte);
+				pizzaMap.put(p, qte);
+				if (qte > 0) {
+					commandeId.addPizza(p, qte);
+				}
 				qteSupZero.add(quantitePizzaCommandee(req, p) > 0);
 			});
-			if(thereIsPizzaCommandee(qteSupZero)){
+			if (thereIsPizzaCommandee(qteSupZero)) {
 				// Enregistrement de la commande
 				commandeService.updateCommande(commandeId.getNumeroCommande(), commandeId);
 
 				// Redirection
 				resp.sendRedirect(req.getContextPath() + "/commandes/list");
-				
-			}else{
+
+			} else {
 				List<Livreur> livreursDisponibles = livreurService.findAll();
 				List<Pizza> pizzas = pizzaService.findAll();
 				List<Client> clients = clientService.findAll();
 				StatutCommande[] statuts = StatutCommande.values();
 				StatutCommandePaiement[] statutsPaiement = StatutCommandePaiement.values();
-				req.setAttribute("msgErreur", "Il faut au moins une pizza de commander pour créer une commande");
+				req.setAttribute("msgErreur", "Il faut au moins une pizza de commander pour éditer une commande");
 				commandeId.setDateCommande(Calendar.getInstance());
 				req.setAttribute("commande", commandeId);
 				req.setAttribute("statuts", statuts);
@@ -160,19 +173,17 @@ public class EditerCommandeController extends HttpServlet {
 				req.setAttribute("livreurs", livreursDisponibles);
 				req.setAttribute("clients", clients);
 				req.setAttribute("pizzas", pizzas);
-				this.getServletContext()
-					.getRequestDispatcher(VUE_EDITER_COMMANDE)
-					.forward(req, resp);
+				this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDE).forward(req, resp);
 			}
-			
+
 		}
 	}
-	
+
 	private boolean thereIsPizzaCommandee(List<Boolean> qteSupZero) {
 		// renvoie vrai si au moins une valeur est à vrai
 		return qteSupZero.stream().filter(q -> q).findAny().isPresent();
 	}
-	
+
 	private int quantitePizzaCommandee(HttpServletRequest req, Pizza p) {
 		String qte = req.getParameter(p.getCode());
 		if (qte.isEmpty()) {
@@ -180,9 +191,10 @@ public class EditerCommandeController extends HttpServlet {
 		}
 		return Integer.parseInt(qte);
 	}
-	
+
 	/**
 	 * setter utiliser lors des tests du controller
+	 * 
 	 * @param commandeService
 	 */
 	public void setCommandeService(CommandeService commandeService) {
@@ -191,14 +203,16 @@ public class EditerCommandeController extends HttpServlet {
 
 	/**
 	 * setter utiliser lors des tests du controller
+	 * 
 	 * @param clientService
 	 */
 	public void setClientService(ClientService clientService) {
 		this.clientService = clientService;
 	}
-	
+
 	/**
 	 * setter utiliser lors des tests du controller
+	 * 
 	 * @param pizzaService
 	 */
 	public void setPizzaService(PizzaService pizzaService) {
@@ -207,6 +221,7 @@ public class EditerCommandeController extends HttpServlet {
 
 	/**
 	 * setter utiliser lors des tests du controller
+	 * 
 	 * @param livreurService
 	 */
 	public void setLivreurService(LivreurService livreurService) {
