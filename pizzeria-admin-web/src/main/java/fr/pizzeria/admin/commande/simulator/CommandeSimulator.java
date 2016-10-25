@@ -3,6 +3,9 @@ package fr.pizzeria.admin.commande.simulator;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -34,6 +37,7 @@ public class CommandeSimulator {
 
 	@Schedule(second = "*", minute = "10", hour = "*")
 	public void simulator() {
+		Logger.getAnonymousLogger().log(Level.INFO,"simulateur");
 		cmds = cmdService.findAll();
 		for (Commande cmd : cmds){
 			switch (cmd.getStatut()) {
