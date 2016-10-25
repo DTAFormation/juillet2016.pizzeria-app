@@ -44,7 +44,7 @@ public class EMailService {
 	}
 
 	
-	public void envoyeEmail(String adresseMail, String pizza) {
+	public void envoyeEmail(String adresseMail, String pizza) throws MessagingException{
 		String value = String.format("<!DOCTYPE html>"
 				+ "Bonjour cher client !"
 				+ "<br>"
@@ -58,7 +58,7 @@ public class EMailService {
 
 	}
 
-	public void envoyeEmailPromotionPizza(String pizza) {
+	public void envoyeEmailPromotionPizza(String pizza) throws MessagingException{
 		List<Client> clients = clientService.findAll();
 		System.err.println("Liste des clients :" + clients);
 		for (Client client : clients) {
@@ -70,6 +70,7 @@ public class EMailService {
 		}
 
 	}
+	
 	
 	public void envoyeEmailPasswordModification(String adresseMail, String prenom, String nom, String motdepasse) {
 		String value = String.format("<!DOCTYPE html>"
@@ -86,7 +87,7 @@ public class EMailService {
 	}
 
 
-	public void send(String addresses, String topic, String textMessage, String pizza) {
+	public void send(String addresses, String topic, String textMessage, String pizza) throws MessagingException {
 
 
 		String username = "clever.institut.test";
@@ -162,6 +163,8 @@ public class EMailService {
 		
 
 	}
+	
+
 	
 	// sauvegarde des emails pour historique
 	public void saveEmail(Email email) {

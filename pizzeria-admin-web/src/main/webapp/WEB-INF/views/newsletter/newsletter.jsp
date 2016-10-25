@@ -10,7 +10,15 @@
 	<jsp:include page="../layout/menu.jsp">
 		<jsp:param value="newsletter" name="page" />
 	</jsp:include>
-
+	
+	<div class="row">
+		<c:if test="${msg != null}">
+			<div class="alert alert-danger" role="alert">${msg}</div>
+		</c:if>
+		<c:if test="${msg_success != null}">
+			<div class="alert alert-success" role="alert">${msg_success}</div>
+		</c:if>
+	</div>
 	<div class="row">
 		<div class="col-xs-12">
 			<h1>Page de gestion de la newsletter</h1>
