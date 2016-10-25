@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.EMailService;
-import fr.pizzeria.model.Utilisateur;
 
 @WebServlet("/newsletter")
 public class NewsletterController extends HttpServlet {
@@ -40,7 +39,7 @@ public class NewsletterController extends HttpServlet {
 				req.setAttribute("msg", "Une erreur est survenue. Message d'erreur :"+e);
 				doGet(req, resp);
 		}
-		//resp.sendRedirect(this.getServletContext().getContextPath() + "/newsletter");
+		
 	}
 
 }
