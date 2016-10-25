@@ -9,7 +9,7 @@
     require("angular-cookies");
     require("angular-ui-bootstrap");
 
-    angular.module("pizzeria", ['ngRoute','pascalprecht.translate','ngCookies','ui.bootstrap'])
+    angular.module("pizzeria", ['ngRoute', 'pascalprecht.translate', 'ngCookies', 'ui.bootstrap'])
         // Load services
         .service("pizzService", require("./commun/service/pizzService.service"))
         .service("cliService", require("./commun/service/cliService.service"))
@@ -42,7 +42,7 @@
         .controller("pizzCtrl", require("./components/pizzas/pizzas.controller"))
         .controller("pizzDetailsCtrl", require("./components/pizzas/pizzaDetails.controller"))
         .directive("imgUrl", require("./components/pizzas/pizzas.directive"))
-     
+
         /*
         * Client
         */
@@ -54,11 +54,16 @@
         */
         .controller("translateCtrl", require("./commun/translate/translate.controller"))
         .config(require("./commun/config/translate.config"))
-        
+
+        /**
+         * Commande 
+         */
+        .controller("commandeCtrl", require("./components/commande/commande.controller"))
+        .directive("panierCmd", require("./components/commande/commande.directive"))
+
         // Load directive
         .directive("monPanier", require("./components/panier/monpanier.directive"));
-        
-        //.directive("myDirective", require("./translate/directive/myDirective.directive"));
+
 
 
 

@@ -32,8 +32,6 @@
             var emptyArray = [];
             localStorage.setItem("panier",JSON.stringify(emptyArray));
         }
-        
-    
     };
 
     module.exports = service;

@@ -43,6 +43,15 @@
             controller: "decoCtrl",
             controllerAs: 'deco'
         });
+
+        /**
+         * Commande
+         */
+        $routeProvider.when('/commande', {
+            templateUrl: "./source/components/commande/cmd.html",
+            controller: "commandeCtrl",
+            controllerAs: 'cmd'
+        });
     };
 
     module.exports = config;

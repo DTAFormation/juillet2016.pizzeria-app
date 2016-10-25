@@ -8,6 +8,5 @@
             return $http.post(pizzConst.apiUrl + "commandes", data);
         };
     };
-
     module.exports = service;
 }());
