@@ -15,7 +15,7 @@ import fr.pizzeria.model.Client;
 import fr.pizzeria.spring.web.repository.IClientRepository;
 
 /**
- * Resource Client.
+ * Ressource Client.
  */
 @RestController
 @RequestMapping("/clients")
