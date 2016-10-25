@@ -3,7 +3,7 @@
         <div class="row">
 
             <div class="col-md-9 main">
-                <h1>Menu des Pizzas</h1>
+                <h1 translate="MENU"></h1>
 
                 <!-- filtre par categories -->
 
@@ -30,7 +30,7 @@
                             <div class="caption">
                                 <h2>{{pizza.nom}}</h2>
                                 <p><span translate="CATEGORIE"></span>{{(pizza.categorie) | translate}}</p>
-                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important" translate="DETAIL"></a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important" translate="AJOUT" ng-disabled="{{!pizza.disponible}}"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span></a> </div>
+                                <h3>{{pizza.prix | number:2}}€</h3> <a href="#/pizzas/{{pizza.id}}" class="btn btn-primary" style="{position : float ; bottom : 0 } !important" translate="DETAIL"></a> <a class="btn btn-primary" ng-click="pizz.ajoutPanier(pizza)" style="{position : float ; bottom : 0 } !important" translate="AJOUT" ng-disabled="{{!pizza.disponible}}"><span class="glyphicon glyphicon-cart" aria-hidden="true"></span></a> <span class="rupture" ng-show="{{!pizza.disponible}}" translate="RUPTURE"></span></div>
                         </div>
                     </div>
                 </div>

@@ -35,10 +35,11 @@ public class Commande {
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	@OneToMany(mappedBy = "commande", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "commande", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<CommandePizza> pizzas = new ArrayList<>();
 
-	public Commande(String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut, Calendar dateCommande, Livreur livreur, Client client) {
+	public Commande(String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut,
+			Calendar dateCommande, Livreur livreur, Client client) {
 		this.numeroCommande = numeroCommande;
 		this.statut = statut;
 		this.statutPaiement = statutPaiement;
@@ -47,7 +48,8 @@ public class Commande {
 		this.client = client;
 	}
 
-	public Commande(Integer id, String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut, Calendar dateCommande, Livreur livreur, Client client) {
+	public Commande(Integer id, String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut,
+			Calendar dateCommande, Livreur livreur, Client client) {
 		this.id = id;
 		this.numeroCommande = numeroCommande;
 		this.statut = statut;
@@ -213,6 +215,5 @@ public class Commande {
 			return false;
 		return true;
 	}
-	
-	
+
 }
