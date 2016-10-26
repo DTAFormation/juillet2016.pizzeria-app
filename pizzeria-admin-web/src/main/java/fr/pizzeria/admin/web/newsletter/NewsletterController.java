@@ -29,7 +29,9 @@ public class NewsletterController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String pizzaPromo = req.getParameter("pizzaPromo");
-		System.err.println(pizzaPromo);
+		
+		Logger.getLogger(NewsletterController.class.getName()).log(Level.INFO, pizzaPromo);
+		
 		try {
 			eMailService.envoyeEmailPromotionPizza(pizzaPromo);
 			req.setAttribute("msg_success", "Le mail a été envoyé à tout les clients abonnés");
