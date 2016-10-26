@@ -13,7 +13,6 @@ import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.SendFailedException;
 import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -28,7 +27,7 @@ import fr.pizzeria.model.Email;
 @Stateless
 public class EMailService {
 
-	private Session session;
+	//private Session session; //a supprimer si pas bug
 
 	@PersistenceContext
 	protected EntityManager em;

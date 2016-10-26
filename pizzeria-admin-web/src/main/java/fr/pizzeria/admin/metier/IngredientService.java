@@ -46,7 +46,7 @@ public class IngredientService {
 		ing.setQuantite(ingredientAvecCode.getQuantite());
 		ing.setSeuil(ingredientAvecCode.getSeuil());
 		if (!ing.isActif()) {
-			disablePizza(ing);
+			disablePizza(ing);	//on désactive les pizzas qui contiennent cet ingrédient s'il est désactivé
 		}
 		em.merge(ing);
 	}
@@ -76,10 +76,18 @@ public class IngredientService {
 		List<Pizza> listPizzas = pizzaService.findAll();
 		for (Pizza pizza : listPizzas) {
 			List<PizzaIngredients> listeIngredientsPizza = pizza.getIngredients();
+			for(PizzaIngredients ingPizza : listeIngredientsPizza){
+				if(ing.getId() != ingPizza.getId().getIngredient().getId()){
+					continue;
+				}
+				pizza.setActif(false);
+			}
+			/*
 			if (!listeIngredientsPizza.contains(ing)) {
 				continue;
 			}
 			pizza.setActif(false);
+			*/
 			pizzaService.updatePizza(pizza);
 		}
 	}
