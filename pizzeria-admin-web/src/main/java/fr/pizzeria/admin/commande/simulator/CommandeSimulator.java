@@ -35,7 +35,8 @@ public class CommandeSimulator {
 	public CommandeSimulator() {
 	}
 
-	@Schedule(second = "*", minute = "10", hour = "*")
+	//@Schedule(minute = "*/1", hour = "*") // pour le test chaque minute
+	@Schedule(minute = "*/1", hour = "*") // a définir avec le product owner
 	public void simulator() {
 		Logger.getAnonymousLogger().log(Level.INFO,"simulateur");
 		cmds = cmdService.findAll();
