@@ -7,35 +7,40 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                <h3><strong translate="PRIX"></strong>{{pizzD.pizza.prix | number:2}}€</h3>
-                <h4><strong translate="CATEGORIE"></strong>{{(pizzD.pizza.categorie) | translate}}</h4>
+                    <h3><strong translate="PRIX"></strong>{{pizzD.pizza.prix | number:2}}€</h3>
+                    <h4><strong translate="CATEGORIE"></strong>{{(pizzD.pizza.categorie) | translate}}</h4>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3><strong translate="INGREDIENTS"></strong></h3>
+                    <ul>
+                        <li ng-repeat="ingredient in pizzD.pizza.ingredients">
+                            {{ingredient.ingredient.nom}}
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <h3><strong translate="INGREDIENTS"></strong></h3>
-                <ul>
-                    <li ng-repeat="ingredient in pizzD.pizza.ingredients">
-                        {{ingredient.ingredient.nom}}
-                    </li>
-                </ul>
-            </div>
-            </div>
-            
+
         </div>
         <div class="container"><div class="col-md-4"><br><a href="#/pizzas" translate="RETOUR"></a></div></div>
     </div>
-    <div class= "col-md-3" ng-controller="pizzCtrl">
-    <mon-panier class="expander" dir-panier="pizzCtrl.localpanier"> </mon-panier>
-</div>  
+    <div class="col-md-3">
+        <div id="panier" class="well">
+            <h1 translate="PANIER"></h1>
+            <table id="cart" class="table table-hover table-condensed">
+                <mon-panier class="expander" btn-value="Passer Commande" dir-panier="pizzCtrl.localpanier"></mon-panier>
+            </table>
+        </div>
+    </div>
 </div>
 <!--
 <h2><strong>{{pizzD.pizza.nom}}</strong></h2><br>
-        <img style="width : 100%" ng-src="{{pizzD.url}}" alt=""><br>
-        <h3><strong>Prix : </strong>{{pizzD.pizza.prix | number:2}}€</h3>
-        <h4><strong>Categorie: </strong>{{(pizzD.pizza.categorie).replace('_',' ')}}</h4>
-        <h3><strong>Les ingrédients :</strong></h3>
-        <ul>
-            <li ng-repeat="ingredient in pizzD.pizza.ingredients">
-                {{ingredient.ingredient.nom}}
-            </li>
-        </ul>
-        <a href="#/pizzas">Retour</a>-->
+<img style="width : 100%" ng-src="{{pizzD.url}}" alt=""><br>
+<h3><strong>Prix : </strong>{{pizzD.pizza.prix | number:2}}€</h3>
+<h4><strong>Categorie: </strong>{{(pizzD.pizza.categorie).replace('_',' ')}}</h4>
+<h3><strong>Les ingrédients :</strong></h3>
+<ul>
+<li ng-repeat="ingredient in pizzD.pizza.ingredients">
+{{ingredient.ingredient.nom}}
+</li>
+</ul>
+<a href="#/pizzas">Retour</a>-->
