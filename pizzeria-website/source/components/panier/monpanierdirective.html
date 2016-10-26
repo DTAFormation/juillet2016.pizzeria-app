@@ -18,11 +18,6 @@
         <tr>
             <td colspan="2"><strong translate="TOTAL"></strong><strong> {{total() | number:2}} &euro;</strong></td>
         </tr>
-        <tr ng-if="btnValue != 'Commander'">
-            <td colspan="2"><a href="#/commande" class="btn btn-success btn-block" translate="PASSER_COMMANDE"><i class="fa fa-angle-right"></i></a></td>
-        </tr>
-        <tr ng-if="btnValue == 'Commander'">
-            <td colspan="2"><a href="#/commande" ng-click="enregistrer()" class="btn btn-success btn-block" translate="COMMANDER">{{btnValue}}<i class="fa fa-angle-right"></i></a></td>
-        </tr>
+        <td colspan="2"><a href="#/commande" ng-click="enregistrer()" class="btn btn-success btn-block" translate="{{btnValue}}"><i class="fa fa-angle-right"></i></a></td>
     </tfoot>
 </div>

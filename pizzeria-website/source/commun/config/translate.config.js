@@ -3,6 +3,7 @@
     var config = function ($translateProvider) {
         $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.translations('en', {
+            COMMANDER:'Purchase',
             TOTAL:'Amount :',
             QUANTITE:'Quantity :',
             ETAT_PANIER:'Your Cart is Empty',
@@ -58,6 +59,7 @@
             VALIDER:'Validate'
         });
         $translateProvider.translations('fr', {
+            COMMANDER:'Commander',
             TOTAL:'Total :',
             QUANTITE:'Quantité :',
             ETAT_PANIER:"Votre Panier est vide",

@@ -34,11 +34,14 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div id="panier" class="well">
-            <h1 translate="PANIER"></h1>
-            <table id="cart" class="table table-hover table-condensed">
-                <mon-panier class="expander" btn-value="Passer Commande" dir-panier="pizzCtrl.localpanier"></mon-panier>
-            </table>
-        </div>
-    </div> 
+				<div id="panier" class="well">
+					<h1 translate="PANIER"></h1>
+					<table id="cart" class="table table-hover table-condensed">
+						<ul ng-if="storedPanier.length == 0">
+							<li class="maListePanier" translate="ETAT_PANIER"></li>
+						</ul>
+						<mon-panier class="expander" btn-value="PASSER_COMMANDE" dir-panier="pizzCtrl.localpanier"></mon-panier>
+					</table>
+				</div>
+			</div>
 </div>
