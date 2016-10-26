@@ -25,6 +25,11 @@
         this.isConnected = function() {
             return localStorage.getItem("client") !== null;
         };
+
+        this.getConnected = function() {
+            return JSON.parse(localStorage.getItem("client"));
+        };
+
         this.getClientConnecte = function() {
            return JSON.parse(localStorage.getItem("client"));
         };
