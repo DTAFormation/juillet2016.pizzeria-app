@@ -75,7 +75,10 @@ public class ListerIngredientController extends HttpServlet {
 		String action = req.getParameter("action"); // editer ou supprimer // rajout de stock
 		String code = req.getParameter("code"); // identifiant de la pizza
 		String StringQuantite = req.getParameter("quantite");
-		Double quantite = Double.parseDouble(StringQuantite);
+		Double quantite = 0.0;
+		if(StringQuantite != null) {
+			quantite = Double.parseDouble(StringQuantite);
+		}
 		switch (action) {
 			case ACTION_EDITER:
 				resp.sendRedirect(this.getServletContext().getContextPath() + EditerPizzaController.URL + "?code=" + code);
