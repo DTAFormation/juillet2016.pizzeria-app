@@ -14,7 +14,5 @@
             }
         };
     };
-
-
     module.exports = directive;
 }());

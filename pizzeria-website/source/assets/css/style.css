@@ -37,14 +37,17 @@ body {
     margin-top: 40px;
 }
 
+.commande > img {
+    width:100px;
+}
 #select{
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.well {
+/*.well {
     width: 250px;
-}
+}*/
 h1 {
     color: #C03000;
 }
@@ -78,16 +81,17 @@ p {
 
 #panier{
     display: block;
-    float: right;
-
 }
+
 .maListePanier{
     list-style: none;
 }
+
 .monImagePanier{
     height: 40px;
     width: 40px;
 }
+
 .monInputPanier{
     height: 20px;
     width: 40px;

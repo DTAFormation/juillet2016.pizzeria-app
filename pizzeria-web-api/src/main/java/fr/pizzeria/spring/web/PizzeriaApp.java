@@ -36,7 +36,7 @@ public class PizzeriaApp {
 	 * Démarrage de l'application Web.
 	 *
 	 * @param args
-	 *            argument du programme
+	 *            argument du programme	
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(PizzeriaApp.class);
