@@ -1,9 +1,13 @@
 package fr.pizzeria.spring.web.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import fr.pizzeria.model.Commande;
-import java.lang.Integer;
+import java.util.List;
 
-public interface ICommandeRepository extends JpaRepository<Commande, Integer>{
-	//List<Commande> findByActif(boolean actif);
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Commande;
+
+public interface ICommandeRepository extends JpaRepository<Commande, Integer> {
+	// List<Commande> findByActif(boolean actif);
+	List<Commande> findByClient(Client client);
 }

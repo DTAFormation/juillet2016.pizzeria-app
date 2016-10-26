@@ -48,7 +48,6 @@
                     if (document.URL.includes("commande")){
                         
                         var cli = cliService.getClientConnecte();
-                        console.log(cli);
                         var commande = {
                             "idClient": cli.id
                         }

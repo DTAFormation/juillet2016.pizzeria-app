@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "commande_pizza")
 @IdClass(CommandePizzaId.class)
@@ -18,6 +20,7 @@ public class CommandePizza {
 
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "commande_id", referencedColumnName = "id")
+	@JsonIgnore
 	private Commande commande;
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "pizza_id", referencedColumnName = "id")
@@ -100,6 +103,5 @@ public class CommandePizza {
 			return false;
 		return true;
 	}
-	
-	
+
 }

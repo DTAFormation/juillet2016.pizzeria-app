@@ -9,10 +9,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pizzeria.model.Client;
@@ -35,52 +35,49 @@ public class CommandeRessource {
 
 	@Autowired
 	private ICommandeRepository commandeDao;
-	
+
 	@Autowired
 	private IClientRepository clientDao;
-	
+
 	@Autowired
 	private IPizzaRepository pizzaDao;
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Commande> listAllPizzas() {
-		return commandeDao.findAll();
-	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void saveCommande(@RequestBody ClientCommande clientCommande , HttpServletResponse response) {
-		
-		
+	public void saveCommande(@RequestBody ClientCommande clientCommande, HttpServletResponse response) {
+
 		// date
 		DateFormat dateTodayCommande = new SimpleDateFormat("yyyyMMddHHmmss");
 		Client client = clientDao.findOne(clientCommande.getIdClient());
 		System.out.println(client);
 		System.out.println(clientCommande.getPizzascom());
-		String  numeroCommande = "COM"+ client.getId()+dateTodayCommande.format(new Date());
+		String numeroCommande = "COM" + client.getId() + dateTodayCommande.format(new Date());
 		Commande c1 = new Commande();
 		commandeDao.save(c1);
-		//c1 = new Commande(numeroCommande,StatutCommandePaiement.NON_PAYEE, StatutCommande.NON_TRAITE, Calendar.getInstance(),client);
+		// c1 = new Commande(numeroCommande,StatutCommandePaiement.NON_PAYEE,
+		// StatutCommande.NON_TRAITE, Calendar.getInstance(),client);
 		c1.setClient(client);
 		c1.setDateCommande(Calendar.getInstance());
 		c1.setNumeroCommande(numeroCommande);
-		c1.setStatut( StatutCommande.NON_TRAITE);
+		c1.setStatut(StatutCommande.NON_TRAITE);
 		c1.setStatutPaiement(StatutCommandePaiement.NON_PAYEE);
-		
+
 		for (PizzaCommande pizzacommande : clientCommande.getPizzascom()) {
 			Pizza p = pizzaDao.findOne(pizzacommande.getIdPizza());
-			c1.addPizza(p,pizzacommande.getQuantite());
+			c1.addPizza(p, pizzacommande.getQuantite());
 		}
 		commandeDao.save(c1);
-		// num de commande
-		
-		//statut livrais
-		//StatutCommande.NON_TRAITE;
-		
-		// statut paiement
-		// sup
-		//client id
-		//livreur
-		// sauver la commander 
-		// sauver la commande pizza
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Commande> findByIdClient(@RequestParam(value = "idClient", required = false) Integer idClient) {
+		List<Commande> commandes = null;
+		if (idClient == null) {
+			commandes = commandeDao.findAll();
+		} else {
+			Client client = clientDao.findOne(idClient);
+			commandes = commandeDao.findByClient(client);
+		}
+		return commandes;
+
 	}
 }

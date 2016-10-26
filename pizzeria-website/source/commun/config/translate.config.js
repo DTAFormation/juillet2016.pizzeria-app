@@ -6,6 +6,11 @@
             COMMANDER:'Purchase',
             TOTAL:'Amount :',
             QUANTITE:'Quantity :',
+             NUM_COMMANDE:'Command Number',
+            STATUT_PAIEMENT:'Payment Status',
+            STATUT_COMMANDE: 'Command Status',
+            DATE:"Dated",
+            LISTE_PIZZA:'Pizzas List',
             ETAT_PANIER:'Your Cart is Empty',
             PASSER_COMMANDE:'Purchase',
             PANIER: 'Cart',
@@ -15,6 +20,7 @@
             PIZZA_MOIS: 'Pizza of the month',
             PATES: 'Pasta',
             SALADES: 'Salads',
+            COMMANDE: 'Order',
             CONNECTION: 'Log in',
             DECO: 'Log out',
             INSCRIT:'Register',
@@ -59,9 +65,15 @@
             VALIDER:'Validate'
         });
         $translateProvider.translations('fr', {
+
             COMMANDER:'Commander',
             TOTAL:'Total :',
             QUANTITE:'Quantité :',
+            NUM_COMMANDE:'Numéro de Commande',
+            STATUT_PAIEMENT:'Statut Paiement',
+            STATUT_COMMANDE: 'Statut Commande',
+            DATE:"Date",
+            LISTE_PIZZA:'Liste des Pizzas',
             ETAT_PANIER:"Votre Panier est vide",
             PASSER_COMMANDE:'Passer Commande',
             PANIER:'Panier',
@@ -71,6 +83,7 @@
             PIZZA_MOIS: 'Pizza du mois',
             PATES: 'Pâtes',
             SALADES: 'Salades',
+            COMMANDE: 'Commandes',
             CONNECTION: 'Se connecter',
             DECO: 'Se déconnecter',
             INSCRIT: 'S\'inscrire',

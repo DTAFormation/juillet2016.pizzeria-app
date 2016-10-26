@@ -111,6 +111,10 @@ p {
     margin-top: 40px;
 }
 
+tr {
+    color: antiquewhite;
+}
+
 span.rupture{
     color: red;
     

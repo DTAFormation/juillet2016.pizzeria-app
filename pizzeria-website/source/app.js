@@ -60,6 +60,7 @@
          */
         .controller("commandeCtrl", require("./components/commande/commande.controller"))
         .directive("panierCmd", require("./components/commande/commande.directive"))
+        .controller("comCtrl", require("./components/commande/listCommande.controller"))
 
         // Load directive
         .directive("monPanier", require("./components/panier/monpanier.directive"));

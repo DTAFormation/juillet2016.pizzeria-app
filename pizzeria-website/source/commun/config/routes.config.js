@@ -52,6 +52,11 @@
             controller: "commandeCtrl",
             controllerAs: 'cmd'
         });
+        $routeProvider.when('/listCommandes', {
+            templateUrl: "./source/components/commande/listCommandes.html",
+            controller: "comCtrl",
+            controllerAs: 'com'
+        });
     };
 
     module.exports = config;

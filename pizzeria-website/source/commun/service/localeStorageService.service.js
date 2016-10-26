@@ -28,7 +28,6 @@
 
         this.clearPanier = function () {
             localStorage.removeItem("panier");
-            console.log("Panier vidé");
         };
         //Initialisation du panier en localStorage avec un tableau vide si inexistant
         if (!vm.getDataLocalestorage()) {
@@ -37,7 +36,6 @@
         }
         // enregistrement de la commande en base
         this.postCommande = function (cmd) {
-            console.log(cmd);
             return $http.post(pizzConst.apiUrl + "commandes",cmd);
         };
     };

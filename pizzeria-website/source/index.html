@@ -36,6 +36,9 @@
 					<li role="presentation">
 						<a href="#/pizzas" translate="PIZZA"></a>
 					</li>
+					<li role="presentation" ng-show="deco.isConnected()">
+						<a href="#/listCommandes" translate="COMMANDE"></a>
+					</li>
 					<li role="presentation" ng-hide="deco.isConnected()">
 						<a href="#/connection" translate="CONNECTION"></a>
 					</li>
@@ -48,8 +51,8 @@
 				</ul>
 			</div>
 			<div ng-show="deco.isConnected()" id="divNomClient" class="col-lg-3 col-lg-offset-9">
-				<h4 translate="BIENVENUE"><strong>{{deco.getClientConnecte().nom}}</strong></h4>
-			</div>
+                <p class="welcomeConnect"><span translate="BIENVENUE"></span> <strong>{{deco.getClientConnecte().nom}}</strong></p>
+            </div>
 		</div>
 	</div>
 	<div class="container" ng-view></div>
