@@ -58,6 +58,16 @@ public class Commande {
 		this.livreur = livreur;
 		this.client = client;
 	}
+	
+	public Commande(String numeroCommande, StatutCommandePaiement statutPaiement, StatutCommande statut,
+			Calendar dateCommande, Client client) {
+		this.numeroCommande = numeroCommande;
+		this.statut = statut;
+		this.statutPaiement = statutPaiement;
+		this.dateCommande = dateCommande;
+		this.client = client;
+	}
+
 
 	public Commande() {
 		// TODO Auto-generated constructor stub

@@ -1,38 +1,45 @@
 (function () {
     'use strict';
-    var service = function($rootScope) {
+    var service = function ($http,$rootScope,pizzConst) {
         var vm = this;
-        this.getDataLocalestorage = function() {
+        this.getDataLocalestorage = function () {
             return JSON.parse(localStorage.getItem("panier"));
         };
-        this.postLocaleStorage = function(panier) {
+
+        this.postLocaleStorage = function (panier) {
             //Appel de mon event panier pour la récupération de celui ci
             $rootScope.$emit('panierevent', panier);
             return localStorage.setItem("panier", JSON.stringify(panier));
         };
-        this.deleteElementLocaleStorage = function(pizza){
+
+        this.deleteElementLocaleStorage = function (pizza) {
             var monPanier = vm.getDataLocalestorage();
             var newPanier = [];
-            
-            monPanier.find(function(maPizza){
-                if(maPizza.id != pizza.id ){
+
+            monPanier.find(function (maPizza) {
+                if (maPizza.id != pizza.id) {
                     newPanier.push(maPizza);
                 }
                 vm.clearPanier();
                 vm.postLocaleStorage(newPanier);
             });
-            
+
         };
-        this.clearPanier = function(){
+
+        this.clearPanier = function () {
             localStorage.removeItem("panier");
             console.log("Panier vidé");
         };
         //Initialisation du panier en localStorage avec un tableau vide si inexistant
         if (!vm.getDataLocalestorage()) {
             var emptyArray = [];
-            localStorage.setItem("panier",JSON.stringify(emptyArray));
+            localStorage.setItem("panier", JSON.stringify(emptyArray));
         }
+        // enregistrement de la commande en base
+        this.postCommande = function (cmd) {
+            console.log(cmd);
+            return $http.post(pizzConst.apiUrl + "commandes",cmd);
+        };
     };
-
     module.exports = service;
-}());
+} ());

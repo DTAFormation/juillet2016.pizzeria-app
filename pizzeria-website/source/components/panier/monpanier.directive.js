@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    var directive = function (localeStorageService, constantImg, $rootScope) {
+    var directive = function (cliService,localeStorageService, constantImg, $rootScope) {
 
         return {
             restrict: "E",
@@ -46,8 +46,27 @@
 
                 scope.enregistrer = function () {
                     if (document.URL.includes("commande")){
-                        console.log(scope.storedPanier);
-                        //localeStorageService.post(scope.storedPanier);
+                        
+                        var cli = cliService.getClientConnecte();
+                        console.log(cli);
+                        var commande = {
+                            "idClient": cli.id
+                        }
+                        var pizzas= [];
+                        var pizza ={};
+
+                        angular.forEach(scope.storedPanier,function(elem){
+                            pizza ={
+                                "idPizza": elem.pizza.id,
+                                "quantite":elem.quan
+                            }
+                            pizzas.push(pizza);
+                            pizza ={};
+                                   
+                        });
+                        commande.pizzascom = pizzas;
+                        
+                        localeStorageService.postCommande(commande);
                     }
                 }
 
