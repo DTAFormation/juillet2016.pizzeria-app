@@ -49,10 +49,8 @@ public class ClientService {
 
 	public void hardDeleteClients() {
 		Calendar dateDelete = Calendar.getInstance();
-		// dateDelete.add(Calendar.MINUTE, -2); // pour le test activer. date
-		// heur
-		// de maintenant - 2 minute.
-		dateDelete.add(Calendar.MONTH, -6); // date heur d'il ya a 6 mois.
+		dateDelete.add(Calendar.MINUTE, -2); // pour le test activer. date
+		//dateDelete.add(Calendar.MONTH, -6); // date heur d'il ya a 6 mois.
 
 		TypedQuery<Client> q = em.createQuery(
 				"select c from Client c where  c.actif = false and c.dateDerniereModification < :dateD ", Client.class);

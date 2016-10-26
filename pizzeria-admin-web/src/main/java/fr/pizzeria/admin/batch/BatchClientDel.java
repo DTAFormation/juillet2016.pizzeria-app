@@ -19,8 +19,8 @@ public class BatchClientDel {
 
 	}
 
-	// @Schedule(minute = "*/1", hour = "*") // pour les tests, décommenter
-	@Schedule(hour = "6", dayOfMonth = "1") // Le premier de chaque mois à 6
+	 @Schedule(minute = "*/1", hour = "*") // pour les tests, décommenter
+	//@Schedule(hour = "6", dayOfMonth = "1") // Le premier de chaque mois à 6
 	// heure du matin
 
 	public void batch() {

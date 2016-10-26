@@ -51,7 +51,7 @@ public class NouveauClientController extends HttpServlet {
 			Client clientSansId = null;
 
 			clientSansId = new Client(nom, prenom, email, adresse, telephone, abonne);
-			clientSansId.setPassword(password);
+			clientSansId.setPasswordEncrypt(password);
 
 			if (!clientService.isEmailTaken(email).isEmpty()) {
 				req.setAttribute("msgErreur", "l'email existe deja ");
