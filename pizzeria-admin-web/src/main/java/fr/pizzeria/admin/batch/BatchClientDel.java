@@ -1,5 +1,8 @@
 package fr.pizzeria.admin.batch;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,17 +19,16 @@ public class BatchClientDel {
 
 	}
 
-	
-	//@Schedule(minute = "*/1", hour = "*") // pour les tests, décommenter
-	@Schedule(hour="6", dayOfMonth="1")     // Le premier de chaque mois à 6 heure du matin
+	// @Schedule(minute = "*/1", hour = "*") // pour les tests, décommenter
+	@Schedule(hour = "6", dayOfMonth = "1") // Le premier de chaque mois à 6
+	// heure du matin
 
 	public void batch() {
 		try {
 			cs.hardDeleteClients();
 		} catch (Exception e) {
+			Logger.getAnonymousLogger().log(Level.SEVERE, e.getMessage());
 
-			System.out.println("error running thread " + e.getMessage());
 		}
 	}
 }
-

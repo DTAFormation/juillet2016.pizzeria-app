@@ -22,17 +22,17 @@ public class ClientService {
 	}
 
 	public Client findOneClient(String email) {
-		return em.createQuery("select c from Client c where c.email=:email", Client.class)
-				.setParameter("email", email).getSingleResult();
+		return em.createQuery("select c from Client c where c.email=:email", Client.class).setParameter("email", email)
+				.getSingleResult();
 	}
-	
+
 	public Client findOneClientById(String id) {
 		return em.createQuery("select c from Client c where c.id=:id", Client.class)
 				.setParameter("id", Integer.parseInt(id)).getSingleResult();
 	}
 
 	public void updateClient(String oldEmail, Client clientAvecId) {
-		findOneClient(oldEmail);//Fais office de verification.
+		findOneClient(oldEmail);// Fais office de verification.
 		em.merge(clientAvecId);
 	}
 
@@ -46,21 +46,25 @@ public class ClientService {
 			em.remove(c);
 		}
 	}
+
 	public void hardDeleteClients() {
 		Calendar dateDelete = Calendar.getInstance();
-		// dateDelete.add(Calendar.MINUTE, -3); // pour le test activer. date heur de maintenant - 3 minute.
+		// dateDelete.add(Calendar.MINUTE, -2); // pour le test activer. date
+		// heur
+		// de maintenant - 2 minute.
 		dateDelete.add(Calendar.MONTH, -6); // date heur d'il ya a 6 mois.
-		System.out.println("date =" + dateDelete.getTime());
-		
-		TypedQuery<Client> q = em.createQuery("select c from Client c where  c.actif = false and c.dateDerniereModification < :dateD ", Client.class);
-		q.setParameter("dateD", dateDelete , TemporalType.TIMESTAMP);	
+
+		TypedQuery<Client> q = em.createQuery(
+				"select c from Client c where  c.actif = false and c.dateDerniereModification < :dateD ", Client.class);
+		q.setParameter("dateD", dateDelete, TemporalType.TIMESTAMP);
 		List<Client> clients = q.getResultList();
-		
-				for (Client client : clients) {
-					System.out.println("client : "+ client.getPrenom()+" "+ client.getNom());
-					em.remove(client);
-				}
+
+		for (Client client : clients) {
+			System.out.println("client : " + client.getPrenom() + " " + client.getNom());
+			em.remove(client);
+		}
 	}
+
 	public void setEm(EntityManager em2) {
 		this.em = em2;
 	}
